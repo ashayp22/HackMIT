@@ -52,20 +52,26 @@ export default class Metrics extends React.Component {
 
         <div>
             
-              <p>Price: 15 <ReactTooltip id="price" place="top" effect="solid">
+              <p data-tip data-for = "price">Price: 15 <ReactTooltip id="price" place="top" effect="solid">
                     The price of the stock
                 </ReactTooltip></p>
-              <p>Dividend: 50 <ReactTooltip id="dividends" place="top" effect="solid">
+              <p data-tip data-for = "dividends">Dividend: 50 <ReactTooltip id="dividends" place="top" effect="solid">
                   A distribution of profits from a corporation to its stockholders
                 </ReactTooltip></p>
-              <p>Volume: 10 <ReactTooltip id="volume" place="top" effect="solid">
+              <p data-tip data-for = "volume">Volume: 10 <ReactTooltip id="volume" place="top" effect="solid">
                   A number of shares of a stock traded during a given period of time.
                 </ReactTooltip></p>
-              <p>Earnings: 50 <ReactTooltip id="earnings" place="top" effect="solid">
+              <p data-tip data-for = "earnings">Earnings: 50 <ReactTooltip id="earnings" place="top" effect="solid">
                   The profits of a company in a given quarter or fiscal year
                 </ReactTooltip></p>
           
-          <p>52 Week High</p>
+          <p data-tip data-for = "high">
+            52 Week High
+          <ReactTooltip id="high" place="top" effect="solid">
+            The highest share price that a stock has traded at during a passing year.
+          </ReactTooltip>
+
+          </p>
           <XYPlot width={this.props.width} height={50}>
 
             <XAxis
