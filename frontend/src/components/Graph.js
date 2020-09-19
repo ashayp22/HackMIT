@@ -65,7 +65,7 @@ export default class Graph extends React.Component {
 
       <Router>
 
-      <XYPlot width={500} height={500}>
+      <XYPlot width={this.props.width} height={this.props.height}>
         <XAxis tickFormat={v => labels[v]} tickLabelAngle={-90} />
         <YAxis />
         <LineMarkSeries
@@ -113,7 +113,7 @@ export default class Graph extends React.Component {
 
         </GradientDefs>
       </svg>
-    <DiscreteColorLegend orientation="horizontal" width={500} items={ITEMS} />
+    <DiscreteColorLegend orientation="horizontal" width={this.props.width} items={ITEMS} />
     </div>
 
     </Router>

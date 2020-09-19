@@ -29,8 +29,12 @@ export default class HomeScreen extends React.Component{
       left: '50%',
       top: '50%',
       transform: 'translate(-50%, -50%)',
-      border: '5px solid #FFFF00',
-      padding: '10px'
+      border: '5px solid',
+      backgroundColor: '#FBCDC2',
+      borderRadius: '25px',
+      padding: '10px',
+      width: '300px',
+      height: '400px'
     }
 
       return (

@@ -13,11 +13,15 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class App extends React.Component{
 
-  state = {
-    gameState: 0,
-    stockDataObj: null,
-    url: "https://cloud.iexapis.com/stable/stock/QQQ/chart/5y?token=sk_92b1bce5859e45d893bfa3f52fb0d469",
+  constructor(props) {
+    super(props)
+    this.state = {
+      gameState: 0,
+      stockDataObj: null,
+      url: "https://cloud.iexapis.com/stable/stock/QQQ/chart/5y?token=sk_92b1bce5859e45d893bfa3f52fb0d469",
+    }
   }
+
 
   // fetchData = async () => {
   //     try {
@@ -106,9 +110,7 @@ export default class App extends React.Component{
           />
 
             {this.handleGameState()}
-            {this.inits()}
-
-
+      </div>
       </div>
     </Router>
 
