@@ -39,6 +39,7 @@ export default class RestartScreen extends React.Component{
     }
 
       return (
+
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game Over</h1>

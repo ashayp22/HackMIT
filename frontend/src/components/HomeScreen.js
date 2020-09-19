@@ -42,13 +42,13 @@ export default class HomeScreen extends React.Component{
             <div style={centerStyle}>
               <h1>Game</h1>
 
-              <Button variant="primary" onClick = {() => this.props.click(1)}>Play</Button>
+              <Button variant="primary" onClick = {() => this.props.onClick(1)}>Play</Button>
               <br></br>
-              <Button variant="secondary" onClick = {() => this.props.click(2)}>Instructions</Button>
+              <Button variant="secondary" onClick = {() => this.props.onClick(2)}>Instructions</Button>
               <br></br>
-              <Button variant="success" onClick = {() => this.props.click(3)} >Visualize</Button>
+              <Button variant="success" onClick = {() => this.props.onClick(3)} >Visualize</Button>
               <br></br>
-              <Button variant="warning" onClick = {() => this.props.click(4)}>Learn</Button>
+              <Button variant="warning" onClick = {() => this.props.onClick(4)}>Learn</Button>
             </div>
         </div>
       );

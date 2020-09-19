@@ -5,17 +5,9 @@ import Graph from './Graph.js';
 import Metrics from './Metrics.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Stock from './Stock.js'
+import TwitterEmojiGraph from './TwitterEmojiGraph.js';
 
 export default class GameScreen extends React.Component{
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            
-        }
-
-    }
     componentDidMount() {
         
     }
@@ -24,7 +16,26 @@ export default class GameScreen extends React.Component{
 
     }
 
+    state = {
+        score: 0
+    }
+    validateResponse = (userAnswer, correctAnswer) => {
+        if(userAnswer == correctAnswer){
+            alert("Good Job");
+            this.setState({score: this.state.score + 1});
+        }
+        else {
+            alert("You Lose");
+            this.props.stopGame(this.state.score);
+        }
+    }
   render() {
+
+    let buttonStyle = {
+        zIndex: "100",
+        width: "100",
+        height: "100"
+    }
     let divStyle = {
         width: "100%",
         height: (document.body.clientHeight) + "px",
@@ -40,11 +51,16 @@ export default class GameScreen extends React.Component{
       padding: '10px',
       backgroundColor: 'white'
     }
-
       return (
         <Router>
-          <Stock></Stock>
+          <Stock data = {this.props.data}></Stock>
+        <div style={centerStyle}>
+            <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
+            <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
+            <h3>Score: {this.state.score} </h3>
+        </div>
         </Router>
+
       );
   }
 

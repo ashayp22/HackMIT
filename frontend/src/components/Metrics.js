@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {ListGroup} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import {
@@ -49,8 +50,14 @@ export default class Metrics extends React.Component {
     return (
 
         <Router>
-            <p>52 Week High</p>
-            <XYPlot width={this.props.width} height={50}>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Price: 15</ListGroup.Item>
+              <ListGroup.Item>Dividend: 50</ListGroup.Item>
+              <ListGroup.Item>Volume: 10</ListGroup.Item>
+              <ListGroup.Item>Earnings: 50</ListGroup.Item>
+          </ListGroup>
+          <p>52 Week High</p>
+          <XYPlot width={this.props.width} height={50}>
 
             <XAxis
                 labelFormat={v => `Value is ${v}`}
@@ -70,11 +77,6 @@ export default class Metrics extends React.Component {
             />
 
         </XYPlot>
-        
-        {/* <p>Price: 15</p>
-        <p>Dividend: 50</p>
-        <p>Volume: 10</p>
-        <p>Earnings: 50</p> */}
         
       </Router>
     );
