@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
+
+.header, .header2 {
+    font-family: 'Bungee Shade', cursive !important;
+    color: black;
+    font-size: 65px;
+}
+h3 {
+    font-family: 'Grandstander', cursive;
+}
+
+
+p, li {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.header2 {
+    font-size: 35px;
+}
+
+.coolButton {
+    padding: 0.7em 1.4em !important;
+    margin:0 0.3em 0.3em 0 !important;
+    border-radius:0.15em !important;
+    box-sizing: border-box !important;
+    text-decoration:none !important;
+    text-transform:uppercase !important;
+    font-weight:400 !important;
+    color:#000 !important;
+    box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17) !important;
+    text-align:center !important;
+    position:relative !important;
+    font-family: 'Bungee Inline', cursive;
+}
+
+.b1, .back {
+    background-color:#FFDF3F !important;
+}
+
+.b2, .back2 {
+    background-color:#2894CC !important;
+    color: white !important;
+}
+
+.b3 {
+    background-color:#001D55 !important;
+    color: white !important;
+}
+
+.b4 {
+    background-color:#3AA5B0 !important;
+}
+
+.coolButton:active{
+    top:0.1em;
+}
+
+.buy {
+    background-color:#3bfc00 !important;
+}
+
+.short {
+    background-color:#fc3200 !important;
+}

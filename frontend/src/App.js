@@ -51,11 +51,11 @@ export default class App extends React.Component{
       case 0:
         return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
       case 1:
-        return (<GameScreen score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
+        return (<GameScreen onClick = {this.changeGameState} score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
       case 2:
         return (<InstructionScreen onClick = {this.changeGameState}></InstructionScreen>);
       case 3:
-        return(<VisualScreen></VisualScreen>);
+        return(<VisualScreen onClick = {this.changeGameState}></VisualScreen>);
       case 4:
         return(<ResearchScreen onClick = {this.changeGameState}></ResearchScreen>);
       case 5:

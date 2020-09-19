@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
+import './style/extra.css'
 
 export default class HomeScreen extends React.Component{
 
-    // constructor(props) {
-    //     super(props)
-
-    //     this.state = {
-            
-    //     }
-
-    // }
     componentDidMount() {
     }
   
@@ -29,27 +25,27 @@ export default class HomeScreen extends React.Component{
       left: '50%',
       top: '50%',
       transform: 'translate(-50%, -50%)',
-      border: '5px solid',
+      border: '5px double',
       backgroundColor: '#FBCDC2',
-      borderRadius: '25px',
+      borderRadius: '45px',
       padding: '10px',
-      width: '50vw',
-      height: '70vh',
+      width: '700px',
+      height: '400px',
       boxShadow: "-4px 4px 2px gray",
     }
 
       return (
         <div style={divStyle}>
             <div style={centerStyle}>
-              <h1>Game</h1>
+              <h1 className="header">Buy or Short!</h1>
 
-              <Button variant="primary" onClick = {() => this.props.onClick(1)}>Play</Button>
+              <button className = "coolButton b1" onClick = {() => this.props.onClick(1)}>Play</button>
               <br></br>
-              <Button variant="secondary" onClick = {() => this.props.onClick(2)}>Instructions</Button>
+              <button className = "coolButton b2" onClick = {() => this.props.onClick(2)}>Instructions</button>
               <br></br>
-              <Button variant="success" onClick = {() => this.props.onClick(3)} >Visualize</Button>
+              <button className = "coolButton b3" onClick = {() => this.props.onClick(3)} >Visualize</button>
               <br></br>
-              <Button variant="warning" onClick = {() => this.props.onClick(4)}>Learn</Button>
+              <button className = "coolButton b4" onClick = {() => this.props.onClick(4)}>Learn</button>
             </div>
         </div>
       );

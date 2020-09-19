@@ -33,31 +33,31 @@ export default class ResearchScreen extends React.Component{
       backgroundColor: '#FBCDC2',
       borderRadius: '25px',
       padding: '10px',
-      width: '50vw',
-      height: '70vh',
+      width: '1000px',
+      height: '700px',
       boxShadow: "-4px 4px 2px gray",
-
+        textAlign: 'center'
     }
 
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
-                    <h1>Financial Literacy</h1>
+                    <h1 className = "header">Financial Literacy</h1>
                     <p>Learn these ideas to improve your game
                         in the stock market!
                     </p>
                     <div>
-                        <h6>
+                        <h3>
                             What are stocks, companies, and the stock market?
-                        </h6>
+                        </h3>
                         <p>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
-                        <h6>
+                        <h3>
                             What does it mean to Buy or Short a stock?
-                        </h6>
+                        </h3>
                         <p></p>
-                        <h6>
-                            Factors to Look at when choosing a stock to buy
-                        </h6>
+                        <h3>
+                            Long Term vs Short Term Investing
+                        </h3>
                         <ul>
                             <li>Stock Price Over Time
                                 <ul>
@@ -79,7 +79,7 @@ export default class ResearchScreen extends React.Component{
                         </ul>
 
                     </div>
-                    <Button onClick = {() => this.props.onClick(0)} variant = "warning">Back</Button>
+                    <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
                 </div>
             </div>
       );

@@ -42,17 +42,19 @@ export default class InstructionScreen extends React.Component{
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
-                    <h1>Instructions</h1>
-                    <p>Welcome to -Game-, the app that
-                        trains your stock buying skills!
+                    <h1 className = "header">Instructions</h1>
+                    <p>Welcome to Buy or Short!, where we teach you the fundamentals of investing!
                     </p>
                     <ol>
-                        <li>Press Play</li>
-                        <li>Analyze the Stock Information</li>
-                        <li>Pick Buy or Short to Answer</li>
+                        <li>Press play</li>
+                        <li>Analyze the long term and short term data for the stock</li>
+                        <li>Choose to buy or short the stock</li>
+                        <li>Rinse and repeat until you pick incorrectly</li>
+                        <li>After you lose, the SWAT will bust in and arrest you for insider trading</li>
+                        <li>( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)</li>
                     </ol>
-                    <Button onClick = {() => this.props.onClick(0)} variant = "warning">Back</Button>
-                    <Button onClick = {() => this.props.onClick(1)} variant = "success">Start</Button>
+                    <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                    <button className = "coolButton b2" onClick = {() => this.props.onClick(1)} variant = "success">Start</button>
                 </div>
             </div>
       );

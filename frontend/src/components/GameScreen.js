@@ -42,7 +42,7 @@ export default class GameScreen extends React.Component{
     }
       return (
         <Router>
-          <Stock game = {true} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
         </Router>
 
       );
