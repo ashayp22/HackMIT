@@ -1,32 +1,35 @@
 import React from 'react';
 
+
 import {
   XYPlot,
   XAxis,
   YAxis,
   VerticalGridLines,
   HorizontalGridLines,
-  LineSeries
+  LineSeries, 
+  MarkSeries
 } from 'react-vis';
 
-export default function Graph ({
-  xDomain = [-1, 3],
-  yDomain = [-5, 15],
-  xAxisOn0 = true,
-  yAxisOn0 = true,
-  verticalTickValues = [],
-  horizontalTickValues = [0]
-}) {
+
+const MARGIN = {
+  left: 10,
+  right: 10,
+  bottom: 80,
+  top: 20
+};
+
+
+export default function Example(props) {
   return (
-    <XYPlot width={300} height={300} {...{xDomain, yDomain}}>
-      {!verticalTickValues || verticalTickValues.length ? (
-        <VerticalGridLines tickValues={verticalTickValues} />
-      ) : null}
-      {!horizontalTickValues || horizontalTickValues.length ? (
-        <HorizontalGridLines tickValues={horizontalTickValues} />
-      ) : null}
-      <XAxis on0={xAxisOn0} />
-      <YAxis on0={yAxisOn0} />
+    <XYPlot margin={MARGIN} width={500} height={500}>
+      <XAxis tickFormat={v => `Value is ${v}`} tickLabelAngle={-90} />
+      <YAxis />
+      <MarkSeries
+        data={[{x: 0, y: 0}, {x: 10, y: 400}]}
+        opacity={0}
+        opacityType="linear"
+      />
       <LineSeries
         data={[
           {x: -1, y: 10},

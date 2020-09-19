@@ -19,14 +19,13 @@ export default class App extends React.Component{
 
 
   changeGameState = (i) => {
-    alert(i);
     this.setState({gameState: i});
   }
 
   handleGameState() {
     switch(this.state.gameState){
       case 0:
-        return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
+        return (<HomeScreen click = {this.changeGameState}></HomeScreen>);
       case 1:
         return (<InstructionScreen></InstructionScreen>);
       case 2:
@@ -57,16 +56,16 @@ export default class App extends React.Component{
 
         <Router>
       <div className = "app"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%"
-        }}
+        // style={{
+        //   position: "absolute",
+        //   top: 0,
+        //   left: 0,
+        //   width: "100%",
+        //   height: "100%"
+        // }}
       >
         
-        <Particles style = {particleStyle}
+        {/* <Particles style = {particleStyle}
                 params={{
                     "particles": {
                         "line_linked": {
@@ -92,7 +91,7 @@ export default class App extends React.Component{
                         width: '100vw',
                         background: `#96D0F1` 
                  }}
-                />
+                /> */}
 
             {this.handleGameState()} 
 

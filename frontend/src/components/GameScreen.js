@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-import Graph from './Graph';
+import Graph from './Graph.js';
 
 export default class GameScreen extends React.Component{
 
@@ -39,7 +39,7 @@ export default class GameScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game</h1>
-              <Graph></Graph>
+              <Graph width={300} height={300}></Graph>
             </div>
         </div>
       );
