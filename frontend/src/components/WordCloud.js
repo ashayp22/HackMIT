@@ -58,14 +58,17 @@ export default class WordCloud extends React.Component{
               .attr('text-decoration', isActive ? 'underline' : 'none')
           }
           return (
-            <ReactWordcloud
-              callbacks={{
-                onWordClick: getCallback('onWordClick'),
-                onWordMouseOut: getCallback('onWordMouseOut'),
-                onWordMouseOver: getCallback('onWordMouseOver'),
-              }}
-              words={words}
-            />
+            <div>
+              <p>News Word Cloud</p>
+              <ReactWordcloud
+                callbacks={{
+                  onWordClick: getCallback('onWordClick'),
+                  onWordMouseOut: getCallback('onWordMouseOut'),
+                  onWordMouseOver: getCallback('onWordMouseOver'),
+                }}
+                words={words}
+              />
+            </div>
           )
   }
 }

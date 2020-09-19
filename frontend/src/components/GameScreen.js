@@ -16,19 +16,7 @@ export default class GameScreen extends React.Component{
 
     }
 
-    state = {
-        score: 0
-    }
-    validateResponse = (userAnswer, correctAnswer) => {
-        if(userAnswer == correctAnswer){
-            // alert("Good Job");
-            this.setState({score: this.state.score + 1});
-        }
-        else {
-            // alert("You Lose");
-            this.props.stopGame(this.state.score);
-        }
-    }
+    
   render() {
 
     let buttonStyle = {
@@ -54,12 +42,7 @@ export default class GameScreen extends React.Component{
     }
       return (
         <Router>
-          <Stock data = {this.props.data}></Stock>
-            <div style={centerStyle}>
-                <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
-                <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
-                <h3>Score: {this.state.score} </h3>
-            </div>
+          <Stock game = {true} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
         </Router>
 
       );

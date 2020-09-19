@@ -49,34 +49,22 @@ export default class Metrics extends React.Component {
 
     return (
 
-        <Router>
-            <ListGroup variant="flush">
-              <ListGroup.Item data-tip data-for="price">
-                  Price: 20
-                  <ReactTooltip id="price" place="top" effect="solid">
+
+        <div>
+            
+              <p>Price: 15 <ReactTooltip id="price" place="top" effect="solid">
                     The price of the stock
-                </ReactTooltip>
-              </ListGroup.Item>
-              <ListGroup.Item data-tip data-for="dividends">
-                Dividend: 50
-                <ReactTooltip id="dividends" place="top" effect="solid">
+                </ReactTooltip></p>
+              <p>Dividend: 50 <ReactTooltip id="dividends" place="top" effect="solid">
                   A distribution of profits from a corporation to its stockholders
-                </ReactTooltip>
-                
-                </ListGroup.Item>
-              <ListGroup.Item data-tip data-for="volume">
-                Volume: 10
-                <ReactTooltip id="volume" place="top" effect="solid">
+                </ReactTooltip></p>
+              <p>Volume: 10 <ReactTooltip id="volume" place="top" effect="solid">
                   A number of shares of a stock traded during a given period of time.
-                </ReactTooltip>
-              </ListGroup.Item>
-              <ListGroup.Item data-tip data-for="earnings">
-                Earnings: 50
-                <ReactTooltip id="earnings" place="top" effect="solid">
+                </ReactTooltip></p>
+              <p>Earnings: 50 <ReactTooltip id="earnings" place="top" effect="solid">
                   The profits of a company in a given quarter or fiscal year
-                </ReactTooltip>
-              </ListGroup.Item>
-          </ListGroup>
+                </ReactTooltip></p>
+          
           <p>52 Week High</p>
           <XYPlot width={this.props.width} height={50}>
 
@@ -99,7 +87,7 @@ export default class Metrics extends React.Component {
 
         </XYPlot>
         
-      </Router>
+      </div>
     );
   }
 
