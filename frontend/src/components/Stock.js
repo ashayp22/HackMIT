@@ -5,7 +5,6 @@ import Graph from './Graph.js';
 import Metrics from './Metrics.js';
 import TwitterEmojiGraph from "./TwitterEmojiGraph.js";
 import WordCloud from './WordCloud.js'
-
 export default class Stock extends React.Component{
 
     constructor(props) {

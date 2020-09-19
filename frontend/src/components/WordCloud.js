@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Button from 'react-bootstrap/Button';
-import Stock from './Stock.js'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import StockSearch from './StockSearch.js'
+// import ReactDOM from 'react-dom';
+// import Button from 'react-bootstrap/Button';
+// import Stock from './Stock.js'
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import StockSearch from './StockSearch.js'
 import ReactWordcloud from 'react-wordcloud';
 import { select } from "d3-selection";
 

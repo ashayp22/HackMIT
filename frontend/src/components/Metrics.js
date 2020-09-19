@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactTooltip from "react-tooltip";
 import {ListGroup} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -51,10 +51,31 @@ export default class Metrics extends React.Component {
 
         <Router>
             <ListGroup variant="flush">
-              <ListGroup.Item>Price: 15</ListGroup.Item>
-              <ListGroup.Item>Dividend: 50</ListGroup.Item>
-              <ListGroup.Item>Volume: 10</ListGroup.Item>
-              <ListGroup.Item>Earnings: 50</ListGroup.Item>
+              <ListGroup.Item data-tip data-for="price">
+                  Price: 20
+                  <ReactTooltip id="price" place="top" effect="solid">
+                    The price of the stock
+                </ReactTooltip>
+              </ListGroup.Item>
+              <ListGroup.Item data-tip data-for="dividends">
+                Dividend: 50
+                <ReactTooltip id="dividends" place="top" effect="solid">
+                  A distribution of profits from a corporation to its stockholders
+                </ReactTooltip>
+                
+                </ListGroup.Item>
+              <ListGroup.Item data-tip data-for="volume">
+                Volume: 10
+                <ReactTooltip id="volume" place="top" effect="solid">
+                  A number of shares of a stock traded during a given period of time.
+                </ReactTooltip>
+              </ListGroup.Item>
+              <ListGroup.Item data-tip data-for="earnings">
+                Earnings: 50
+                <ReactTooltip id="earnings" place="top" effect="solid">
+                  The profits of a company in a given quarter or fiscal year
+                </ReactTooltip>
+              </ListGroup.Item>
           </ListGroup>
           <p>52 Week High</p>
           <XYPlot width={this.props.width} height={50}>
