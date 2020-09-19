@@ -14,15 +14,37 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 export default class App extends React.Component{
 
   state = {
-    gameState: 0
+    gameState: 0,
+    stockDataObj: null,
+    url: "https://cloud.iexapis.com/stable/stock/QQQ/chart/5y?token=sk_92b1bce5859e45d893bfa3f52fb0d469",
   }
 
+  // fetchData = async () => {
+  //     try {
+  //       let response = await fetch(this.state.url, {header: {"access-control-allow-origin" : "*"}});
+  //       let json = await response.json();
+  //       return json;
+  //     } 
+  //     catch (error) {
+  //       alert(error);
+  //     }
+  // }
+  inits = () => {
+    let url = this.state.url;
 
+      fetch(url, {header: {"access-control-allow-origin" : "*"}})
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          console.log(json[0].date);
+        });
+  }
   changeGameState = (i) => {
     this.setState({gameState: i});
   }
 
-  handleGameState() {
+  handleGameState = ()  => {
     switch(this.state.gameState){
       case 0:
         return (<HomeScreen click = {this.changeGameState}></HomeScreen>);
@@ -41,30 +63,11 @@ export default class App extends React.Component{
 
 
   render() {
-
-    // let divStyle = {
-    //   textAlign: 'center',
-    // }
-
-    let particleStyle = {
-      zIndex: "-1"
-    }
-
-
       return (
 
 
         <Router>
-      <div className = "appContainer"
-        // style={{
-        //   // position: "absolute",
-        //   // top: 0,
-        //   // left: 0,
-        //   width: "100vw",
-        //   height: "100vh"
-        // }}
-      >
-      <div id = "particles-js">
+      <div className = "appContainer">
         <Particles className = "particles"
                 params={{
                     "particles": {
@@ -94,9 +97,10 @@ export default class App extends React.Component{
                  }}
           />
 
-            {/* {this.handleGameState()}  */}
+            {this.handleGameState()}
+            {this.inits()}
+
       </div>
-    </div>
     </Router>
 
       );

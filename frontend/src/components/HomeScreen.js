@@ -38,9 +38,9 @@ export default class HomeScreen extends React.Component{
             <div style={centerStyle}>
               <h1>Game</h1>
 
-              <Button variant="primary" onClick = {() => this.props.click(2)}>Play</Button>
+              <Button variant="primary" onClick = {() => this.props.click(1)}>Play</Button>
               <br></br>
-              <Button variant="secondary" onClick = {() => this.props.click(1)}>Instructions</Button>
+              <Button variant="secondary" onClick = {() => this.props.click(2)}>Instructions</Button>
               <br></br>
               <Button variant="success" onClick = {() => this.props.click(3)} >Visualize</Button>
               <br></br>
