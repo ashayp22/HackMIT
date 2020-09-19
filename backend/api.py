@@ -93,7 +93,7 @@ def getChartData(ticker, date):
 
         if if_date_is_higher(acDate, date):
             break;
-        final_dates.append(datetime.fromtimestamp(dates_0[i]))
+        final_dates.append(str(datetime.fromtimestamp(dates_0[i]).date()))
         final_volumes.append(volumes_0[i])
         final_opens.append(opens_0[i])
         final_highs.append(highs_0[i])
@@ -158,7 +158,7 @@ def get_data(ticker, date):
     data['dates'] = dates
     # data['dividend'] = get_dividend(ticker, date)
     # data['earnings'] = get_earnings(ticker, date)
-    data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
     x =json.dumps(vehical_data)
     return x
@@ -187,7 +187,7 @@ def get_data_random():
     data['dates'] = dates
      # data['dividend'] = get_dividend(ticker, date)
         # data['earnings'] = get_earnings(ticker, date)
-    data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
     x = json.dumps(vehical_data)
 
