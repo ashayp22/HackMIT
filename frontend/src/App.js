@@ -42,27 +42,16 @@ export default class App extends React.Component{
 
   render() {
 
-    // let divStyle = {
-    //   textAlign: 'center',
-    // }
-
-    let particleStyle = {
-      zIndex: "-1"
-    }
-
-
       return (
-
-
         <Router>
       <div className = "appContainer"
-        // style={{
-        //   // position: "absolute",
-        //   // top: 0,
-        //   // left: 0,
-        //   width: "100vw",
-        //   height: "100vh"
-        // }}
+        style={{
+          // position: "absolute",
+          // top: 0,
+          // left: 0,
+          width: "100vw",
+          height: "100vh"
+        }}
       >
       <div id = "particles-js">
         <Particles className = "particles"
@@ -94,7 +83,7 @@ export default class App extends React.Component{
                  }}
           />
 
-            {/* {this.handleGameState()}  */}
+            {this.handleGameState()} 
       </div>
     </div>
     </Router>
