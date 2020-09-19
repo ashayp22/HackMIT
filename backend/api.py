@@ -164,3 +164,4 @@ if __name__ == '__main__':
     app.run(debug=True)
 
     # the default if for building web app because this is a vanilla flask, so its trying to return in http content, it is return in type html.
+
