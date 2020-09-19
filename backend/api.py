@@ -98,7 +98,7 @@ app = Flask(__name__)
 #YOU HAVE TO HAVE THE IEX.py FILE IN THE SAME FOLDER AS THIS ONE
 
 # run on your computer, and see json output: type this:
-# curl -v  http://localhost:5000/todo/api/v1.0/dividend/2020-09-15/twtr
+# curl -v  http://localhost:5000/todo/api/v1.0/dividend/2020-09-15/twtri
 
 @app.route('/todo/api/v1.0/earning/<string:date>/<string:ticker>', methods=['GET'])
 def get_earnings(ticker, date):
