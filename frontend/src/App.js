@@ -19,14 +19,13 @@ export default class App extends React.Component{
 
 
   changeGameState = (i) => {
-    alert(i);
     this.setState({gameState: i});
   }
 
   handleGameState() {
     switch(this.state.gameState){
       case 0:
-        return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
+        return (<HomeScreen click = {this.changeGameState}></HomeScreen>);
       case 1:
         return (<GameScreen></GameScreen>);
       case 2:
