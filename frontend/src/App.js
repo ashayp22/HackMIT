@@ -16,7 +16,7 @@ export default class App extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      gameState: 0,
+      gameState: 5,
       stockDataObj: null,
       url: "https://cloud.iexapis.com/stable/stock/QQQ/chart/5y?token=sk_92b1bce5859e45d893bfa3f52fb0d469",
     }
@@ -61,7 +61,7 @@ export default class App extends React.Component{
       case 4:
         return(<ResearchScreen></ResearchScreen>);
       case 5:
-        return(<RestartScreen></RestartScreen>);
+        return(<RestartScreen click = {this.changeGameState} finalScore = {10} message = {"You should have shorted the stock"}></RestartScreen>);
     }
   }
 

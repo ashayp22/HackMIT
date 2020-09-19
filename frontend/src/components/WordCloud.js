@@ -14,9 +14,8 @@ export default class WordCloud extends React.Component{
 
     constructor(props) {
         super(props)
-
-    
     }
+    
     componentDidMount() {
     }
   
