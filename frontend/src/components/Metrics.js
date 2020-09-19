@@ -50,7 +50,7 @@ export default class Metrics extends React.Component {
 
         <Router>
             <p>52 Week High</p>
-            <XYPlot width={500} height={50}>
+            <XYPlot width={this.props.width} height={50}>
 
             <XAxis
                 labelFormat={v => `Value is ${v}`}
@@ -71,10 +71,10 @@ export default class Metrics extends React.Component {
 
         </XYPlot>
         
-        <p>Price: 15</p>
+        {/* <p>Price: 15</p>
         <p>Dividend: 50</p>
         <p>Volume: 10</p>
-        <p>Earnings: 50</p>
+        <p>Earnings: 50</p> */}
         
       </Router>
     );

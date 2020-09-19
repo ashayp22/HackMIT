@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Graph from './Graph.js';
 import Metrics from './Metrics.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Stock from './Stock.js'
+
 
 export default class GameScreen extends React.Component{
 
@@ -42,9 +41,13 @@ export default class GameScreen extends React.Component{
     }
 
       return (
-        <Router>
-          <Stock></Stock>
-        </Router>
+        <div style={divStyle}>
+            <div style={centerStyle}>
+              <h1>Game</h1>
+              <Graph width={300} height={300}></Graph>
+              <Metrics width={300} ></Metrics>
+            </div>
+        </div>
       );
   }
 
