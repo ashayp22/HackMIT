@@ -20,8 +20,7 @@ export default class App extends React.Component{
       url: "https://reqres.in/api/products/3",
     }
 
-  inits(){
-    let url = this.state.url;
+  inits(url){
       if(this.state.stockDataObj == null){
         fetch(url, {header: {"access-control-allow-origin" : "*"}})
           .then((response) => {
@@ -54,7 +53,7 @@ export default class App extends React.Component{
       case 1:
         return (<GameScreen score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
       case 2:
-        return (<InstructionScreen></InstructionScreen>);
+        return (<InstructionScreen onClick = {this.changeGameState}></InstructionScreen>);
       case 3:
         return(<VisualScreen></VisualScreen>);
       case 4:
@@ -68,7 +67,7 @@ export default class App extends React.Component{
 
   render() {
       return (
-        <Router>
+      <Router>
       <div className = "appContainer"
         style={{
           // position: "absolute",
@@ -110,7 +109,7 @@ export default class App extends React.Component{
 
 
       {this.handleGameState()}
-      {this.inits()}
+      {this.inits("https://reqres.in/api/products/3")} 
 
       </div>
       </div>

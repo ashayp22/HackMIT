@@ -49,16 +49,17 @@ export default class GameScreen extends React.Component{
       transform: 'translate(-50%, -50%)',
       border: '5px solid #FFFF00',
       padding: '10px',
-      backgroundColor: 'white'
+      backgroundColor: 'white',
+      boxShadow: "-4px 4px 2px gray",
     }
       return (
         <Router>
           <Stock data = {this.props.data}></Stock>
-        <div style={centerStyle}>
-            <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
-            <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
-            <h3>Score: {this.state.score} </h3>
-        </div>
+            <div style={centerStyle}>
+                <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
+                <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
+                <h3>Score: {this.state.score} </h3>
+            </div>
         </Router>
 
       );
