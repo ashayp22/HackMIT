@@ -60,7 +60,8 @@ export default class App extends React.Component{
       case 4:
         return(<ResearchScreen></ResearchScreen>);
       case 5:
-        return(<RestartScreen finalScore = {this.state.score}></RestartScreen>);
+
+        return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {"You should have shorted the stock"}></RestartScreen>);
     }
   }
 
@@ -106,9 +107,10 @@ export default class App extends React.Component{
                         background: `#96D0F1` 
                  }}
           />
-      </div>
-        {this.inits()}
-        {this.handleGameState()}
+
+
+      {this.handleGameState()}
+
       </div>
     </Router>
 
