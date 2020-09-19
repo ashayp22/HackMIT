@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 
 export default class HomeScreen extends React.Component{
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
 
-        this.state = {
+    //     this.state = {
             
-        }
+    //     }
 
-    }
+    // }
     componentDidMount() {
     }
   
@@ -37,6 +37,7 @@ export default class HomeScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game</h1>
+
               <Button variant="primary" onClick = {() => this.props.click(2)}>Play</Button>
               <br></br>
               <Button variant="secondary" onClick = {() => this.props.click(1)}>Instructions</Button>

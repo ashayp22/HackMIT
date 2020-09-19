@@ -27,9 +27,9 @@ export default class App extends React.Component{
       case 0:
         return (<HomeScreen click = {this.changeGameState}></HomeScreen>);
       case 1:
-        return (<InstructionScreen></InstructionScreen>);
-      case 2:
         return (<GameScreen></GameScreen>);
+      case 2:
+        return (<InstructionScreen></InstructionScreen>);
       case 3:
         return(<VisualScreen></VisualScreen>);
       case 4:
@@ -42,9 +42,9 @@ export default class App extends React.Component{
 
   render() {
 
-    let divStyle = {
-      textAlign: 'center',
-    }
+    // let divStyle = {
+    //   textAlign: 'center',
+    // }
 
     let particleStyle = {
       zIndex: "-1"
@@ -55,27 +55,27 @@ export default class App extends React.Component{
 
 
         <Router>
-      <div className = "app"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%"
-        }}
+      <div className = "appContainer"
+        // style={{
+        //   // position: "absolute",
+        //   // top: 0,
+        //   // left: 0,
+        //   width: "100vw",
+        //   height: "100vh"
+        // }}
       >
-        
-        <Particles style = {particleStyle}
+      <div id = "particles-js">
+        <Particles className = "particles"
                 params={{
                     "particles": {
                         "line_linked": {
                                     "color":"#3AA5B0"
                                     },
                         "number": {
-                            "value": 150
+                            "value": 100
                         },
                         "size": {
-                            "value": 5
+                            "value": 10
                         }
                     },
                     "interactivity": {
@@ -89,13 +89,14 @@ export default class App extends React.Component{
                 }}
                 style={{
                         width: '100vw',
+                        height:'100vh',
                         background: `#96D0F1` 
                  }}
-                />
+          />
 
-            {this.handleGameState()} 
-
+            {/* {this.handleGameState()}  */}
       </div>
+    </div>
     </Router>
 
       );
