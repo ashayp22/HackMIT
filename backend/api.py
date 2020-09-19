@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
 from flask import abort
 from flask import make_response
-from IEX import *
+from backend.IEX import *
+import json
 
 app = Flask(__name__)
 
