@@ -17,28 +17,25 @@ export default class GameScreen extends React.Component{
     }
 
     state = {
-        score: 0,
+        score: 0
     }
-
     validateResponse = (userAnswer, correctAnswer) => {
         if(userAnswer == correctAnswer){
             alert("Good Job");
             this.setState({score: this.state.score + 1});
         }
         else {
-            alert("Oh No!");
-            this.setState({userLost: true});
+            alert("You Lose");
+            this.props.stopGame(this.state.score);
         }
-        // this.hasUserLost();
     }
-    // hasUserLost(){
-    //     if(this.state.userLost){
-    //         this.props.stopGame(5);
-    //     }
-    // }  
   render() {
 
-
+    let buttonStyle = {
+        zIndex: "100",
+        width: "100",
+        height: "100"
+    }
     let divStyle = {
         width: "100%",
         height: (document.body.clientHeight) + "px",
@@ -56,9 +53,12 @@ export default class GameScreen extends React.Component{
     }
       return (
         <Router>
-          {/* <Stock data = {this.props.data}></Stock> */}
-          {/* <Button style = {{zIndex: "1"}} onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button> */}
-          <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
+          <Stock data = {this.props.data}></Stock>
+        <div style={centerStyle}>
+            <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
+            <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
+            <h3>Score: {this.state.score} </h3>
+        </div>
         </Router>
 
       );

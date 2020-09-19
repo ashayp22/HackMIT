@@ -20,7 +20,7 @@ export default class RestartScreen extends React.Component{
     }
   render() {
       return (
-          <p>restart</p>
+          <h1>restart</h1>
       );
   }
 }

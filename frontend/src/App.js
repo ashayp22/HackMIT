@@ -16,7 +16,7 @@ export default class App extends React.Component{
     state = {
       gameState: 0,
       stockDataObj: null,
-      userLost: false,
+      score: 0,
       url: "https://reqres.in/api/products/3",
     }
 
@@ -37,18 +37,22 @@ export default class App extends React.Component{
     this.setState({gameState: i});
   }
 
-  hasUserLost = () => {
-    if(this.state.userLost){
-        this.changeGameState(5);
-    }
-}  
+  updateScore = () =>{
+    this.setState({score: this.state.score});
+  }
 
+  stopGame = (score) => {
+    this.setState({
+        gameState: 5,
+        score: score,
+    });
+  }
   handleGameState(){
     switch(this.state.gameState){
       case 0:
         return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
       case 1:
-        return (<GameScreen stopGame = {this.hasUserLost} data = {this.state.stockDataObj}></GameScreen>);
+        return (<GameScreen score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
       case 2:
         return (<InstructionScreen></InstructionScreen>);
       case 3:
@@ -56,7 +60,7 @@ export default class App extends React.Component{
       case 4:
         return(<ResearchScreen></ResearchScreen>);
       case 5:
-        return(<RestartScreen></RestartScreen>);
+        return(<RestartScreen finalScore = {this.state.score}></RestartScreen>);
     }
   }
 
@@ -64,7 +68,6 @@ export default class App extends React.Component{
   render() {
       return (
         <Router>
-
       <div className = "appContainer"
         style={{
           // position: "absolute",
@@ -103,9 +106,9 @@ export default class App extends React.Component{
                         background: `#96D0F1` 
                  }}
           />
-            {this.inits()}
-            {this.handleGameState()}
       </div>
+        {this.inits()}
+        {this.handleGameState()}
       </div>
     </Router>
 
