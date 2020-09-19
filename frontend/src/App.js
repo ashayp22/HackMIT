@@ -13,47 +13,42 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class App extends React.Component{
 
-  constructor(props) {
-    super(props)
-    this.state = {
+    state = {
       gameState: 0,
       stockDataObj: null,
-      url: "https://cloud.iexapis.com/stable/stock/QQQ/chart/5y?token=sk_92b1bce5859e45d893bfa3f52fb0d469",
+      userLost: false,
+      url: "https://reqres.in/api/products/3",
     }
-  }
 
-
-  // fetchData = async () => {
-  //     try {
-  //       let response = await fetch(this.state.url, {header: {"access-control-allow-origin" : "*"}});
-  //       let json = await response.json();
-  //       return json;
-  //     } 
-  //     catch (error) {
-  //       alert(error);
-  //     }
-  // }
-  inits = () => {
+  inits(){
     let url = this.state.url;
-
-      fetch(url, {header: {"access-control-allow-origin" : "*"}})
-        .then((response) => {
-          return response.json();
-        })
-        .then((json) => {
-          console.log(json[0].date);
-        });
+      if(this.state.stockDataObj == null){
+        fetch(url, {header: {"access-control-allow-origin" : "*"}})
+          .then((response) => {
+            return response.json();
+          })
+          .then((json) => {
+            console.log(json);
+            this.setState({stockDataObj: json});
+          });
+      }
   }
   changeGameState = (i) => {
     this.setState({gameState: i});
   }
 
-  handleGameState = ()  => {
+  hasUserLost = () => {
+    if(this.state.userLost){
+        this.changeGameState(5);
+    }
+}  
+
+  handleGameState(){
     switch(this.state.gameState){
       case 0:
-        return (<HomeScreen click = {this.changeGameState}></HomeScreen>);
+        return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
       case 1:
-        return (<GameScreen></GameScreen>);
+        return (<GameScreen stopGame = {this.hasUserLost} data = {this.state.stockDataObj}></GameScreen>);
       case 2:
         return (<InstructionScreen></InstructionScreen>);
       case 3:
@@ -108,7 +103,7 @@ export default class App extends React.Component{
                         background: `#96D0F1` 
                  }}
           />
-
+            {this.inits()}
             {this.handleGameState()}
       </div>
       </div>
