@@ -65,7 +65,7 @@ export default class Graph extends React.Component {
 
       <Router>
 
-      <XYPlot margin={MARGIN} width={500} height={500}>
+      <XYPlot width={500} height={500}>
         <XAxis tickFormat={v => labels[v]} tickLabelAngle={-90} />
         <YAxis />
         <LineMarkSeries

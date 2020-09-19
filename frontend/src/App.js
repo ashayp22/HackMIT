@@ -64,10 +64,18 @@ export default class App extends React.Component{
 
   render() {
       return (
-
-
         <Router>
-      <div className = "appContainer">
+
+      <div className = "appContainer"
+        style={{
+          // position: "absolute",
+          // top: 0,
+          // left: 0,
+          width: "100vw",
+          height: "100vh"
+        }}
+      >
+      <div id = "particles-js">
         <Particles className = "particles"
                 params={{
                     "particles": {
@@ -99,6 +107,7 @@ export default class App extends React.Component{
 
             {this.handleGameState()}
             {this.inits()}
+
 
       </div>
     </Router>
