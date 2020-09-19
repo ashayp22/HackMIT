@@ -110,7 +110,9 @@ export default class App extends React.Component{
 
 
       {this.handleGameState()}
+      {this.inits()}
 
+      </div>
       </div>
     </Router>
 
