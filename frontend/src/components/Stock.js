@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Graph from './Graph.js';
 import Metrics from './Metrics.js';
-
+import WordCloud from './WordCloud.js'
 
 export default class GameScreen extends React.Component{
 
@@ -44,8 +44,9 @@ export default class GameScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game</h1>
-              <Graph width={300} height={300}></Graph>
-              <Metrics width={300} ></Metrics>
+              {/* <Graph width={300} height={300}></Graph>
+              <Metrics width={300} ></Metrics> */}
+              <WordCloud></WordCloud>
             </div>
         </div>
       );
