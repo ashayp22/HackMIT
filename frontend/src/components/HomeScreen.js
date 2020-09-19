@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 
 export default class HomeScreen extends React.Component{
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
 
-        this.state = {
+    //     this.state = {
             
-        }
+    //     }
 
-    }
+    // }
     componentDidMount() {
     }
   
@@ -37,13 +37,13 @@ export default class HomeScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game</h1>
-              <Button variant="primary">Play</Button>
+              <Button onClick = {() => this.props.onClick(1)} variant="primary">Play</Button>
               <br></br>
-              <Button variant="secondary">Instructions</Button>
+              <Button onClick = {() => this.props.onClick(2)} variant="secondary">Instructions</Button>
               <br></br>
-              <Button variant="success">Visualize</Button>
+              <Button onClick = {() => this.props.onClick(3)} variant="success">Visualize</Button>
               <br></br>
-              <Button variant="warning">Learn</Button>
+              <Button onClick = {() => this.props.onClick(4)} variant="warning">Learn</Button>
             </div>
         </div>
       );

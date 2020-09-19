@@ -14,9 +14,11 @@ export default class GameScreen extends React.Component{
 
     }
     componentDidMount() {
+        
     }
   
     componentWillUnmount() {
+
     }
 
   render() {
