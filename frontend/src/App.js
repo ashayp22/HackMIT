@@ -17,6 +17,7 @@ export default class App extends React.Component{
     gameState: 0
   }
 
+
   changeGameState = (i) => {
     alert(i);
     this.setState({gameState: i});
@@ -98,8 +99,6 @@ export default class App extends React.Component{
       </div>
     </Router>
 
-            
       );
   }
 }
-
