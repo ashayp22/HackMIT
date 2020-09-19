@@ -21,11 +21,11 @@ export default class GameScreen extends React.Component{
     }
     validateResponse = (userAnswer, correctAnswer) => {
         if(userAnswer == correctAnswer){
-            alert("Good Job");
+            // alert("Good Job");
             this.setState({score: this.state.score + 1});
         }
         else {
-            alert("You Lose");
+            // alert("You Lose");
             this.props.stopGame(this.state.score);
         }
     }

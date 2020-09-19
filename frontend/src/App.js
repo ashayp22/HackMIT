@@ -110,6 +110,7 @@ export default class App extends React.Component{
 
       {this.handleGameState()}
       {this.inits("https://reqres.in/api/products/3")} 
+
       </div>
       </div>
     </Router>
