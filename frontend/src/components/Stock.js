@@ -47,10 +47,10 @@ export default class Stock extends React.Component{
       return (
         <div style={divStyle}>
             <div style={centerStyle}>
-              <h1>Company Name</h1>
+              <h1 style = {{textAlign: 'center'}}>Company Name</h1>
               <h3>{this.props.data.data.id}</h3> 
-              <Graph style = {{alignSelf: 'center'}} width={200} height={200}></Graph>
-              <Metrics width={300} ></Metrics>
+              <Graph width={200} height={200}></Graph>
+              <Metrics width={300}></Metrics>
               <TwitterEmojiGraph width = {100} height = {100}></TwitterEmojiGraph>
               <div style = {{borderWidth: '2'}}><WordCloud></WordCloud></div>
 

@@ -57,7 +57,7 @@ export default class App extends React.Component{
       case 3:
         return(<VisualScreen></VisualScreen>);
       case 4:
-        return(<ResearchScreen></ResearchScreen>);
+        return(<ResearchScreen onClick = {this.changeGameState}></ResearchScreen>);
       case 5:
 
         return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {"You should have shorted the stock"}></RestartScreen>);
