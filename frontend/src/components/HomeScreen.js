@@ -33,8 +33,9 @@ export default class HomeScreen extends React.Component{
       backgroundColor: '#FBCDC2',
       borderRadius: '25px',
       padding: '10px',
-      width: '300px',
-      height: '400px'
+      width: '50vw',
+      height: '70vh',
+      boxShadow: "-4px 4px 2px gray",
     }
 
       return (

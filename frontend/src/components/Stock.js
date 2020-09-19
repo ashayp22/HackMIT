@@ -26,21 +26,22 @@ export default class Stock extends React.Component{
 
   render() {
     let divStyle = {
-        // width: "100%",
-        // height: (document.body.clientHeight) + "px",
+        width: "100%",
+        height: (document.body.clientHeight) + "px",
         textAlign: 'center'
     }
 
     let centerStyle = {
       position: 'absolute',
-    //   left: '50%',
-    //   top: '50%',
-    //   transform: 'translate(-50%, -50%)',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
       border: '5px solid #FFFF00',
       padding: '10px',
-      backgroundColor: 'white',
+      backgroundColor: '#f0f0f0',
       width: '50vw',
-      height: '70vh'
+      height: '70vh',
+      boxShadow: "-4px 4px 2px gray",
     }
 
       return (
@@ -48,10 +49,11 @@ export default class Stock extends React.Component{
             <div style={centerStyle}>
               <h1>Company Name</h1>
               <h3>{this.props.data.data.id}</h3> 
-              <Graph width={200} height={200}></Graph>
+              <Graph style = {{alignSelf: 'center'}} width={200} height={200}></Graph>
               <Metrics width={300} ></Metrics>
-              <TwitterEmojiGraph width = "100" height = "100"></TwitterEmojiGraph>
-              <WordCloud></WordCloud>
+              <TwitterEmojiGraph width = {100} height = {100}></TwitterEmojiGraph>
+              <div style = {{borderWidth: '2'}}><WordCloud></WordCloud></div>
+
             </div>
         </div>
       );
