@@ -5,6 +5,7 @@ import Graph from './Graph.js';
 import Metrics from './Metrics.js';
 import TwitterEmojiGraph from "./TwitterEmojiGraph.js";
 import WordCloud from './WordCloud.js'
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Stock extends React.Component{
@@ -58,6 +59,7 @@ export default class Stock extends React.Component{
     }
 
       return (
+
 
         <Router>
 

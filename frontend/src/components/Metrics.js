@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactTooltip from "react-tooltip";
 import {ListGroup} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -49,12 +49,21 @@ export default class Metrics extends React.Component {
 
     return (
 
+
         <div>
             
-              <p>Price: 15</p>
-              <p>Dividend: 50</p>
-              <p>Volume: 10</p>
-              <p>Earnings: 50</p>
+              <p>Price: 15 <ReactTooltip id="price" place="top" effect="solid">
+                    The price of the stock
+                </ReactTooltip></p>
+              <p>Dividend: 50 <ReactTooltip id="dividends" place="top" effect="solid">
+                  A distribution of profits from a corporation to its stockholders
+                </ReactTooltip></p>
+              <p>Volume: 10 <ReactTooltip id="volume" place="top" effect="solid">
+                  A number of shares of a stock traded during a given period of time.
+                </ReactTooltip></p>
+              <p>Earnings: 50 <ReactTooltip id="earnings" place="top" effect="solid">
+                  The profits of a company in a given quarter or fiscal year
+                </ReactTooltip></p>
           
           <p>52 Week High</p>
           <XYPlot width={this.props.width} height={50}>
