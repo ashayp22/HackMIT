@@ -10,7 +10,7 @@ import {
   VerticalBarSeriesCanvas,
   LabelSeries
 } from 'react-vis';
-const greenData = [{x: 'Happy', y: 10}, {x: 'B', y: 5}, {x: 'C', y: 15}];
+const greenData = [{x: '😀', y: 20}, {x: '😴', y: 50}, {x: '🤪', y: 30}];
 const labelData = greenData.map((d, idx) => ({
     x: d.x,
     y: Math.max(greenData[idx].y)
@@ -30,6 +30,7 @@ export default class TwitterEmojiGraph extends React.Component{
               onClick={() => this.setState({useCanvas: !useCanvas})}
               buttonContent={content}
             /> */}
+            <p>Twitter Sentiment</p>
             <XYPlot xType="ordinal" width={this.props.width} height={this.props.height} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />

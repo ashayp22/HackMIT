@@ -49,13 +49,13 @@ export default class Metrics extends React.Component {
 
     return (
 
-        <Router>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Price: 15</ListGroup.Item>
-              <ListGroup.Item>Dividend: 50</ListGroup.Item>
-              <ListGroup.Item>Volume: 10</ListGroup.Item>
-              <ListGroup.Item>Earnings: 50</ListGroup.Item>
-          </ListGroup>
+        <div>
+            
+              <p>Price: 15</p>
+              <p>Dividend: 50</p>
+              <p>Volume: 10</p>
+              <p>Earnings: 50</p>
+          
           <p>52 Week High</p>
           <XYPlot width={this.props.width} height={50}>
 
@@ -78,7 +78,7 @@ export default class Metrics extends React.Component {
 
         </XYPlot>
         
-      </Router>
+      </div>
     );
   }
 

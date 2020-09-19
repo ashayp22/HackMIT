@@ -63,7 +63,7 @@ export default class Graph extends React.Component {
 
     return (
 
-      <Router>
+      <div>
 
       <XYPlot width={this.props.width} height={this.props.height}>
         <XAxis tickFormat={v => labels[v]} tickLabelAngle={-90} />
@@ -116,7 +116,7 @@ export default class Graph extends React.Component {
     <DiscreteColorLegend orientation="horizontal" width={this.props.width} items={ITEMS} />
     </div>
 
-    </Router>
+    </div>
     );
   }
 
