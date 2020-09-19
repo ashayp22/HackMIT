@@ -109,8 +109,9 @@ export default class App extends React.Component{
                  }}
           />
 
-            {this.handleGameState()}
       </div>
+      {this.handleGameState()}
+
       </div>
     </Router>
 

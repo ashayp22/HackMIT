@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-
+import Stock from './Stock.js'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import StockSearch from './StockSearch.js'
 
 export default class VisualScreen extends React.Component{
 
     constructor(props) {
         super(props)
 
-        this.state = {
-            
-        }
-
+    
     }
     componentDidMount() {
     }
@@ -27,27 +26,22 @@ export default class VisualScreen extends React.Component{
     }
 
     let centerStyle = {
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-      border: '5px solid',
-      backgroundColor: '#FBCDC2',
-      borderRadius: '25px',
-      padding: '10px',
-      width: '300px',
-      height: '400px'
+      textAlign: 'center'
     }
 
-
       return (
-        <div style={divStyle}>
-        <div style={centerStyle}>
-          <h1>Data Visualization</h1>
+        <Router>
 
-          
-        </div>
-    </div>
+            <div style={centerStyle}>
+                {/* <Stock></Stock> */}
+
+                <StockSearch></StockSearch>
+
+                
+            </div>
+
+
+        </Router>
       );
   }
 }

@@ -25,16 +25,16 @@ export default class GameScreen extends React.Component{
 
   render() {
     let divStyle = {
-        width: "100%",
-        height: (document.body.clientHeight) + "px",
-        textAlign: 'center',
+        // width: "100%",
+        // height: (document.body.clientHeight) + "px",
+        textAlign: 'center'
     }
 
     let centerStyle = {
       position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
+    //   left: '50%',
+    //   top: '50%',
+    //   transform: 'translate(-50%, -50%)',
       border: '5px solid #FFFF00',
       padding: '10px',
       backgroundColor: 'white'
