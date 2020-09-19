@@ -6,16 +6,44 @@ import requests
 import json
 import requests
 import json
+from datetime import datetime
+import xlrd
+from random import randint
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
-def getPeers(ticker):
-    x = requests.get("https://cloud.iexapis.com/stable/stock/" + ticker + "/peers?token=" + TOKEN)
 
-    json_response = x.content
-    print(json_response)
-    return json_response
+def calculate_ratios(ticker):
+    ratios_per_time = {}
+    ratios = requests.get("https://financialmodelingprep.com/api/v3/ratios/" + ticker, params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()
+    for ratio in ratios:
+        for key in ratio.keys():
+            if key not in ratios_per_time:
+                ratios_per_time[key] = [ratio[key]]
+            else:
+                ratios_per_time[key].append(ratio[key])
+
+    bs = requests.get('https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/' + ticker,params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()["financials"]
+    income_statement = requests.get('https://financialmodelingprep.com/api/v3/financials/income-statement/' + ticker,params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()["financials"]
+    vertical_analysis = {}
+    vertical_analysis["grossProfit"] = {income_statement[0]["date"]: float(income_statement[0]["Gross Profit"])/float(income_statement[0]["Revenue"]),income_statement[1]["date"]: float(income_statement[1]["Gross Profit"])/float(income_statement[1]["Revenue"])}
+    vertical_analysis["operatingExpenses"] = {income_statement[0]["date"]: float(income_statement[0]["Operating Expenses"]) / float(income_statement[0]["Revenue"]), income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(income_statement[1]["Revenue"])}
+    vertical_analysis["netIncome"] = {income_statement[0]["date"]: float(income_statement[0]["Net Income"]) / float(income_statement[1]["Revenue"]),income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(income_statement[1]["Revenue"])}
+    horizontal_analysis = {}
+    horizontal_analysis["cash"] = {"difference": float(bs[0]["Cash and cash equivalents"])- float(bs[1]["Cash and cash equivalents"]),"percentChange": (float(bs[0]["Cash and cash equivalents"])- float(bs[1]["Cash and cash equivalents"]))/(float(bs[0]["Cash and cash equivalents"]))}
+    horizontal_analysis["inventory"] = {"difference": float(bs[0]["Inventories"])- float(bs[1]["Inventories"]),"percentChange": (float(bs[0]["Inventories"])- float(bs[1]["Inventories"]))/(float(bs[0]["Inventories"]))}
+    horizontal_analysis["liabilities"] = {"difference": float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]),"percentChange": (float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]))/(float(bs[0]["Total current liabilities"]))}
+
+
+
+    return {"ratios":ratios, "balanceSheet":bs,"incomeStatement":income_statement, "ratiosPerTime":ratios_per_time,"horizontalAnalysis":horizontal_analysis, "verticalAnalysis":vertical_analysis}
+
+
+
+
+
+
 
 def if_date_is_higher(data_date, user_date): # format = year/month/day YYYY-MM-DD
     if (int)(data_date[0:4]) > (int)(user_date[0:4]):
@@ -28,68 +56,52 @@ def if_date_is_higher(data_date, user_date): # format = year/month/day YYYY-MM-D
                 return True
     return False
 
-def get5yrData(ticker, date): # retruns an array of volumes from previous to date, opens(same format), highs, lows, and then returns date(string format)
-    x = requests.get("https://cloud.iexapis.com/stable/stock/"+ ticker+"/chart/1m?token="+ TOKEN)
 
-    json_response = x.content
-    print(json_response)
+def getChartData(ticker, date):
+    url = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart"
+
+    querystring = {"region": "US", "interval": "1d", "symbol": ticker, "range": "5y"}
+
+    headers = {
+        'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
+        'x-rapidapi-key': "de029da414mshfd983737e8556f6p16e5edjsna3da35c5e605"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    # print(response.text)
+
+    json_response = response.content
+    # print(json_response)
     my_json = json.loads(json_response)
+    # print(len(my_json['chart']['result'][0]['timestamp']))
+    # print((my_json['chart']['result'][0]['timestamp']))
 
+    dates_0 = my_json['chart']['result'][0]['timestamp']
+    opens_0 = my_json['chart']['result'][0]['indicators']['quote'][0]['open']
+    volumes_0 = my_json['chart']['result'][0]['indicators']['quote'][0]['volume']
+    highs_0 = my_json['chart']['result'][0]['indicators']['quote'][0]['high']
+    lows_0 = my_json['chart']['result'][0]['indicators']['quote'][0]['low']
+    final_dates = []
+    final_volumes = []
+    final_opens = []
+    final_highs = []
+    final_lows = []
+    for i in range(len(dates_0)):
 
-    volumes = []
-    opens = []
-    highs = []
-    lows = []
-    date = my_json[len(my_json)-1]['date']
-    for i in range(len(my_json)):
+        acDate = str(datetime.fromtimestamp(dates_0[i]).date())
 
-        if if_date_is_higher(my_json[len(my_json)-1]['date'], date):
+        if if_date_is_higher(acDate, date):
             break;
+        final_dates.append(datetime.fromtimestamp(dates_0[i]))
+        final_volumes.append(volumes_0[i])
+        final_opens.append(opens_0[i])
+        final_highs.append(highs_0[i])
+        final_lows.append(lows_0[i])
+    print(len(highs_0))
+    print(len(final_highs))
 
-        volumes.append(my_json[i]['volume'])
-        opens.append(my_json[i]['open'])
-        highs.append(my_json[i]['high'])
-        lows.append(my_json[i]['low'])
-
-    return volumes, opens, highs, lows,  date
-
-
-
-def getDividend(ticker, date):
-    x = requests.get("https://cloud.iexapis.com/stable/stock/" + ticker + "/dividends/1y?token=" + TOKEN)
-    json_response = x.content
-    print(json_response)
-    my_json = json.loads(json_response)
-
-    dividends = []
-    dates =[]
-    for i in range(len(my_json)):
-        dividends.append(my_json[i]['amount'])
-        dates.append(my_json[i]['exDate'])
-
-        if if_date_is_higher(my_json[i]['exDate'], date):
-            break;
-
-    return dividends, dates
-
-
-def getEarnings(ticker, date):
-    x = requests.get("https://cloud.iexapis.com/stable/stock/" + ticker + "/earnings/last=4?token=" + TOKEN)
-    json_response = x.content
-
-    my_json = json.loads(json_response)
-    print(my_json['earnings'][0]['actualEPS'])
-    earnings = []
-    earnings.append(my_json['earnings'][0]['actualEPS'])
-    # for i in range(len(my_json)):
-    #     if if_date_is_higher(my_json[i]['earnings']['EPSReportDate'], date):
-    #         break;
-    #
-    #     earnings.append(my_json[i]['earnings']['actualEPS'])
-
-    return earnings
-
-
+    return final_opens, final_highs, final_lows, final_volumes, final_dates
 
 
 app = Flask(__name__)
@@ -98,41 +110,39 @@ app = Flask(__name__)
 #YOU HAVE TO HAVE THE IEX.py FILE IN THE SAME FOLDER AS THIS ONE
 
 # run on your computer, and see json output: type this:
-# curl -v  http://localhost:5000/todo/api/v1.0/dividend/2020-09-15/twtri
+# curl -v  http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
 
-@app.route('/todo/api/v1.0/earning/<string:date>/<string:ticker>', methods=['GET'])
-def get_earnings(ticker, date):
-    [dividends, dates] = getEarnings(ticker, date)
+# @app.route('/todo/api/v1.0/earning/<string:date>/<string:ticker>', methods=['GET'])
+# def get_earnings(ticker, date):
+#     [earnings, dates] = getEarnings(ticker, date)
+#
+#     data = {}
+#     vehical_data = {"data": [data]}
+#
+#     name = 'earnings'
+#     data[name] = earnings
+#     x =json.dumps(vehical_data)
+#
+#     return earnings
 
-    data = {}
-    vehical_data = {"data": [data]}
-
-    name = 'earnings'
-    data[name] = dividends
-    data['date'] = dates
-    x =json.dumps(vehical_data)
-
-    return x
-
-
-@app.route('/todo/api/v1.0/dividend/<string:date>/<string:ticker>', methods=['GET'])
-def get_dividend(ticker, date):
-    [dividends, dates] = getDividend(ticker, date)
-
-    data = {}
-    vehical_data = {"data": [data]}
-
-    name = 'dividends'
-    data[name] = dividends
-    data['date'] = dates
-    x =json.dumps(vehical_data)
-
-    return x
+#
+# @app.route('/todo/api/v1.0/dividend/<string:date>/<string:ticker>', methods=['GET'])
+# def get_dividend(ticker, date):
+#     [dividends, dates] = getDividend(ticker, date)
+#
+#     data = {}
+#     vehical_data = {"data": [data]}
+#
+#     name = 'dividends'
+#     data[name] = dividends
+#     x =vehical_data
+#
+#     return dividends
 
 
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
 def get_data(ticker, date):
-    [volumes, opens, highs, lows, date] = get5yrData(ticker, date)
+    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
     #
 
     data = {}
@@ -145,11 +155,41 @@ def get_data(ticker, date):
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
-    data['date'] = date
+    data['dates'] = dates
+    # data['dividend'] = get_dividend(ticker, date)
+    # data['earnings'] = get_earnings(ticker, date)
+    data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
     x =json.dumps(vehical_data)
+    return x
 
-    response = jsonify(x)
+@app.route('/todo/api/v1.0/data', methods=['GET'])
+def get_data_random():
+    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx")
+    sheet = wb.sheet_by_index(0)
+    ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
+
+    date = datetime.fromtimestamp(randint(1512108000, 1600491600).date())
+
+
+
+    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
+    #
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    name = 'volume'
+    data[name] = volumes
+    data['open'] = opens
+    data['high'] = highs
+    data['low'] = lows
+    data['dates'] = dates
+     # data['dividend'] = get_dividend(ticker, date)
+        # data['earnings'] = get_earnings(ticker, date)
+    data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+    x = json.dumps(vehical_data)
 
 
 
