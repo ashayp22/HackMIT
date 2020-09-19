@@ -17,31 +17,27 @@ export default class VisualScreen extends React.Component{
   
     componentWillUnmount() {
     }
-  render() {
 
-    let divStyle = {
-        width: "100%",
-        height: (document.body.clientHeight) + "px",
-        textAlign: 'center',
+    test() {
+
     }
+
+  render() {
 
     let centerStyle = {
       textAlign: 'center'
     }
 
       return (
-        <Router>
 
-            <div style={centerStyle}>
-                {/* <Stock></Stock> */}
-
-                <StockSearch></StockSearch>
-
-                
-            </div>
+        <div style={centerStyle}>
+          <br></br>
+            <StockSearch onClick = {this.props.onClick}></StockSearch>
+            <br></br>
+            <Stock game = {false} stopGame = {this.test}></Stock>
+        </div>
 
 
-        </Router>
       );
   }
 }

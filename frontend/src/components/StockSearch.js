@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import ReactDOM from 'react-dom';
+import Button from 'react-bootstrap/Button';
 
 
 export default class StockSearch extends React.Component {
@@ -81,34 +82,36 @@ export default class StockSearch extends React.Component {
   render() {
 
     let divStyle = {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
+        position: 'relative',
+        // left: '50%',
+        // top: '50%',
+        // transform: 'translate(-50%, -50%)',
         border: '5px solid',
-        backgroundColor: '#FBCDC2',
+        backgroundColor: '#FFDF3F',
         borderRadius: '25px',
-        padding: '10px',
-        width: '300px',
-        height: '200px'
+        // padding: '10px',
+        width: '500px',
+        height: '100%',
+        margin: "auto"
     }
 
     return (
         <div style = {divStyle}>
-
+          <h1>Historical Stock Visualization</h1>
         <form>
             <div className="form-group">
                 <label>Company Name</label>
-                <input type="text" onChange={this.changeTicker} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+                <input type="text" onChange={this.changeTicker} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter company name"></input>
                 <p id="text" className="form-text text-muted">Ticker: {this.state.ticker}</p>
             </div>
             <p></p>
             <div className="form-group">
-                <label>Date</label>
+                <label>Historical Date (please select prior to September 2020)</label>
                 <input type="date" className="form-control" id="date"></input>
             </div>
         </form>
 
+        <button className = "coolButton back2" onClick = {() => this.props.onClick(0)}>Back</button>
 
         </div>
         
