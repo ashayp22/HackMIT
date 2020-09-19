@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-import Graph from './Graph';
 
-export default class GameScreen extends React.Component{
+export default class HomeScreen extends React.Component{
 
     constructor(props) {
         super(props)
@@ -18,7 +17,6 @@ export default class GameScreen extends React.Component{
   
     componentWillUnmount() {
     }
-
   render() {
     let divStyle = {
         width: "100%",
@@ -39,11 +37,16 @@ export default class GameScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1>Game</h1>
-              <Graph></Graph>
+              <Button variant="primary">Play</Button>
+              <br></br>
+              <Button variant="secondary">Instructions</Button>
+              <br></br>
+              <Button variant="success">Visualize</Button>
+              <br></br>
+              <Button variant="warning">Learn</Button>
             </div>
         </div>
       );
   }
-
 }
 
