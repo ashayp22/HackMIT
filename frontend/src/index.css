@@ -5,9 +5,33 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font: 14px "Century Gothic", Futura, sans-serif;
+
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.appContainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.homeScreenContainer{
+  width: 50vw;
+  height: 70vh;
+  background-color: white;
+  display: flex;
+  align-items: flex-end;
+}
+/* .buttons{
+  display: flex;
+  align-items: flex-end;
+  margin: 10;
+} */
