@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Graph from './Graph.js';
+import Metrics from './Metrics.js';
+
 
 export default class GameScreen extends React.Component{
 
@@ -32,7 +34,8 @@ export default class GameScreen extends React.Component{
       top: '50%',
       transform: 'translate(-50%, -50%)',
       border: '5px solid #FFFF00',
-      padding: '10px'
+      padding: '10px',
+      backgroundColor: 'white'
     }
 
       return (
@@ -40,6 +43,7 @@ export default class GameScreen extends React.Component{
             <div style={centerStyle}>
               <h1>Game</h1>
               <Graph width={300} height={300}></Graph>
+              <Metrics></Metrics>
             </div>
         </div>
       );
