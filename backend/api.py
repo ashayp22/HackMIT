@@ -178,7 +178,7 @@ def get_data(ticker, date):
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
     x =json.dumps(vehical_data)
-    return x
+    return build_actual_response(x)
 
 
 @app.route('/todo/api/v1.0/data', methods=['GET'])
@@ -211,11 +211,11 @@ def get_data_random():
 
 
 
-    return x
+    return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
 def get_ticker_name():
-    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
