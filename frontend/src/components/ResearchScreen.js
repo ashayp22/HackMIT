@@ -32,7 +32,11 @@ export default class ResearchScreen extends React.Component{
       display: 'flex',
       flexDirection: 'column',
     }
-
+    let bgStyle = {
+        backgroundColor: 'white',
+        borderRadius: '25px',
+        padding: '2em',
+    }
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
@@ -41,22 +45,22 @@ export default class ResearchScreen extends React.Component{
                         <div class="flip-card-front"></div>
                         <div class="flip-card-back">
                         <h1 className = "header">Financial Literacy</h1>
-                    <p>Learn these ideas to improve your game
+                    <p style = {bgStyle}>Learn these ideas to improve your game
                         in the stock market!
                     </p>
                     <div>
-                        <h3>
+                        <h5>
                             What are stocks, companies, and the stock market?
-                        </h3>
-                        <p>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
-                        <h3>
+                        </h5>
+                        <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
+                        <h5>
                             What does it mean to Buy or Short a stock?
-                        </h3>
-                        <p></p>
-                        <h3>
+                        </h5>
+                        <p>Buying a stock is Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                        <h5>
                             Long Term vs Short Term Investing
-                        </h3>
-                        <ul>
+                        </h5>
+                        <ul style = {bgStyle}>
                             <li>Stock Price Over Time
                                 <ul>
                                     <li>Open</li>

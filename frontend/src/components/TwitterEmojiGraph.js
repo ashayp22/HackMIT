@@ -30,7 +30,7 @@ export default class TwitterEmojiGraph extends React.Component{
               onClick={() => this.setState({useCanvas: !useCanvas})}
               buttonContent={content}
             /> */}
-            <p>Twitter Sentiment</p>
+            <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>Twitter Sentiment</p>
             <XYPlot xType="ordinal" width={this.props.width} height={this.props.height} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />

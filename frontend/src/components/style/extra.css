@@ -6,7 +6,7 @@
 .header, .header2 {
     font-family: 'Bungee Shade', cursive !important;
     color: black;
-    font-size: 65px;
+    font-size: 4vw;
 }
 h3 {
     font-family: 'Grandstander', cursive;
@@ -18,12 +18,12 @@ p, li {
 }
 
 .header2 {
-    font-size: 35px;
+    text-align: center;
 }
 
 .coolButton {
     padding: 0.7em 1.4em !important;
-    margin:0 0.3em 0.3em 0 !important;
+    margin: 0.4em !important;
     border-radius:0.15em !important;
     box-sizing: border-box !important;
     text-decoration:none !important;
@@ -103,7 +103,7 @@ p, li {
   }
   
   .flip-card-back {
-    color: white;
+    color: black;
     transform: rotateY(180deg);
     background-color: #FBCDC2;
     border-radius: 25px;
@@ -111,7 +111,7 @@ p, li {
     box-shadow: -4px 4px 2px gray;
     overflow-y: scroll;
   }
-  
+
   /* position: 'absolute',
   left: '50%',
   top: '50%',

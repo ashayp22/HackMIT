@@ -59,7 +59,7 @@ export default class WordCloud extends React.Component{
           }
           return (
             <div>
-              <p>News Word Cloud</p>
+              <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>News Word Cloud</p>
               <ReactWordcloud
                 callbacks={{
                   onWordClick: getCallback('onWordClick'),

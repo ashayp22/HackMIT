@@ -24,7 +24,11 @@ export default class InstructionScreen extends React.Component{
         height: (document.body.clientHeight) + "px",
         textAlign: 'center',
     }
-
+    let bgStyle = {
+        backgroundColor: 'white',
+        borderRadius: '25px',
+        padding: '3em',
+    }
     let centerStyle = {
       position: 'absolute',
       left: '50%',
@@ -37,15 +41,17 @@ export default class InstructionScreen extends React.Component{
       width: '50vw',
       height: '70vh',
       boxShadow: "-4px 4px 2px gray",
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
     }
 
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
                     <h1 className = "header">Instructions</h1>
-                    <p>Welcome to Buy or Short!, where we teach you the fundamentals of investing!
-                    </p>
-                    <ol>
+                    <p>Welcome to Buy or Short!, where we teach you the fundamentals of investing!</p>
+                    <ol style = {bgStyle}>
                         <li>Press play</li>
                         <li>Analyze the long term and short term data for the stock</li>
                         <li>Choose to buy or short the stock</li>
@@ -53,8 +59,10 @@ export default class InstructionScreen extends React.Component{
                         <li>After you lose, the SWAT will bust in and arrest you for insider trading</li>
                         <li>( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)</li>
                     </ol>
-                    <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
-                    <button className = "coolButton b2" onClick = {() => this.props.onClick(1)} variant = "success">Start</button>
+                    <div style = {{display: 'flex', justifyContent: 'center'}}>
+                        <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                        <button className = "coolButton b2" onClick = {() => this.props.onClick(1)} variant = "success">Start</button>
+                    </div>
                 </div>
             </div>
       );
