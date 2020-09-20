@@ -41,7 +41,7 @@ export default class Stock extends React.Component{
       border: '5px solid',
       backgroundColor: '#fff',
       borderRadius: '25px',
-      padding: '10px',
+      padding: '1em',
       boxShadow: "-4px 4px 2px gray",
       margin: '3em'
       // color: white
@@ -55,7 +55,8 @@ export default class Stock extends React.Component{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: '1em'
     }
     
 
@@ -64,10 +65,10 @@ export default class Stock extends React.Component{
 
         <Router>
 
-        <div style = {{display: "flex", justifyContent: 'center', flexDirection: "row", alignItems: "center"}}>
+        <div style = {{display: "flex", justifyContent: 'space-evenly', flexDirection: "row", alignItems: "center"}}>
 
           <div style={divStyle2}>
-            <h1 className = "header2">Long Term Term</h1>
+            <h1 className = "header2">Long Term</h1>
                 <Graph width={300} height={200}></Graph>
                   <Metrics width={300} ></Metrics>
           </div>

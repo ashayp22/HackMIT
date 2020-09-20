@@ -67,7 +67,7 @@ p, li {
 }
 .flip-card {
     background-color: transparent;
-    width: 50vw;
+    width: 30vw;
     height: 70vh;
     perspective: 1000px;
     margin: 1em;
@@ -100,6 +100,9 @@ p, li {
     color: black;
     border-radius: 25px;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .flip-card-back {

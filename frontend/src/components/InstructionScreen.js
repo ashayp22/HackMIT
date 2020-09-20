@@ -51,7 +51,7 @@ export default class InstructionScreen extends React.Component{
                 <div style = {centerStyle}>
                     <h1 className = "header">Instructions</h1>
                     <p>Welcome to Buy or Short!, where we teach you the fundamentals of investing!</p>
-                    <ol style = {bgStyle}>
+                    <ol style = {{backgroundColor: 'white', borderRadius: '25px', padding: '3em',lineHeight: "2em"}}>
                         <li>Press play</li>
                         <li>Analyze the long term and short term data for the stock</li>
                         <li>Choose to buy or short the stock</li>
