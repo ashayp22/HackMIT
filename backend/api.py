@@ -23,7 +23,7 @@ TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 def randomCompany():
     a = ["IBM", "Apple", "Microsoft", "Google", "Microsoft", "Nike", "Google", "Tesla"]
 
-    return a[random.randint(0, 8)]
+    return a[random.randint(0, 7)]
 
 
 def word_count(wordstring):
@@ -103,7 +103,7 @@ def getChartData(ticker, date):
 
     headers = {
         'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
-        'x-rapidapi-key': "de029da414mshfd983737e8556f6p16e5edjsna3da35c5e605"
+        'x-rapidapi-key': "44e614df82msh56226ee1db0a23bp1a2427jsnbf3c81e2bc48"
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -137,8 +137,8 @@ def getChartData(ticker, date):
         final_opens.append(opens_0[i])
         final_highs.append(highs_0[i])
         final_lows.append(lows_0[i])
-    print(len(highs_0))
-    print(len(final_highs))
+    # print(len(highs_0))
+    # print(len(final_highs))
 
     return final_opens, final_highs, final_lows, final_volumes, final_dates
 
@@ -211,7 +211,9 @@ def get_data(ticker, date):
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    # data['twitter'] = analyze_tweets(company_name)
+    data['twitter'] = analyze_tweets(company_name)
+
+
     [words, freq] = get_article_wordcount(randomCompany())
     data['news-words'] = words
     data['news-frequency'] = freq
@@ -294,7 +296,7 @@ def get_ticker_data():
     data['name'] = company_names
     data['sector'] = sectors
 
-    print(data)
+    # print(data)
     vehical_data = {"data": [data]}
 
 
