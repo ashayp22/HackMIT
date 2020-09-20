@@ -15,6 +15,24 @@ export default class Loading extends React.Component{
     super(props)
   }
 
+  reformatDollar(money) {
+
+    var moneyString = money.toString()
+
+    var point = moneyString.indexOf('.');
+
+    if(point === -1) {
+      return moneyString;
+    } else {
+      point += 2;
+      if(point !== moneyString.length - 1) {
+        return moneyString + "0"
+      }
+      return moneyString
+    }
+
+  }
+
   render() {
 
     let centerStyle = {
@@ -65,7 +83,7 @@ export default class Loading extends React.Component{
 
       var profitText = ""
       if(this.props.change != 0) {
-        profitText = "You just made $" + this.props.change
+        profitText = "You just made $" + this.reformatDollar(this.props.change)
       }
 
       return (

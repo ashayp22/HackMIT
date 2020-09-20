@@ -20,6 +20,7 @@ export default class Stock extends React.Component{
     // console.log("we here")
     // console.log(this.props.open)
     // console.log(this.props.dates)
+    this.reformatDollar = this.reformatDollar.bind(this)
 
   }
   
@@ -70,6 +71,24 @@ export default class Stock extends React.Component{
     }
   
     componentWillUnmount() {
+    }
+
+    reformatDollar(money) {
+
+      var moneyString = money.toString()
+
+      var point = moneyString.indexOf('.');
+
+      if(point === -1) {
+        return moneyString;
+      } else {
+        point += 2;
+        if(point !== moneyString.length - 1) {
+          return moneyString + "0"
+        }
+        return moneyString
+      }
+
     }
 
   render() {
@@ -145,7 +164,7 @@ export default class Stock extends React.Component{
               </h4>
                 <button className = "coolButton buy" onClick = {() => this.validateResponse("Buy")} variant = "primary">Buy</button>
                 <button className = "coolButton short" onClick = {() => this.validateResponse("Short")} variant = "secondary">Short</button>
-                <h3>You have made ${this.props.score} </h3>
+                <h3>You have made ${this.reformatDollar(this.props.score)} </h3>
                 <button className = "coolButton back" variant="primary" onClick = {() => this.props.onClick(0)}>Back</button>
               </div>
                 :

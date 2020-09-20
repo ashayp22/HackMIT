@@ -15,9 +15,7 @@ import {
   Hint,
   LineSeriesCanvas,
   GradientDefs,
-  DiscreteColorLegend,
-  Line
-  
+  DiscreteColorLegend,  
 } from 'react-vis';
 
 
@@ -81,13 +79,13 @@ export default class Graph extends React.Component {
     var volumeData = []
     var vals2 = this.props.volume;
 
-    for(var i = 0; i < vals2.length; i+= 30) {
+    for(var i = 0; i < vals2.length; i+= 1) {
       volumeData.push({x: i, y: vals2[i]})
     }
 
     if(this.props.game) {
       financeData = financeData.slice(0, financeData.length - 30)
-      volumeData = volumeData.slice(0, volumeData.length - 1)
+      volumeData = volumeData.slice(0, volumeData.length - 30)
       labels = labels.slice(0, labels.length - 30)
     }
 
@@ -108,7 +106,7 @@ export default class Graph extends React.Component {
       <XYPlot width={this.props.width} height={this.props.height}>
         <XAxis tickFormat={v => labels[v]} tickLabelAngle={-90} />
         <YAxis />
-        <LineMarkSeries
+        <LineSeries
           onValueMouseOver={this._rememberValue}
           onValueMouseOut={this._forgetValue}
           opacity={1}
@@ -128,7 +126,7 @@ export default class Graph extends React.Component {
         <XAxis tickFormat={v => labels[v]} tickLabelAngle={-90} />
         <YAxis />
    
-        <LineMarkSeries
+        <LineSeries
           onValueMouseOver={this._rememberValue2}
           onValueMouseOut={this._forgetValue2}
           opacity={1}
