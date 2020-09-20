@@ -126,9 +126,23 @@ export default class Stock extends React.Component{
           {this.props.game
                 ? 
                 <div style={divStyle}>
-              <h1 className = "header2">{this.props.company}</h1>
-              <h3>{this.props.ticker}</h3> 
-              <h4>{this.props.sector}</h4>
+              <h1 data-tip data-for = "high4" className = "header2">{this.props.company}
+                <ReactTooltip id="high4" place="top" effect="solid">
+                  The company's "special" stock symbol called a ticker
+                </ReactTooltip>
+              </h1>
+              <h3 data-tip data-for = "high5">{this.props.ticker}
+                  <ReactTooltip id="high5" place="top" effect="solid">
+                    The company's "special" stock symbol called a ticker
+                  </ReactTooltip>
+              </h3> 
+              <h4 data-tip data-for = "high6">
+                {this.props.sector}
+                <ReactTooltip id="high6" place="bottom" effect="solid">
+                    The industry the company is a part of
+                  </ReactTooltip>
+              
+              </h4>
                 <button className = "coolButton buy" onClick = {() => this.validateResponse("Buy")} variant = "primary">Buy</button>
                 <button className = "coolButton short" onClick = {() => this.validateResponse("Short")} variant = "secondary">Short</button>
                 <h3>You have made ${this.props.score} </h3>
@@ -136,9 +150,23 @@ export default class Stock extends React.Component{
               </div>
                 :
                 <div style={divStyle}>
-                <h1 className = "header2">{this.props.company}</h1>
-                <h3>{this.props.ticker}</h3> 
-                <h4>{this.props.sector}</h4>
+                <h1 data-tip data-for = "high4" className = "header2">{this.props.company}
+                <ReactTooltip id="high4" place="top" effect="solid">
+                  The company's "special" stock symbol called a ticker
+                </ReactTooltip>
+              </h1>
+              <h3 data-tip data-for = "high5">{this.props.ticker}
+                  <ReactTooltip id="high5" place="top" effect="solid">
+                    The company's "special" stock symbol called a ticker
+                  </ReactTooltip>
+              </h3> 
+              <h4 data-tip data-for = "high6">
+                {this.props.sector}
+                <ReactTooltip id="high6" place="bottom" effect="solid">
+                    The industry the company is a part of
+                  </ReactTooltip>
+              
+              </h4>
           </div>
 
           }

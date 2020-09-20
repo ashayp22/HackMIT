@@ -48,6 +48,7 @@ export default class ResearchScreen extends React.Component{
       return (
             <div style = {divStyle}>
                 <h1 style = {heading} className = "header">Financial Literacy</h1>
+                
                 <div style = {centerStyle}>
                     <div style = {{display: 'flex', flexDirection: 'row'}}>
                         <div class="flip-card">

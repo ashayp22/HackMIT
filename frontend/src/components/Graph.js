@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 
 import {
@@ -153,7 +154,8 @@ export default class Graph extends React.Component {
 
         </GradientDefs>
       </svg>
-    <DiscreteColorLegend orientation="horizontal" width={this.props.width} items={ITEMS} />
+    <DiscreteColorLegend orientation="horizontal" width={this.props.width} items={ITEMS}>
+      </DiscreteColorLegend>
     </div>
 
     </div>

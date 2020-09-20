@@ -43,7 +43,7 @@ export default class RestartScreen extends React.Component{
         <div style={divStyle}>
             <div style={centerStyle}>
               <h1 className = "header">Game Over</h1>
-                <p>Final Score: {this.props.finalScore}</p>
+                <p>Your final earnings have been ${this.props.finalScore}</p>
                 <p>{this.props.message}</p>
               <button className = "coolButton b2" onClick = {() => this.props.click(1)}>Play Again</button>
               <br></br>

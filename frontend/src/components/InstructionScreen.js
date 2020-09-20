@@ -38,8 +38,8 @@ export default class InstructionScreen extends React.Component{
       backgroundColor: '#FBCDC2',
       borderRadius: '25px',
       padding: '10px',
-      width: '50vw',
-      height: '70vh',
+      width: '800px',
+      height: '600px',
       boxShadow: "-4px 4px 2px gray",
       display: 'flex',
       flexDirection: 'column',
@@ -50,7 +50,7 @@ export default class InstructionScreen extends React.Component{
             <div style = {divStyle}>
                 <div style = {centerStyle}>
                     <h1 className = "header">Instructions</h1>
-                    <p>Welcome to Buy or Short!, where we teach you the fundamentals of investing!</p>
+                    <p>Welcome to Buy or $hort, where we teach you the fundamentals of investing!</p>
                     <ol style = {{backgroundColor: 'white', borderRadius: '25px', padding: '3em',lineHeight: "2em"}}>
                         <li>Press Start</li>
                         <li>When the game begins, you will be prompted to buy or short the stock

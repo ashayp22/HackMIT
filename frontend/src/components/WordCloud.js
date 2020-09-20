@@ -6,6 +6,7 @@ import React from 'react';
 // import StockSearch from './StockSearch.js'
 import ReactWordcloud from 'react-wordcloud';
 import { select } from "d3-selection";
+import ReactTooltip from "react-tooltip";
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
@@ -49,7 +50,7 @@ export default class WordCloud extends React.Component{
     console.log(this.props.frequency)
     console.log(this.props.words)
     for(var i = 0; i < this.props.frequency.length; i++) {
-      words.push({text: this.props.frequency[i], value: (this.props.words[i]) * 5})
+      words.push({text: this.props.frequency[i], value: (this.props.words[i]) * 10})
     }
 
     console.log(words)
@@ -72,7 +73,12 @@ export default class WordCloud extends React.Component{
           }
           return (
             <div>
-              <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>News Word Cloud</p>
+              <p data-tip data-for ="high3" style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>News Word Cloud
+              <ReactTooltip id="high3" place="left" effect="solid">
+                A word cloud of the most popular words in news articles about the stock
+              </ReactTooltip>
+              
+              </p>
               <ReactWordcloud
                 callbacks={{
                   onWordClick: getCallback('onWordClick'),

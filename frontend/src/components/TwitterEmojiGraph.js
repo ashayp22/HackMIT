@@ -10,6 +10,7 @@ import {
   VerticalBarSeriesCanvas,
   LabelSeries
 } from 'react-vis';
+import ReactTooltip from "react-tooltip";
 
 
 export default class TwitterEmojiGraph extends React.Component{
@@ -60,7 +61,14 @@ export default class TwitterEmojiGraph extends React.Component{
               onClick={() => this.setState({useCanvas: !useCanvas})}
               buttonContent={content}
             /> */}
-            <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>Twitter Sentiment</p>
+            <p data-tip data-for = "high2" style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>Twitter Sentiment
+            
+              <ReactTooltip id="high2" place="left" effect="solid">
+                This is what people on Twitter are feeling about the stock
+              </ReactTooltip>
+            </p>
+
+
             <XYPlot xType="ordinal" width={this.props.width} height={this.props.height} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />
