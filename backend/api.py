@@ -13,6 +13,12 @@ from random import randint
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
+# RANDOM:
+# http://localhost:5000/todo/api/v1.0/data/
+
+# 2 PARAMS:
+# http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
+
 
 def calculate_ratios(ticker):
     ratios_per_time = {}
@@ -162,6 +168,7 @@ def get_data(ticker, date):
 
     x =json.dumps(vehical_data)
     return x
+
 
 @app.route('/todo/api/v1.0/data', methods=['GET'])
 def get_data_random():
