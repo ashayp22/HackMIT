@@ -5,6 +5,7 @@ import Graph from './Graph.js';
 import Metrics from './Metrics.js';
 import TwitterEmojiGraph from "./TwitterEmojiGraph.js";
 import WordCloud from './WordCloud.js'
+import ReactTooltip from "react-tooltip";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -66,13 +67,9 @@ export default class Stock extends React.Component{
         }
     }
     componentDidMount() {
-      console.log("mounting")
-      console.log(this.props.open)
-      console.log(this.props.dates)
     }
   
     componentWillUnmount() {
-      console.log("unmounting")
     }
 
   render() {
@@ -114,8 +111,14 @@ export default class Stock extends React.Component{
 
           <div style={divStyle2}>
             <h1 className = "header2">Long Term</h1>
-              <Graph style = {{alignSelf: 'center'}} volume = {this.props.volume} dates = {this.props.dates} open = {this.props.open} width={300} height={250}></Graph>
-              <Metrics open = {this.props.open} width={300} ></Metrics>
+              <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "high">
+              5 Year Graph
+            <ReactTooltip id="high" place="top" effect="solid">
+              The highest and lowest share price that a stock has traded at during a passing year.
+            </ReactTooltip>
+            </p>
+              <Graph style = {{alignSelf: 'center'}} game = {this.props.game} volume = {this.props.volume} dates = {this.props.dates} open = {this.props.open} width={300} height={250}></Graph>
+              <Metrics open = {this.props.open} game = {this.props.game} width={300} ></Metrics>
 
           </div>
 
@@ -135,14 +138,17 @@ export default class Stock extends React.Component{
                 <div style={divStyle}>
                 <h1 className = "header2">{this.props.company}</h1>
                 <h3>{this.props.ticker}</h3> 
+                <h4>{this.props.sector}</h4>
           </div>
 
           }
 
           <div style={divStyle2}>
             <h1 className = "header2">Short Term</h1>
-              <TwitterEmojiGraph width = {300} height = {200}></TwitterEmojiGraph>
-              <div style = {{borderWidth: '2'}}><WordCloud></WordCloud></div>
+              <TwitterEmojiGraph twitter = {this.props.twitter} width = {300} height = {200}></TwitterEmojiGraph>
+              <div style = {{borderWidth: '2'}}>
+                <WordCloud words = {this.props.words} frequency = {this.props.frequency}></WordCloud>
+                </div>
           </div>
 
         </div>

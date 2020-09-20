@@ -84,10 +84,11 @@ export default class Graph extends React.Component {
       volumeData.push({x: i, y: vals2[i]})
     }
 
-
-    financeData = financeData.slice(0, financeData.length - 30)
-    volumeData = volumeData.slice(0, volumeData.length - 1)
-    labels = labels.slice(0, labels.length - 30)
+    if(this.props.game) {
+      financeData = financeData.slice(0, financeData.length - 30)
+      volumeData = volumeData.slice(0, volumeData.length - 1)
+      labels = labels.slice(0, labels.length - 30)
+    }
 
     const ITEMS = [
       {title: 'Price', color: "#45aeb1"},

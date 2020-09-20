@@ -10,7 +10,7 @@ from datetime import datetime
 import xlrd
 from random import randint
 from twitter import *
-
+from stop_words import get_stop_words
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
@@ -20,6 +20,31 @@ TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 # 2 PARAMS:
 # http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
 
+def randomCompany():
+    a = ["IBM", "Apple", "Microsoft", "Google", "Microsoft", "Nike", "Google", "Tesla"]
+
+    return a[random.randint(0, 8)]
+
+
+def word_count(wordstring):
+    stop_words = get_stop_words('en')
+    wordlist = wordstring.split()
+    non_stops = {}
+    wordfreq = []
+    for w in wordlist:
+        if w not in stop_words:
+            wordfreq.append(wordlist.count(w))
+            non_stops = wordlist.count(w)
+    return wordfreq, wordlist
+
+def get_article_wordcount(company_name):
+    news_api_key = "0a51475b9e08417c869c09e0e928b086"
+    news_search = requests.get(
+        "https://newsapi.org/v2/everything?q=" + company_name + " Finance" + "&apiKey=" + news_api_key).json()
+    # print(news_search)
+    articles = news_search["articles"]
+    article_one = articles[0]["content"]
+    return word_count(article_one)
 
 def build_preflight_response():
     response = make_response()
@@ -106,7 +131,7 @@ def getChartData(ticker, date):
         acDate = str(datetime.fromtimestamp(dates_0[i]).date())
 
         if if_date_is_higher(acDate, date):
-            break;
+            break
         final_dates.append(str(datetime.fromtimestamp(dates_0[i]).date()))
         final_volumes.append(volumes_0[i])
         final_opens.append(opens_0[i])
@@ -162,10 +187,15 @@ def get_data(ticker, date):
     sheet = wb.sheet_by_index(0)
 
     company_name = ""
-    for i in range(6, sheet.nrows, 1):
+    sector = ""
+    for i in range(5, sheet.nrows, 1):
 
         if sheet.cell_value(i, 1) == ticker:
             company_name = sheet.cell_value(i, 0)
+            sector = sheet.cell_value(i, 5)
+
+
+    print(sector)
 
     data = {}
     vehical_data = {"data": [data]}
@@ -173,13 +203,18 @@ def get_data(ticker, date):
 
 
     name = 'volume'
+    data['company-name'] = company_name
+    data['sector'] = sector
+    data['ticker'] = ticker
     data[name] = volumes
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    data['twitter'] = analyze_tweets(company_name)
-
+    # data['twitter'] = analyze_tweets(company_name)
+    [words, freq] = get_article_wordcount(randomCompany())
+    data['news-words'] = words
+    data['news-frequency'] = freq
 
     x =jsonify(vehical_data)
     return build_actual_response(x)
@@ -195,7 +230,7 @@ def get_data_random():
 
     company_name = ""
     sector = ""
-    for i in range(6,sheet.nrows,1):
+    for i in range(5,sheet.nrows,1):
 
         if sheet.cell_value(i,1) == ticker:
             company_name = sheet.cell_value(i,0)
@@ -218,10 +253,16 @@ def get_data_random():
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    # data['twitter'] = analyze_tweets(company_name)
+    data['twitter'] = analyze_tweets(company_name)
      # data['dividend'] = get_dividend(ticker, date)
         # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+
+
+    [words, freq] = get_article_wordcount(randomCompany())
+    data['news-words'] = words
+    data['news-frequency'] = freq
 
     x = jsonify(vehical_data)
 
@@ -237,22 +278,25 @@ def get_ticker_data():
 
 
     data = {}
-    vehical_data = {"data": [data]}
     tickers = []
     company_names = []
     sectors = []
 
 
-    for i in range(6, sheet.nrows, 1):
-        company_names.append(sheet.cell_value(i, 1))
-        ticker.append(sheet.cell_value(i,0))
+    for i in range(5, sheet.nrows, 1):
+        company_names.append(sheet.cell_value(i, 0))
+        tickers.append(sheet.cell_value(i,1))
         sectors.append(sheet.cell_value(i, 5))
 
 
 
-    data['ticker'] = ticker
+    data['ticker'] = tickers
     data['name'] = company_names
     data['sector'] = sectors
+
+    print(data)
+    vehical_data = {"data": [data]}
+
 
     x = jsonify(vehical_data)
 

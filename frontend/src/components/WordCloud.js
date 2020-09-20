@@ -23,24 +23,37 @@ export default class WordCloud extends React.Component{
     }
   render() {
 
-    const words = [
-        {
-            text: 'told',
-            value: 64,
-        },
-        {
-            text: 'mistake',
-            value: 11,
-        },
-        {
-            text: 'thought',
-            value: 16,
-        },
-        {
-            text: 'bad',
-            value: 15,
-        },
-        ]
+
+
+
+    // const words = [
+    //     {
+    //         text: 'finance',
+    //         value: 64,
+    //     },
+    //     {
+    //         text: 'mistake',
+    //         value: 11,
+    //     },
+    //     {
+    //         text: 'thought',
+    //         value: 16,
+    //     },
+    //     {
+    //         text: 'bad',
+    //         value: 15,
+    //     },
+    //     ]
+
+    const words = []
+    console.log(this.props.frequency)
+    console.log(this.props.words)
+    for(var i = 0; i < this.props.frequency.length; i++) {
+      words.push({text: this.props.frequency[i], value: (this.props.words[i]) * 5})
+    }
+
+    console.log(words)
+
  
         const getCallback = callbackName => (word, event) => {
             const isActive = callbackName !== 'onWordMouseOut'

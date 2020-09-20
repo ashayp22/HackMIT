@@ -31,7 +31,7 @@ export default class HomeScreen extends React.Component{
       return (
         <div style={divStyle}>
             <div style={centerStyle}>
-              <h1 className="header">Buy or Short!</h1>
+              <h1 className="header">Buy or $hort!</h1>
 
               <button className = "coolButton b1" onClick = {() => this.props.onClick(1)}>Play</button>
               <br></br>
