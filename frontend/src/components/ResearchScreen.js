@@ -49,33 +49,24 @@ export default class ResearchScreen extends React.Component{
             <div style = {divStyle}>
                 <h1 style = {heading} className = "header">Financial Literacy</h1>
                 <div style = {centerStyle}>
-                    <div style = {{display: 'flex', flexDirection: 'row',}}>
+                    <div style = {{display: 'flex', flexDirection: 'row'}}>
                         <div class="flip-card">
                             <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <h1 className = "header">Kids</h1>
+                                <h1 className = "header">Kids / Teens</h1>
                             </div>
                             <div class="flip-card-back">
                         <p style = {bgStyle}>Learn these concepts to improve your game
                             in the stock market!
                         </p>
                         <div>
-                            <h5>
-                                What are stocks, companies, and the stock market?
-                            </h5>
-                            <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called "shares”, or "equities"</p>
-                            <h5>
-                                What does it mean to Buy or Short a stock?
-                            </h5>
-                            <p  style = {bgStyle}>Buying a stock is when you buy a share of a company. Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
-                            <h5>
-                                What is investing?
-                            </h5>
-                            <p  style = {bgStyle}>An investment is something we put our money in to help it grow. 
-                                If we just keep our money in a piggy bank or drawer, it won't earn any money for us.
-                                Below are some common types of investments
-                            </p>
-                            <div style = {bgStyle}>
+                        <div style = {bgStyle}>
+                                <h5>
+                                    What is investing?
+                                </h5>
+                                <p>Investing is the act of allocating resources, usually money, with the expectation of generating an income or profit. 
+                                    You can invest in endeavors, such as using money to start a business, or in assets, such as purchasing real estate in hopes of reselling it later at a higher price.
+                                </p>
                                 <table>
                                     <tr>
                                         <td>Savings Account</td>
@@ -98,133 +89,211 @@ export default class ResearchScreen extends React.Component{
                                     </tr>
                                 </table>
                             </div>
-                            <ul style = {bgStyle}>
-                                <li>Stock Price Over Time
-                                    <ul>
-                                        <li>Open</li>
-                                        <li>Close</li>
-                                        <li>High</li>
-                                        <li>Low</li>
-                                    </ul>
-                                </li>
-                                <li>Debt-to-Equity</li>
-                                <li>Price-Earnings Ratio</li>
-                                <li>Dividends</li>
-                                <li>Volume</li>
-                                <li>Beta</li>
-                                <li>News</li>
-                                <li>Twitter Sentiment</li>
-                                <li>Relative Strength Index</li>
-                                <li>Moving Average</li>
-                            </ul>
-
-                        </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="flip-card">
-                            
-                            <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h1 className = "header">Teens</h1>
-                            </div>
-                            <div class="flip-card-back">
-                        <p style = {bgStyle}>Learn these concepts to improve your game
-                            in the stock market!
-                        </p>
-                        <div>
                             <h5>
-                                What are stocks, companies, and the stock market?
+                                What is a company, and what is the stock market?
                             </h5>
-                            <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
+                            <p style = {bgStyle}>A company forms when a group of people decide to come together open up some business. 
+                                This could be a store, restaurant, or some service, such as an electrical company. The stock market is the 
+                                place where people come together to buy and sell stocks. More information on what a stock is can be found down below</p>
                             <h5>
                                 What does it mean to Buy or Short a stock?
                             </h5>
-                            <p>Buying a stock is when you buy a share of a company. Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
-                            <h5>
-                                Long Term vs Short Term Investing
-                            </h5>
-                            <ul style = {bgStyle}>
-                                <li>Stock Price Over Time
-                                    <ul>
-                                        <li>Open</li>
-                                        <li>Close</li>
-                                        <li>High</li>
-                                        <li>Low</li>
-                                    </ul>
-                                </li>
-                                <li>Debt-to-Equity</li>
-                                <li>Price-Earnings Ratio</li>
-                                <li>Dividends</li>
-                                <li>Volume</li>
-                                <li>Beta</li>
-                                <li>News</li>
-                                <li>Twitter Sentiment</li>
-                                <li>Relative Strength Index</li>
-                                <li>Moving Average</li>
-                            </ul>
+                            <p  style = {bgStyle}>Buying a stock is when you buy a share of a company. Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                            <div style = {bgStyle}>
+                            <p>Factors that will help you decide what stock to buy</p>
+                            <table>
+                                <tr>
+                                    <td>Opening Price</td>
+                                    <td>The opening price is the price of a stock when the stock market opens.</td>
+                                </tr>
+                                <tr>
+                                    <td>Closing Price</td>
+                                    <td>The closing price is the price of a stcok right before the stock market closes.</td>
+                                </tr>
+                                <tr>
+                                    <td>High</td>
+                                    <td>High is the highest price of a stock in a day.</td>
+                                </tr>
+                                <tr>
+                                    <td>Low</td>
+                                    <td>Low is the lowest price of a stock in a day.</td>
+                                </tr>
+                                <tr>
+                                    <td>Debt-to-Equity</td>
+                                    <td>The debt-to-equity (D/E) found by dividing a company's total debts and loans by how much the company
+                                        is worth. These numbers are available on the balance sheet of a company's financial statements. </td>
+                                </tr>
+                                <tr>
+                                    <td>Price-Earnings Ratio</td>
+                                    <td>The price-earnings ratio, also known as P/E ratio, P/E, or PER, is a ratio of the company's share price to a company's profits (how much company makes per year)per share. 
+                                        The ratio is used for valuing companies and to find out whether they are overvalued or undervalued.</td>
+                                </tr>
+                                <tr>
+                                    <td>Dividends</td>
+                                    <td>The dividend is money given back to share holders when a company makes a profit. 
+                                        When a corporation earns a profit, it is able to pay a proportion of the profit as a dividend to shareholders.</td>
+                                </tr>
+                                <tr>
+                                    <td>Volume</td>
+                                    <td>Volume is the number of shares of a stock that are sold, or traded, over a certain period of time (usually daily).</td>
+                                </tr>
+                                <tr>
+                                    <td>Beta</td>
+                                    <td>Beta is a measure of how much the stock moves up and down compared to the entire market.</td>
+                                </tr>
+                                <tr>
+                                    <td>Relative Strength Index</td>
+                                    <td>The relative strength index is a chart that graphs the strength of a stock using the closing price of a recent trading period.</td>
+                                </tr>
+                                <tr>
+                                    <td>Moving Average</td>
+                                    <td>The moving average (MA) is the average price of a stock over a period of time.</td>
+                                </tr>
+                                <tr>
+                                    <td>News/Social Media</td>
+                                    <td>The News and Social Media can affect the price of a the stock. When news or posts on a company are negative, 
+                                        the stock price tends to go down. When news or posts on a company are positive, the stock price tends to go up.</td>
+                                </tr>
+                            </table>
 
-                        </div>
+                            </div>
+                            </div>
                             </div>
                             </div>
                         </div>
                         <div class="flip-card">
                         <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <h1 className = "header">Older Adults</h1>
+                            <h1 className = "header">Adults</h1>
                         </div>
                         <div class="flip-card-back">
                     <p style = {bgStyle}>Learn these concepts to improve your game
                         in the stock market!
                     </p>
                     <div>
-                        <h5>
-                            What are stocks, companies, and the stock market?
-                        </h5>
-                        <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
-                        <h5>
-                            What does it mean to Buy or Short a stock?
-                        </h5>
-                        <p>Buying a stock is when you buy a share of a company. Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
-                        <h5>
-                            Long Term vs Short Term Investing
-                        </h5>
-                        <p>Longterm:
-                        A long-term investment is an account on the asset side of a company's balance sheet that represents the company's investments, including stocks, bonds, real estate, and cash. 
-                        Long-term investments are assets that a company intends to hold for more than a year. The long-term investment account differs largely from the short-term investment account in that short-term investments will most likely be sold, whereas the long-term investments will not be sold for years and, in some cases, may never be sold.
-                        Being a long-term investor means that you are willing to accept a certain amount of risk in pursuit of potentially higher rewards and that you can afford to be patient for a longer period of time. It also suggests that you have enough capital available to afford to tie up a set amount for a long period of time.   
-                        </p>
-                        <ul style = {bgStyle}>
-                            <li>Stock Price Over Time
-                                <ul>
-                                    <li>Open</li>
-                                    <li>Close</li>
-                                    <li>High</li>
-                                    <li>Low</li>
-                                </ul>
-                            </li>
-                            <li>Debt-to-Equity</li>
-                            <li>Price-Earnings Ratio</li>
-                            <li>Dividends</li>
-                            <li>Volume</li>
-                            <li>Beta</li>
-                            <li>News</li>
-                            <li>Twitter Sentiment</li>
-                            <li>Relative Strength Index</li>
-                            <li>Moving Average</li>
-                        </ul>
+                        <div style = {bgStyle}>
+                                <h5>
+                                    What is investing?
+                                </h5>
+                                <p>An investment is something we put our money in to help it grow. 
+                                    If we just keep our money in a piggy bank or drawer, it won't earn any money for us.
+                                    Below are some common types of investments
+                                </p>
+                                <table>
+                                <tr>
+                                        <td>Stock</td>
+                                        <td> A buyer of a company's stock becomes a fractional owner of that company. 
+                                            Owners of a company's stock are known as its shareholders, and can participate in its growth and success through appreciation in the stock price and regular dividends paid out of the company's profits.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bonds</td>
+                                        <td>Bonds are debt obligations of entities such as governments, municipalities and corporations. 
+                                            Buying a bond implies that you hold a share of an entity's debt, and are entitled to receive periodic interest payments and the return of the bond's face value when it matures.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Funds</td>
+                                        <td> Funds are pooled instruments managed by investment managers that enable investors to invest in stocks, bonds, preferred shares, commodities etc. 
+                                            The two most common types of funds are mutual funds and exchange-traded funds or ETFs. Mutual funds do not trade on an exchange and are valued at the end of the trading day; ETFs trade on stock exchanges and like stocks, are valued constantly throughout the trading day. 
+                                            Mutual funds and ETFs can either passively track indices such as the S&P 500 or the Dow Jones Industrial Average, or can be actively managed by fund managers.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trusts</td>
+                                        <td>Trusts are another type of pooled investment, with Real Estate Investment Trusts (REITs) the most popular in this category. 
+                                            REITs invest in commercial or residential properties and pay regular distributions to their investors from the rental income received from these properties. 
+                                            REITs trade on stock exchanges and thus offer their investors the advantage of instant liquidity.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Real Estate</td>
+                                        <td>Real estate investing involves the purchase, ownership, management, rental and/or sale of real estate for profit. 
+                                            Improvement of realty property as part of a real estate investment strategy is generally considered to be a sub-specialty of real estate investing called real estate development. 
+                                            Real estate is an asset form with limited liquidity relative to other investments, it is also capital intensive (although capital may be gained through mortgage leverage) and is highly cash flow dependent. 
+                                            If these factors are not well understood and managed by the investor, real estate becomes a risky investment.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <h5>
+                                What is a company, and what is the stock market?
+                            </h5>
+                            <p style = {bgStyle}>A company is a legal entity formed by a group of individuals to engage in and operate a business—commercial or industrial—enterprise. 
+                                A company may be organized in various ways for tax and financial liability purposes depending on the corporate law of its jurisdiction. 
+                                Stock markets are where individual and institutional investors come together to buy and sell shares in a public venue. 
+                                Nowadays these exchanges exist as electronic marketplaces.</p>
+                            <h5>
+                                What does it mean to Buy or Short a stock?
+                            </h5>
+                            <p style = {bgStyle}>Buying a stock is when you buy a share of a company. Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                            <div style = {bgStyle}>
+                            <p>Factors that will help you decide what stock to buy</p>
+                            <table>
+                                <tr>
+                                    <td>Opening Price</td>
+                                    <td>The opening price is the price at which a security first trades upon the opening of an exchange on any given trading day</td>
+                                </tr>
+                                <tr>
+                                    <td>Closing Price</td>
+                                    <td>The closing price is the last price at which the stock traded during a regular trading day.</td>
+                                </tr>
+                                <tr>
+                                    <td>High</td>
+                                    <td>High is the highest price at which a stock traded during the course of the trading day.</td>
+                                </tr>
+                                <tr>
+                                    <td>Low</td>
+                                    <td>Low is the lowest price at which a stock traded during the course of the trading day.</td>
+                                </tr>
+                                <tr>
+                                    <td>Debt-to-Equity</td>
+                                    <td>The debt-to-equity (D/E) ratio is calculated by dividing a company's total liabilities by its shareholder equity. 
+                                        These numbers are available on the balance sheet of a company's financial statements. 
+                                        The ratio is used to evaluate a company's financial leverage.</td>
+                                </tr>
+                                <tr>
+                                    <td>Price-Earnings Ratio</td>
+                                    <td>The price-earnings ratio, also known as P/E ratio, P/E, or PER, is the ratio of a company's share price to the company's earnings per share. 
+                                        The ratio is used for valuing companies and to find out whether they are overvalued or undervalued.</td>
+                                </tr>
+                                <tr>
+                                    <td>Dividends</td>
+                                    <td>The dividend is a distribution of profits by a corporation to its shareholders. 
+                                        When a corporation earns a profit or surplus, it is able to pay a proportion of the profit as a dividend to shareholders.</td>
+                                </tr>
+                                <tr>
+                                    <td>Volume</td>
+                                    <td>Volume refers to the number of shares traded in a given time period. A stock's volume refers to the number of shares that are sold, or traded, over a certain period of time (usually daily).</td>
+                                </tr>
+                                <tr>
+                                    <td>Beta</td>
+                                    <td>Beta is a measure of the volatility—or systematic risk—of a security or portfolio compared to the market as a whole.</td>
+                                </tr>
+                                <tr>
+                                    <td>Relative Strength Index</td>
+                                    <td>The relative strength index is a technical indicator used in the analysis of financial markets. It is intended to chart the current and historical strength or weakness of a stock or market based on the closing prices of a recent trading period. </td>
+                                </tr>
+                                <tr>
+                                    <td>Moving Average</td>
+                                    <td>The moving average (MA) is a simple technical analysis tool that smooths out price data by creating a constantly updated average price. 
+                                        The average is taken over a specific period of time, like 10 days, 20 minutes, 30 weeks or any time period the trader chooses.</td>
+                                </tr>
+                                <tr>
+                                    <td>News/Social Media</td>
+                                    <td>The News and Social Media can affect the price of a the stock. When news or posts on a company are negative, 
+                                        the stock price tends to go down. When news or posts on a company are positive, the stock price tends to go up.</td>
+                                </tr>
+                            </table>
 
-                    </div>
+                            </div>
+
                         </div>
                         </div>
-                    </div>
-                    </div>
+
+                            </div>
+                        </div>
                     <div>
-                        <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
                     </div>
                 </div>
-
+                <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
             </div>
+        </div>
       );
   }
 }
