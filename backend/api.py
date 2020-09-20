@@ -14,10 +14,21 @@ from random import randint
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
 # RANDOM:
-# http://localhost:5000/todo/api/v1.0/data/
+# http://localhost:5000/todo/api/v1.0/data
 
 # 2 PARAMS:
 # http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
+
+
+def build_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+def build_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 def calculate_ratios(ticker):
@@ -208,26 +219,14 @@ def get_ticker_name():
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    # for i in range(len(sheet.nrows)):
-
-
-
-
-    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-    #
 
     data = {}
     vehical_data = {"data": [data]}
 
-    name = 'volume'
-    data[name] = volumes
-    data['open'] = opens
-    data['high'] = highs
-    data['low'] = lows
-    data['dates'] = dates
-     # data['dividend'] = get_dividend(ticker, date)
-        # data['earnings'] = get_earnings(ticker, date)
-    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+
+    data['ticker'] = "sd"
+    data['name'] = "sd"
 
     x = json.dumps(vehical_data)
 
