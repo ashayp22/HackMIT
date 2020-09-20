@@ -46,6 +46,7 @@ export default class Metrics extends React.Component {
         }
     }
 
+
     //calculate 52 week high/low
 
     var values = this.props.open;
@@ -81,7 +82,7 @@ export default class Metrics extends React.Component {
                   The profits of a company in a given quarter or fiscal year
                 </ReactTooltip></p> */}
           
-          <p data-tip data-for = "high">
+          <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "high">
             52 Week High
           <ReactTooltip id="high" place="top" effect="solid">
             The highest and lowest share price that a stock has traded at during a passing year.

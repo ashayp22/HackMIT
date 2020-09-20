@@ -29,36 +29,47 @@ export default class ResearchScreen extends React.Component{
       left: '50%',
       top: '50%',
       transform: 'translate(-50%, -50%)',
-      border: '5px solid',
-      backgroundColor: '#FBCDC2',
-      borderRadius: '25px',
-      padding: '10px',
-      width: '1000px',
-      height: '700px',
-      boxShadow: "-4px 4px 2px gray",
+      display: 'flex',
+      flexDirection: 'row',
+    }
+    let heading = {
+        backgroundColor: '#FBCDC2',
+        borderRadius: '25px',
+        boxShadow: "-4px 4px 2px gray",
         textAlign: 'center'
     }
-
+    let bgStyle = {
+        backgroundColor: 'white',
+        borderRadius: '25px',
+        padding: '2em',
+    }
       return (
             <div style = {divStyle}>
+                <h1 style = {heading} className = "header">Financial Literacy</h1>
                 <div style = {centerStyle}>
-                    <h1 className = "header">Financial Literacy</h1>
-                    <p>Learn these ideas to improve your game
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h1 className = "header2">Kids</h1>
+                        </div>
+                        <div class="flip-card-back">
+                        <h1 className = "header">Financial Literacy</h1>
+                    <p style = {bgStyle}>Learn these ideas to improve your game
                         in the stock market!
                     </p>
                     <div>
-                        <h3>
+                        <h5>
                             What are stocks, companies, and the stock market?
-                        </h3>
-                        <p>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
-                        <h3>
+                        </h5>
+                        <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
+                        <h5>
                             What does it mean to Buy or Short a stock?
-                        </h3>
-                        <p></p>
-                        <h3>
+                        </h5>
+                        <p>Buying a stock is Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                        <h5>
                             Long Term vs Short Term Investing
-                        </h3>
-                        <ul>
+                        </h5>
+                        <ul style = {bgStyle}>
                             <li>Stock Price Over Time
                                 <ul>
                                     <li>Open</li>
@@ -80,6 +91,99 @@ export default class ResearchScreen extends React.Component{
 
                     </div>
                     <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="flip-card">
+                        
+                        <div class="flip-card-inner">
+                        <div class="flip-card-front"></div>
+                        <div class="flip-card-back">
+                    <p style = {bgStyle}>Learn these ideas to improve your game
+                        in the stock market!
+                    </p>
+                    <div>
+                        <h5>
+                            What are stocks, companies, and the stock market?
+                        </h5>
+                        <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
+                        <h5>
+                            What does it mean to Buy or Short a stock?
+                        </h5>
+                        <p>Buying a stock is Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                        <h5>
+                            Long Term vs Short Term Investing
+                        </h5>
+                        <ul style = {bgStyle}>
+                            <li>Stock Price Over Time
+                                <ul>
+                                    <li>Open</li>
+                                    <li>Close</li>
+                                    <li>High</li>
+                                    <li>Low</li>
+                                </ul>
+                            </li>
+                            <li>Debt-to-Equity</li>
+                            <li>Price-Earnings Ratio</li>
+                            <li>Dividends</li>
+                            <li>Volume</li>
+                            <li>Beta</li>
+                            <li>News</li>
+                            <li>Twitter Sentiment</li>
+                            <li>Relative Strength Index</li>
+                            <li>Moving Average</li>
+                        </ul>
+
+                    </div>
+                    <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                        <div class="flip-card-front"></div>
+                        <div class="flip-card-back">
+                        <h1 className = "header">Financial Literacy</h1>
+                    <p style = {bgStyle}>Learn these ideas to improve your game
+                        in the stock market!
+                    </p>
+                    <div>
+                        <h5>
+                            What are stocks, companies, and the stock market?
+                        </h5>
+                        <p style = {bgStyle}>Stocks are a type of security that gives stockholders a share of ownership in a company. Stocks also are called “equities.”</p>
+                        <h5>
+                            What does it mean to Buy or Short a stock?
+                        </h5>
+                        <p>Buying a stock is Shorting a stock investor is when an investor borrows a security and sells it on the open market, planning to buy it back later for less money.</p>
+                        <h5>
+                            Long Term vs Short Term Investing
+                        </h5>
+                        <ul style = {bgStyle}>
+                            <li>Stock Price Over Time
+                                <ul>
+                                    <li>Open</li>
+                                    <li>Close</li>
+                                    <li>High</li>
+                                    <li>Low</li>
+                                </ul>
+                            </li>
+                            <li>Debt-to-Equity</li>
+                            <li>Price-Earnings Ratio</li>
+                            <li>Dividends</li>
+                            <li>Volume</li>
+                            <li>Beta</li>
+                            <li>News</li>
+                            <li>Twitter Sentiment</li>
+                            <li>Relative Strength Index</li>
+                            <li>Moving Average</li>
+                        </ul>
+
+                    </div>
+                    <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
       );

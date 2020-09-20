@@ -7,12 +7,6 @@ import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 import './style/extra.css'
 
 export default class HomeScreen extends React.Component{
-
-    componentDidMount() {
-    }
-  
-    componentWillUnmount() {
-    }
   render() {
     let divStyle = {
         width: "100%",

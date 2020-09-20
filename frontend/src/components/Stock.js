@@ -81,25 +81,24 @@ export default class Stock extends React.Component{
       textAlign: 'center',
       border: '5px solid #FFFF00',
       border: '5px solid',
-    backgroundColor: '#fff',
-    borderRadius: '25px',
-    padding: '10px',
-    boxShadow: "-4px 4px 2px gray",
-      marginRight: '20px',
-      marginLeft: '20px'
+      backgroundColor: '#fff',
+      borderRadius: '25px',
+      padding: '1em',
+      boxShadow: "-4px 4px 2px gray",
+      margin: '3em'
       // color: white
     }
 
     let divStyle2 = {
+      border: '5px solid black',
+      backgroundColor: '#FBCDC2',
+      borderRadius: '25px',
+      boxShadow: "-4px 4px 2px gray",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       textAlign: 'center',
-      border: '5px solid #FFFF00',
-      border: '5px solid',
-    backgroundColor: '#FBCDC2',
-    borderRadius: '25px',
-    padding: '10px',
-    boxShadow: "-4px 4px 2px gray",
-      marginRight: '20px',
-      marginLeft: '20px'
+      padding: '1em'
     }
     
 
@@ -108,12 +107,15 @@ export default class Stock extends React.Component{
 
         <Router>
 
-        <div style = {{display: "flex", justifyContent: 'center', flexDirection: "row", alignItems: "center"}}>
+        <div style = {{display: "flex", justifyContent: 'space-evenly', flexDirection: "row", alignItems: "center"}}>
 
           <div style={divStyle2}>
             <h1 className = "header2">Long Term</h1>
+                <Graph width={300} height={200}></Graph>
+                  <Metrics width={300} ></Metrics>
               <Graph style = {{alignSelf: 'center'}} volume = {this.props.volume} dates = {this.props.dates} open = {this.props.open} width={300} height={250}></Graph>
               <Metrics open = {this.props.open} width={300} ></Metrics>
+
           </div>
 
 

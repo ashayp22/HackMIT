@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Stock from './Stock.js'
 import TwitterEmojiGraph from './TwitterEmojiGraph.js';
 import ReactLoading from 'react-loading';
+
 import Loading from './Loading.js'
+
 
 export default class GameScreen extends React.Component{
 
@@ -76,6 +78,7 @@ export default class GameScreen extends React.Component{
 
     
   render() {
+
     console.log("rendering")
       return (
         <Router>
