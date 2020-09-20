@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mtliendo/react-use-dad-joke": "^1.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -18,6 +19,7 @@
     "cors": "^2.8.5",
     "d3-array": "^2.7.1",
     "d3-time-format": "^3.0.0",
+    "facts-generator": "^1.0.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-awesome-button": "^6.5.1",

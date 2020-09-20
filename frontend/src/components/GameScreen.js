@@ -6,6 +6,8 @@ import Metrics from './Metrics.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Stock from './Stock.js'
 import TwitterEmojiGraph from './TwitterEmojiGraph.js';
+import ReactLoading from 'react-loading';
+import Loading from './Loading.js'
 
 export default class GameScreen extends React.Component{
     componentDidMount() {
@@ -40,9 +42,11 @@ export default class GameScreen extends React.Component{
       backgroundColor: 'white',
       boxShadow: "-4px 4px 2px gray",
     }
+
       return (
         <Router>
-          <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          <Loading></Loading>
+          {/* <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock> */}
         </Router>
 
       );

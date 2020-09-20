@@ -65,3 +65,16 @@ p, li {
 .short {
     background-color:#fc3200 !important;
 }
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.advice {
+    font-weight: bolder;
+    font-size: 25px;
+}

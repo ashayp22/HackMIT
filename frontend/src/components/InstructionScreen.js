@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-
+import './style/extra.css'
 
 export default class InstructionScreen extends React.Component{
 
