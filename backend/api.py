@@ -9,6 +9,7 @@ import json
 from datetime import datetime
 import xlrd
 from random import randint
+from backend.twitter import *
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
@@ -160,7 +161,15 @@ app = Flask(__name__)
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
 def get_data(ticker, date):
     [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-    #
+
+    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+
+    company_name = ""
+    for i in range(6, sheet.nrows, 1):
+
+        if sheet.cell_value(i, 1) == ticker:
+            company_name = sheet.cell_value(i, 0)
 
     data = {}
     vehical_data = {"data": [data]}
@@ -173,9 +182,8 @@ def get_data(ticker, date):
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    # data['dividend'] = get_dividend(ticker, date)
-    # data['earnings'] = get_earnings(ticker, date)
-    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+    data['twitter'] = analyze_tweets(company_name)
+
 
     x =jsonify(vehical_data)
     return build_actual_response(x)
@@ -183,11 +191,11 @@ def get_data(ticker, date):
 
 @app.route('/todo/api/v1.0/data', methods=['GET'])
 def get_data_random():
-    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    wb = xlrd.open_workbook("stocks.xlsx") # CHANGE THIS!!!!!!!
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date())
+    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
 
     company_name = ""
     sector = ""
@@ -214,6 +222,7 @@ def get_data_random():
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
+    data['twitter'] = analyze_tweets(company_name)
      # data['dividend'] = get_dividend(ticker, date)
         # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
@@ -251,7 +260,7 @@ def get_ticker_data():
 
     x = jsonify(vehical_data)
 
-    return x
+    return build_actual_response(x)
 
 
 @app.errorhandler(404)

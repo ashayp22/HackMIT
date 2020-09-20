@@ -7,6 +7,7 @@ tone_analyzer = ToneAnalyzerV3(
     authenticator=authenticator
 )
 
+
 tone_analyzer.set_service_url('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/dd65f5dc-0904-4dfa-b66e-2e7c67fb5c1a')
 
 import requests
