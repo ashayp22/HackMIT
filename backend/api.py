@@ -13,6 +13,12 @@ from random import randint
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
+# RANDOM:
+# http://localhost:5000/todo/api/v1.0/data/
+
+# 2 PARAMS:
+# http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
+
 
 def calculate_ratios(ticker):
     ratios_per_time = {}
@@ -163,13 +169,47 @@ def get_data(ticker, date):
     x =json.dumps(vehical_data)
     return x
 
+
 @app.route('/todo/api/v1.0/data', methods=['GET'])
 def get_data_random():
     wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    date = datetime.fromtimestamp(randint(1512108000, 1600491600).date())
+    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date())
+
+
+
+    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
+    #
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    name = 'volume'
+    data[name] = volumes
+    data['open'] = opens
+    data['high'] = highs
+    data['low'] = lows
+    data['dates'] = dates
+     # data['dividend'] = get_dividend(ticker, date)
+        # data['earnings'] = get_earnings(ticker, date)
+    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+    x = json.dumps(vehical_data)
+
+
+
+    return x
+
+@app.route('/todo/api/v1.0/tickers', methods=['GET'])
+def get_ticker_name():
+    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+    ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
+
+    # for i in range(len(sheet.nrows)):
+
 
 
 
