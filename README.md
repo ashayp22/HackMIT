@@ -1,5 +1,7 @@
 # HackMIT 2020 - Buy or $hort
 
+[preview](https://github.com/ashayp22/HackMIT/tree/master/preview)
+
 ## Problem
 
 Whether you are a high school student, college graduate, or an adult in their 40s, financial literacy is very important. But, there just isn’t enough in our educational system that teaches people how to save for retirement and not have to worry about that social security check in their late 60s.
