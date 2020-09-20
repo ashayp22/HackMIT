@@ -10,6 +10,27 @@ import ReactLoading from 'react-loading';
 import Loading from './Loading.js'
 
 export default class GameScreen extends React.Component{
+
+
+  constructor(props) {
+    super(props)
+    this.randomStock()
+}
+
+  randomStock() {
+    console.log("getting")
+    fetch('http://localhost:5000/todo/api/v1.0/data', {header: {"access-control-allow-origin" : "*"}})
+  .then((response) => {
+    console.log("got")
+    return response.json();
+  })
+  .then((json) => {
+    console.log(json);
+    // this.setState({stockDataObj: json});
+  });
+  }
+
+
     componentDidMount() {
         
     }
@@ -45,8 +66,8 @@ export default class GameScreen extends React.Component{
 
       return (
         <Router>
-          <Loading></Loading>
-          {/* <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock> */}
+          {/* <Loading></Loading> */}
+          <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
         </Router>
 
       );

@@ -14,10 +14,21 @@ from random import randint
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
 # RANDOM:
-# http://localhost:5000/todo/api/v1.0/data/
+# http://localhost:5000/todo/api/v1.0/data
 
 # 2 PARAMS:
 # http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
+
+
+def build_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+def build_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 def calculate_ratios(ticker):
@@ -167,12 +178,12 @@ def get_data(ticker, date):
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
     x =json.dumps(vehical_data)
-    return x
+    return build_actual_response(x)
 
 
 @app.route('/todo/api/v1.0/data', methods=['GET'])
 def get_data_random():
-    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    wb = xlrd.open_workbook("stocks.xlsx") # CHANGE THIS!!!!!!!
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
@@ -198,36 +209,22 @@ def get_data_random():
 
     x = json.dumps(vehical_data)
 
-
-
-    return x
+    return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
 def get_ticker_name():
-    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    # for i in range(len(sheet.nrows)):
-
-
-
-
-    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-    #
 
     data = {}
     vehical_data = {"data": [data]}
 
-    name = 'volume'
-    data[name] = volumes
-    data['open'] = opens
-    data['high'] = highs
-    data['low'] = lows
-    data['dates'] = dates
-     # data['dividend'] = get_dividend(ticker, date)
-        # data['earnings'] = get_earnings(ticker, date)
-    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+
+    data['ticker'] = "sd"
+    data['name'] = "sd"
 
     x = json.dumps(vehical_data)
 
@@ -244,4 +241,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
     # the default if for building web app because this is a vanilla flask, so its trying to return in http content, it is return in type html.
-
