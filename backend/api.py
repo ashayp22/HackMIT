@@ -177,7 +177,7 @@ def get_data(ticker, date):
     # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
-    x =json.dumps(vehical_data)
+    x =jsonify(vehical_data)
     return build_actual_response(x)
 
 
@@ -207,7 +207,7 @@ def get_data_random():
         # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
-    x = json.dumps(vehical_data)
+    x = jsonify(vehical_data)
 
 
 
@@ -228,7 +228,7 @@ def get_ticker_name():
     data['ticker'] = "sd"
     data['name'] = "sd"
 
-    x = json.dumps(vehical_data)
+    x = jsonify(vehical_data)
 
 
 
