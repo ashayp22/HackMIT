@@ -10,6 +10,11 @@ import ReactLoading from 'react-loading';
 import './style/extra.css'
 
 export default class Loading extends React.Component{
+
+  constructor(props) {
+    super(props)
+  }
+
   render() {
 
     let centerStyle = {
@@ -57,10 +62,17 @@ export default class Loading extends React.Component{
 
       var advice = financeAdvice[getRndInteger(0, financeAdvice.length-1)]["title"];
       console.log(advice)
+
+      var profitText = ""
+      if(this.props.change != 0) {
+        profitText = "You just made $" + this.props.change
+      }
+
       return (
         <div className = "centered">
-          <ReactLoading type={"cylon"} color={"#FFDF3F"} height={'500px'} width={'500px'}/>
-          <p className = "advice">Here is some advice: {advice}</p>
+          {/* <ReactLoading type={"cylon"} color={"#FFDF3F"} height={'500px'} width={'500px'}/> */}
+          <h1 className = "header">{profitText}</h1>
+          <p className = "advice">Here is some advice: {advice}!</p>
           <p>Please wait as we get a new challenge for you...</p>
         </div>
 

@@ -79,4 +79,4 @@ def analyze_tweets(company_name):
 
     return tones
 
-analyze_tweets("apple")
+# analyze_tweets("apple")

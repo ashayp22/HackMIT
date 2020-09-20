@@ -9,6 +9,7 @@ import json
 from datetime import datetime
 import xlrd
 from random import randint
+from twitter import *
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
@@ -55,10 +56,6 @@ def calculate_ratios(ticker):
 
 
     return {"ratios":ratios, "balanceSheet":bs,"incomeStatement":income_statement, "ratiosPerTime":ratios_per_time,"horizontalAnalysis":horizontal_analysis, "verticalAnalysis":vertical_analysis}
-
-
-
-
 
 
 
@@ -160,7 +157,15 @@ app = Flask(__name__)
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
 def get_data(ticker, date):
     [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-    #
+
+    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+
+    company_name = ""
+    for i in range(6, sheet.nrows, 1):
+
+        if sheet.cell_value(i, 1) == ticker:
+            company_name = sheet.cell_value(i, 0)
 
     data = {}
     vehical_data = {"data": [data]}
@@ -173,11 +178,10 @@ def get_data(ticker, date):
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    # data['dividend'] = get_dividend(ticker, date)
-    # data['earnings'] = get_earnings(ticker, date)
-    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+    data['twitter'] = analyze_tweets(company_name)
 
-    x =json.dumps(vehical_data)
+
+    x =jsonify(vehical_data)
     return build_actual_response(x)
 
 
@@ -187,7 +191,15 @@ def get_data_random():
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date())
+    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
+
+    company_name = ""
+    sector = ""
+    for i in range(6,sheet.nrows,1):
+
+        if sheet.cell_value(i,1) == ticker:
+            company_name = sheet.cell_value(i,0)
+            sector = sheet.cell_value(i, 5)
 
 
 
@@ -197,22 +209,28 @@ def get_data_random():
     data = {}
     vehical_data = {"data": [data]}
 
+    data['ticker'] = ticker
+    data['company-name'] = company_name
+    data['sector'] = sector
     name = 'volume'
     data[name] = volumes
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
+    # data['twitter'] = analyze_tweets(company_name)
      # data['dividend'] = get_dividend(ticker, date)
         # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
-    # x = json.dumps(vehical_data)
+    x = jsonify(vehical_data)
 
-    return build_actual_response(jsonify(vehical_data))
+
+
+    return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
-def get_ticker_name():
+def get_ticker_data():
     wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
@@ -220,17 +238,25 @@ def get_ticker_name():
 
     data = {}
     vehical_data = {"data": [data]}
+    tickers = []
+    company_names = []
+    sectors = []
+
+
+    for i in range(6, sheet.nrows, 1):
+        company_names.append(sheet.cell_value(i, 1))
+        ticker.append(sheet.cell_value(i,0))
+        sectors.append(sheet.cell_value(i, 5))
 
 
 
-    data['ticker'] = "sd"
-    data['name'] = "sd"
+    data['ticker'] = ticker
+    data['name'] = company_names
+    data['sector'] = sectors
 
-    x = json.dumps(vehical_data)
+    x = jsonify(vehical_data)
 
-
-
-    return x
+    return build_actual_response(x)
 
 
 @app.errorhandler(404)

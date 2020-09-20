@@ -21,15 +21,30 @@ export default class GameScreen extends React.Component{
       low: [],
       open: [],
       volume: [],
-      ticker: "a",
-      company: "a"
+      ticker: "",
+      company: "",
+      sector: "",
+      change: 0
     })
+    this.randomStock = this.randomStock.bind(this)
 
-    this.randomStock()
 }
 
-  randomStock() {
-    console.log("getting")
+  randomStock(change) {
+    
+    this.setState({
+      dates: [],
+      high: [],
+      low: [],
+      open: [],
+      volume: [],
+      ticker: "",
+      company: "",
+      sector: "",
+      change: change
+    })
+
+
     fetch('http://localhost:5000/todo/api/v1.0/data', {header: {"access-control-allow-origin" : "*"}})
   .then((response) => {
     console.log("got")
@@ -43,16 +58,16 @@ export default class GameScreen extends React.Component{
       low: json["data"][0]['low'],
       open: json["data"][0]['open'],
       volume: json["data"][0]['volume'],
-      ticker: "",
-      company: ""
+      ticker: json["data"][0]['ticker'],
+      company: json["data"][0]['company-name'],
+      sector: json["data"][0]['sector']
     })
     // console.log(json["data"][0]['dates'])
   });
   }
 
-
     componentDidMount() {
-        
+      this.randomStock(0)
     }
   
     componentWillUnmount() {
@@ -64,8 +79,13 @@ export default class GameScreen extends React.Component{
     console.log("rendering")
       return (
         <Router>
-          {/* <Loading></Loading> */}
-          <Stock game = {true} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+
+          {this.state.company.length == 0
+          ?
+          <Loading change = {this.state.change}></Loading>
+          :
+          <Stock game = {true} sector = {this.state.sector} newStock = {this.randomStock} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          }
         </Router>
       );
   }
