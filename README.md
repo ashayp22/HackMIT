@@ -1,6 +1,6 @@
 # HackMIT 2020 - Buy or $hort
 
-[preview](https://github.com/ashayp22/HackMIT/blob/master/preview/buyorshort10.PNG)
+[](https://github.com/ashayp22/HackMIT/blob/master/preview/buyorshort10.PNG)
 
 ## Problem
 
