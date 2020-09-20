@@ -64,8 +64,9 @@ export default class ResearchScreen extends React.Component{
                                 <h5>
                                     What is investing?
                                 </h5>
-                                <p>Investing is the act of allocating resources, usually money, with the expectation of generating an income or profit. 
-                                    You can invest in endeavors, such as using money to start a business, or in assets, such as purchasing real estate in hopes of reselling it later at a higher price.
+                                <p>An investment is something we put our money in to help it grow. 
+                                    If we just keep our money in a piggy bank or drawer, it won't earn any money for us.
+                                    Below are some common types of investments
                                 </p>
                                 <table>
                                     <tr>
@@ -175,9 +176,9 @@ export default class ResearchScreen extends React.Component{
                                 <h5>
                                     What is investing?
                                 </h5>
-                                <p>An investment is something we put our money in to help it grow. 
-                                    If we just keep our money in a piggy bank or drawer, it won't earn any money for us.
-                                    Below are some common types of investments
+                                
+                                <p>Investing is the act of allocating resources, usually money, with the expectation of generating an income or profit. 
+                                    You can invest in endeavors, such as using money to start a business, or in assets, such as purchasing real estate in hopes of reselling it later at a higher price.
                                 </p>
                                 <table>
                                 <tr>
