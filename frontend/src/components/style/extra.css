@@ -8,10 +8,13 @@
     color: black;
     font-size: 4vw;
 }
-h3 {
+h3, h4 {
     font-family: 'Grandstander', cursive;
 }
 
+h4 {
+    font-size: 15px;
+}
 
 p, li {
     font-family: 'Roboto Mono', monospace;
@@ -127,3 +130,17 @@ p, li {
   height: '700px',
   boxShadow: "-4px 4px 2px gray",
   textAlign: 'center' */
+
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.advice {
+    font-weight: bolder;
+    font-size: 25px;
+}

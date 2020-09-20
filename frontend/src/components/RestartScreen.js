@@ -34,20 +34,20 @@ export default class RestartScreen extends React.Component{
       backgroundColor: '#FBCDC2',
       borderRadius: '25px',
       padding: '10px',
-      width: '300px',
-      height: '400px'
+      width: '400px',
+      height: '500px'
     }
 
       return (
 
         <div style={divStyle}>
             <div style={centerStyle}>
-              <h1>Game Over</h1>
+              <h1 className = "header">Game Over</h1>
                 <p>Final Score: {this.props.finalScore}</p>
                 <p>{this.props.message}</p>
-              <Button variant="primary" onClick = {() => this.props.click(1)}>Play Again</Button>
+              <button className = "coolButton .b2" onClick = {() => this.props.click(1)}>Play Again</button>
               <br></br>
-              <Button variant="secondary" onClick = {() => this.props.click(0)}>Go to Home</Button>
+              <button className = "coolButton .back" onClick = {() => this.props.click(0)}>Go to Home</button>
             </div>
         </div>
       );

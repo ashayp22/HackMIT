@@ -15,23 +15,10 @@ export default class App extends React.Component{
 
     state = {
       gameState: 0,
-      stockDataObj: null,
+      message: "",
       score: 0,
-      url: "https://reqres.in/api/products/3",
     }
 
-  inits(url){
-      if(this.state.stockDataObj == null){
-        fetch(url, {header: {"access-control-allow-origin" : "*"}})
-          .then((response) => {
-            return response.json();
-          })
-          .then((json) => {
-            console.log(json);
-            this.setState({stockDataObj: json});
-          });
-      }
-  }
   changeGameState = (i) => {
     this.setState({gameState: i});
   }
@@ -40,10 +27,11 @@ export default class App extends React.Component{
     this.setState({score: this.state.score});
   }
 
-  stopGame = (score) => {
+  stopGame = (score, message) => {
     this.setState({
         gameState: 5,
         score: score,
+        message: message
     });
   }
   handleGameState(){
@@ -60,7 +48,7 @@ export default class App extends React.Component{
         return(<ResearchScreen onClick = {this.changeGameState}></ResearchScreen>);
       case 5:
 
-        return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {"You should have shorted the stock"}></RestartScreen>);
+        return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {this.state.message}></RestartScreen>);
     }
   }
 
@@ -109,7 +97,6 @@ export default class App extends React.Component{
 
 
       {this.handleGameState()}
-      {this.inits("https://reqres.in/api/products/3")} 
 
       </div>
       </div>
