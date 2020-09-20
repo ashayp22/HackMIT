@@ -26,9 +26,11 @@ export default class GameScreen extends React.Component{
       ticker: "",
       company: "",
       sector: "",
-      change: 0
+      change: 0,
+      score: 0
     })
     this.randomStock = this.randomStock.bind(this)
+    this.getScore = this.getScore.bind(this)
 
 }
 
@@ -43,7 +45,8 @@ export default class GameScreen extends React.Component{
       ticker: "",
       company: "",
       sector: "",
-      change: change
+      change: change,
+      score: this.state.score + change
     })
 
 
@@ -62,7 +65,8 @@ export default class GameScreen extends React.Component{
       volume: json["data"][0]['volume'],
       ticker: json["data"][0]['ticker'],
       company: json["data"][0]['company-name'],
-      sector: json["data"][0]['sector']
+      sector: json["data"][0]['sector'],
+      score: this.state.score
     })
     // console.log(json["data"][0]['dates'])
   });
@@ -76,6 +80,9 @@ export default class GameScreen extends React.Component{
 
     }
 
+    getScore() {
+      return this.state.score
+    }
     
   render() {
 
@@ -87,7 +94,7 @@ export default class GameScreen extends React.Component{
           ?
           <Loading change = {this.state.change}></Loading>
           :
-          <Stock game = {true} sector = {this.state.sector} newStock = {this.randomStock} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          <Stock getScore = {this.getScore} score = {this.state.score} game = {true} sector = {this.state.sector} newStock = {this.randomStock} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
           }
         </Router>
       );

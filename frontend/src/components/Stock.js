@@ -13,9 +13,9 @@ export default class Stock extends React.Component{
   constructor(props) {
     super(props)
 
-    this.state = ({
-      score: 0
-    })
+    // this.state = ({
+    //   score: 0
+    // })
     // console.log("we here")
     // console.log(this.props.open)
     // console.log(this.props.dates)
@@ -46,7 +46,7 @@ export default class Stock extends React.Component{
 
         if(userAnswer == correctAnswer){
             // alert("Good Job");
-            this.setState({score: this.state.score + change});
+            // this.setState({score: this.state.score + change});
             this.props.newStock(change);
         }
         else {
@@ -59,7 +59,10 @@ export default class Stock extends React.Component{
               message = "The stock went down by " + change + " dollars. You should have shorted the stock😢.";
             }
 
-            this.props.stopGame(this.state.score, message);
+            var score = this.props.getScore();
+            // alert(score)
+
+            this.props.stopGame(score, message);
         }
     }
     componentDidMount() {
@@ -111,8 +114,6 @@ export default class Stock extends React.Component{
 
           <div style={divStyle2}>
             <h1 className = "header2">Long Term</h1>
-                <Graph width={300} height={200}></Graph>
-                  <Metrics width={300} ></Metrics>
               <Graph style = {{alignSelf: 'center'}} volume = {this.props.volume} dates = {this.props.dates} open = {this.props.open} width={300} height={250}></Graph>
               <Metrics open = {this.props.open} width={300} ></Metrics>
 
@@ -127,7 +128,7 @@ export default class Stock extends React.Component{
               <h4>{this.props.sector}</h4>
                 <button className = "coolButton buy" onClick = {() => this.validateResponse("Buy")} variant = "primary">Buy</button>
                 <button className = "coolButton short" onClick = {() => this.validateResponse("Short")} variant = "secondary">Short</button>
-                <h3>You have made ${this.state.score} </h3>
+                <h3>You have made ${this.props.score} </h3>
                 <button className = "coolButton back" variant="primary" onClick = {() => this.props.onClick(0)}>Back</button>
               </div>
                 :

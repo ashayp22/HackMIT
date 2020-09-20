@@ -3,11 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
 
-.header, .header2 {
+.header {
     font-family: 'Bungee Shade', cursive !important;
     color: black;
     font-size: 4vw;
 }
+
+.header2 {
+    font-size: 35px;
+}
+
 h3, h4 {
     font-family: 'Grandstander', cursive;
 }
