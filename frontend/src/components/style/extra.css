@@ -73,7 +73,13 @@ p, li {
 .short {
     background-color:#fc3200 !important;
 }
+tr,td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
 .flip-card {
+    
     background-color: transparent;
     width: 30vw;
     height: 70vh;
