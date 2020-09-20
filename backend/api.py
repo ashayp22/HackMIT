@@ -176,7 +176,40 @@ def get_data_random():
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    date = datetime.fromtimestamp(randint(1512108000, 1600491600).date())
+    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date())
+
+
+
+    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
+    #
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    name = 'volume'
+    data[name] = volumes
+    data['open'] = opens
+    data['high'] = highs
+    data['low'] = lows
+    data['dates'] = dates
+     # data['dividend'] = get_dividend(ticker, date)
+        # data['earnings'] = get_earnings(ticker, date)
+    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
+
+    x = json.dumps(vehical_data)
+
+
+
+    return x
+
+@app.route('/todo/api/v1.0/tickers', methods=['GET'])
+def get_ticker_name():
+    wb = xlrd.open_workbook("/Users/labdhijain/PycharmProjects/HackMIT/HackMIT/backend/stocks.xlsx") # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+    ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
+
+    # for i in range(len(sheet.nrows)):
+
 
 
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6eba05e8-e42f-4b62-8855-e205a919f5d8" name="Default Changelist" comment="" />
+    <list default="true" id="6eba05e8-e42f-4b62-8855-e205a919f5d8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2388">
-              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="140">
+              <caret line="178" column="85" selection-start-line="178" selection-start-column="85" selection-end-line="178" selection-end-column="85" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -228,17 +230,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.13493976" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.41566265" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.28313252" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.28313252" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -291,8 +294,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2388">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="140">
+          <caret line="178" column="85" selection-start-line="178" selection-start-column="85" selection-end-line="178" selection-end-column="85" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
