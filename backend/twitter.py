@@ -79,5 +79,3 @@ def analyze_tweets(company_name):
         tones[a] /= s
 
     return tones
-
-analyze_tweets("apple")

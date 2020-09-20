@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eba05e8-e42f-4b62-8855-e205a919f5d8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/async_req.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/news.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HackMIT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HackMIT.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/twitter.py" afterDir="false" />
@@ -17,8 +21,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-363">
-              <caret line="189" column="88" selection-start-line="189" selection-start-column="88" selection-end-line="189" selection-end-column="88" />
+            <state relative-caret-position="259">
+              <caret line="234" column="48" selection-start-line="234" selection-start-column="48" selection-end-line="234" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#855#4560#0" />
+                <element signature="e#3548#3926#0" />
+                <element signature="e#3965#5635#0" />
+                <element signature="e#5661#5705#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yahoo_finance.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/async_req.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="473">
+              <caret line="55" column="35" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="55" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -26,10 +58,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/twitter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="32" />
+            <state relative-caret-position="198">
+              <caret line="29" column="109" lean-forward="true" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/news.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="27" column="34" lean-forward="true" selection-start-line="6" selection-end-line="27" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,6 +94,11 @@
       <find>&quot;:</find>
       <find>]</find>
       <find>sector</find>
+      <find>async</find>
+      <find>await</find>
+      <find>render</find>
+      <find>apple</find>
+      <find>election</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,8 +112,10 @@
         <option value="$PROJECT_DIR$/backend/polygon_api_cals.py" />
         <option value="$PROJECT_DIR$/backend/polygon_api_calls.py" />
         <option value="$PROJECT_DIR$/backend/yahoo_finance.py" />
-        <option value="$PROJECT_DIR$/backend/api.py" />
+        <option value="$PROJECT_DIR$/backend/async_req.py" />
         <option value="$PROJECT_DIR$/backend/twitter.py" />
+        <option value="$PROJECT_DIR$/backend/news.py" />
+        <option value="$PROJECT_DIR$/backend/api.py" />
       </list>
     </option>
   </component>
@@ -166,6 +217,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="news" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HackMIT" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/news.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="twitter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HackMIT" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/twitter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="yahoo_finance" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HackMIT" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,6 +283,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.api (1)" />
+        <item itemvalue="Python.news" />
+        <item itemvalue="Python.twitter" />
         <item itemvalue="Python.yahoo_finance" />
         <item itemvalue="Python.api" />
       </list>
@@ -210,17 +305,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18745595" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.10240964" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.20120482" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.28313252" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.2686747" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -254,16 +350,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yahoo_finance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="83" selection-start-line="83" selection-end-line="85" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../physicsEngine/venv/lib/python3.7/site-packages/pip-10.0.1-py3.7.egg/pip/_vendor/urllib3/connection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -271,20 +357,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/async_req.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="55" column="35" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="55" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yahoo_finance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="32" />
+        <state relative-caret-position="198">
+          <caret line="29" column="109" lean-forward="true" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/news.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="27" column="34" lean-forward="true" selection-start-line="6" selection-end-line="27" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-363">
-          <caret line="189" column="88" selection-start-line="189" selection-start-column="88" selection-end-line="189" selection-end-column="88" />
+        <state relative-caret-position="259">
+          <caret line="234" column="48" selection-start-line="234" selection-start-column="48" selection-end-line="234" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#855#4560#0" />
+            <element signature="e#3548#3926#0" />
+            <element signature="e#3965#5635#0" />
+            <element signature="e#5661#5705#0" />
+          </folding>
         </state>
       </provider>
     </entry>

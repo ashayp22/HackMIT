@@ -10,6 +10,10 @@ from datetime import datetime
 import xlrd
 from random import randint
 from backend.twitter import *
+import asyncio
+
+import requests
+from stop_words import get_stop_words
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
@@ -20,6 +24,28 @@ TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 # 2 PARAMS:
 # http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
 
+
+
+def word_count(wordstring):
+    stop_words = get_stop_words('en')
+    wordlist = wordstring.split()
+    non_stops = {}
+    wordfreq = []
+    for w in wordlist:
+        if w not in stop_words:
+            wordfreq.append(wordlist.count(w))
+            non_stops = wordlist.count(w)
+    return wordfreq, wordlist
+
+
+def get_article_wordcount(company_name):
+    news_api_key = "0a51475b9e08417c869c09e0e928b086"
+    news_search = requests.get(
+        "https://newsapi.org/v2/everything?q=" + company_name + " Finance" + "&apiKey=" + news_api_key).json()
+    # print(news_search)
+    articles = news_search["articles"]
+    article_one = articles[0]["content"]
+    return word_count(article_one)
 
 def build_preflight_response():
     response = make_response()
@@ -32,7 +58,9 @@ def build_actual_response(response):
     return response
 
 
-def calculate_ratios(ticker):
+
+
+def calculate_ratios(ticker, date):
     ratios_per_time = {}
     ratios = requests.get("https://financialmodelingprep.com/api/v3/ratios/" + ticker, params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()
     for ratio in ratios:
@@ -44,22 +72,45 @@ def calculate_ratios(ticker):
 
     bs = requests.get('https://financialmodelingprep.com/api/v3/financials/balance-sheet-statement/' + ticker,params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()["financials"]
     income_statement = requests.get('https://financialmodelingprep.com/api/v3/financials/income-statement/' + ticker,params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()["financials"]
-    vertical_analysis = {}
-    vertical_analysis["grossProfit"] = {income_statement[0]["date"]: float(income_statement[0]["Gross Profit"])/float(income_statement[0]["Revenue"]),income_statement[1]["date"]: float(income_statement[1]["Gross Profit"])/float(income_statement[1]["Revenue"])}
-    vertical_analysis["operatingExpenses"] = {income_statement[0]["date"]: float(income_statement[0]["Operating Expenses"]) / float(income_statement[0]["Revenue"]), income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(income_statement[1]["Revenue"])}
-    vertical_analysis["netIncome"] = {income_statement[0]["date"]: float(income_statement[0]["Net Income"]) / float(income_statement[1]["Revenue"]),income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(income_statement[1]["Revenue"])}
-    horizontal_analysis = {}
-    horizontal_analysis["cash"] = {"difference": float(bs[0]["Cash and cash equivalents"])- float(bs[1]["Cash and cash equivalents"]),"percentChange": (float(bs[0]["Cash and cash equivalents"])- float(bs[1]["Cash and cash equivalents"]))/(float(bs[0]["Cash and cash equivalents"]))}
-    horizontal_analysis["inventory"] = {"difference": float(bs[0]["Inventories"])- float(bs[1]["Inventories"]),"percentChange": (float(bs[0]["Inventories"])- float(bs[1]["Inventories"]))/(float(bs[0]["Inventories"]))}
+    cash_flows = requests.get('https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/' + ticker,params={"apikey":"3031a148ba0503934e38b9ee6224a4cd"}).json()["financials"]
+    today = datetime.today().strftime("%Y-%m-%d")
+    five_years_before = (datetime.today() - timedelta(days=365 * 5)).strftime("%Y-%m-%d")
+    dividend_calendar = requests.get('https://financialmodelingprep.com/api/v3/stock_dividend_calendar',params={"apikey":"3031a148ba0503934e38b9ee6224a4cd","from":five_years_before,"to":today}).json()
+    dividends = {}
+    for dividend in dividend_calendar:
+        if dividend["symbol"] == ticker:
+            dividends[dividend["date"]] = dividend["adjDividend"]
+    earnings = {}
+    for i in income_statement:
+        earnings[i["date"]] = i["Net Income"]
+    vertical_analysis = {"grossProfit": {
+        income_statement[0]["date"]: float(income_statement[0]["Gross Profit"]) / float(income_statement[0]["Revenue"]),
+        income_statement[1]["date"]: float(income_statement[1]["Gross Profit"]) / float(
+            income_statement[1]["Revenue"])}, "operatingExpenses": {
+        income_statement[0]["date"]: float(income_statement[0]["Operating Expenses"]) / float(
+            income_statement[0]["Revenue"]),
+        income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(
+            income_statement[1]["Revenue"])}, "netIncome": {
+        income_statement[0]["date"]: float(income_statement[0]["Net Income"]) / float(income_statement[1]["Revenue"]),
+        income_statement[1]["date"]: float(income_statement[1]["Operating Expenses"]) / float(
+            income_statement[1]["Revenue"])}}
+    horizontal_analysis = {
+        "cash": {"difference": float(bs[0]["Cash and cash equivalents"]) - float(bs[1]["Cash and cash equivalents"]),
+                 "percentChange": (float(bs[0]["Cash and cash equivalents"]) - float(
+                     bs[1]["Cash and cash equivalents"])) / (float(bs[0]["Cash and cash equivalents"]))}}
+    try:
+        horizontal_analysis["inventory"] = {"difference": float(bs[0]["Inventories"]) - float(bs[1]["Inventories"]),"percentChange": (float(bs[0]["Inventories"])- float(bs[1]["Inventories"]))/(float(bs[0]["Inventories"]))}
+    except ZeroDivisionError:
+        pass
+
+    # for i in range(len(list(dividends.keys)), 0, -1):
+    #     if if_date_is_higher(list(dividends.keys)[i], date) == True:
+
+
+
     horizontal_analysis["liabilities"] = {"difference": float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]),"percentChange": (float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]))/(float(bs[0]["Total current liabilities"]))}
-
-
-
-    return {"ratios":ratios, "balanceSheet":bs,"incomeStatement":income_statement, "ratiosPerTime":ratios_per_time,"horizontalAnalysis":horizontal_analysis, "verticalAnalysis":vertical_analysis}
-
-
-
-
+    return {"ratios":ratios, "balanceSheet":bs,"incomeStatement":income_statement, "ratiosPerTime":ratios_per_time,"horizontalAnalysis":horizontal_analysis, "verticalAnalysis":vertical_analysis,
+            "dividendsOverTime":list(dividends.values()), "dividendDates":dividends.keys(),"earningsOverTime":list(earnings.values()),"earningsDates":earnings.keys()}
 
 
 
@@ -119,6 +170,8 @@ def getChartData(ticker, date):
     print(len(highs_0))
     print(len(final_highs))
 
+
+
     return final_opens, final_highs, final_lows, final_volumes, final_dates
 
 
@@ -160,84 +213,106 @@ app = Flask(__name__)
 
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
 def get_data(ticker, date):
-    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
+    [opens, highs, lows, volumes, dates] =  getChartData(ticker, date)
 
-    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+    wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
 
     company_name = ""
+    sector = ""
+    ticker = ""
     for i in range(6, sheet.nrows, 1):
 
         if sheet.cell_value(i, 1) == ticker:
             company_name = sheet.cell_value(i, 0)
+            sector = sheet.cell_value(i, 5)
+            ticker = sheet.cell_value(i, 1)
 
     data = {}
     vehical_data = {"data": [data]}
 
 
-
+    [words, freq] = get_article_wordcount("IBM")
     name = 'volume'
-    data[name] = volumes
+    data['name'] = volumes
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
-    data['twitter'] = analyze_tweets(company_name)
+    data['ticker'] = ticker
+    data['sector'] = sector
+    data['news-words'] = words
+    data['news-frequency'] = freq
+
+
+    # data['twitter'] = analyze_tweets(company_name)
+    # data['news-article'] = get_article_wordcount(company_name, date)
 
 
     x =jsonify(vehical_data)
     return build_actual_response(x)
 
 
-@app.route('/todo/api/v1.0/data', methods=['GET'])
-def get_data_random():
-    wb = xlrd.open_workbook("stocks.xlsx") # CHANGE THIS!!!!!!!
-    sheet = wb.sheet_by_index(0)
-    ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
 
-    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
-
-    company_name = ""
-    sector = ""
-    for i in range(6,sheet.nrows,1):
-
-        if sheet.cell_value(i,1) == ticker:
-            company_name = sheet.cell_value(i,0)
-            sector = sheet.cell_value(i, 5)
-
-
-
-    [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-    #
-
-    data = {}
-    vehical_data = {"data": [data]}
-
-    data['ticker'] = ticker
-    data['company-name'] = company_name
-    data['sector'] = sector
-    name = 'volume'
-    data[name] = volumes
-    data['open'] = opens
-    data['high'] = highs
-    data['low'] = lows
-    data['dates'] = dates
-    data['twitter'] = analyze_tweets(company_name)
-     # data['dividend'] = get_dividend(ticker, date)
-        # data['earnings'] = get_earnings(ticker, date)
-    # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
-
-    x = jsonify(vehical_data)
-
-
-
-    return build_actual_response(x)
+# @app.route('/todo/api/v1.0/data', methods=['GET'])
+# async def get_data_random():
+#     wb = xlrd.open_workbook("stocks.xlsx") # CHANGE THIS!!!!!!!
+#     sheet = wb.sheet_by_index(0)
+#     ticker = (sheet.cell_value(randint(5, (sheet.nrows)), 1))
+#
+#     date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
+#
+#     company_name = ""
+#     sector = ""
+#     for i in range(5,sheet.nrows,1):
+#
+#         if sheet.cell_value(i,1) == ticker:
+#             company_name = sheet.cell_value(i,0)
+#             sector = sheet.cell_value(i, 5)
+#
+#
+#
+#     [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
+#     twitts = analyze_tweets(company_name)
+#
+#     data = {}
+#     vehical_data = {"data": [data]}
+#
+#     data['ticker'] = ticker
+#     data['company-name'] = company_name
+#     data['sector'] = sector
+#     name = 'volume'
+#     data[name] = volumes
+#     data['open'] = opens
+#     data['high'] = highs
+#     data['low'] = lows
+#     data['dates'] = dates
+#
+#
+#     # #############
+#     #
+#     # loop = asyncio.get_event_loop()
+#     # future = asyncio.ensure_future(twitter(data['twitter'], company_name))
+#     # loop.run_until_complete(future)
+#     #
+#     # #############
+#
+#
+#     # data['news-article'] = get_article_wordcount(company_name, date)
+#
+#
+#     x = jsonify(vehical_data)
+#
+#
+#
+#     return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
 def get_ticker_data():
     wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
-    ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
+    print(sheet.nrows)
+
 
 
     data = {}
@@ -247,14 +322,15 @@ def get_ticker_data():
     sectors = []
 
 
-    for i in range(6, sheet.nrows, 1):
-        company_names.append(sheet.cell_value(i, 1))
-        ticker.append(sheet.cell_value(i,0))
+    for i in range(5, sheet.nrows):
+        print(i)
+        company_names.append(sheet.cell_value(i, 0))
+        tickers.append(sheet.cell_value(i,1))
         sectors.append(sheet.cell_value(i, 5))
 
 
 
-    data['ticker'] = ticker
+    data['ticker'] = tickers
     data['name'] = company_names
     data['sector'] = sectors
 
@@ -263,9 +339,80 @@ def get_ticker_data():
     return build_actual_response(x)
 
 
+
+
+
+
+
+@app.route('/todo/api/v1.0/twitter/<string:date>/<string:ticker>', methods=['GET'])
+def get_twitter(ticker, date):
+    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+
+
+
+    company_name = ""
+    sector = ""
+    for i in range(5, sheet.nrows, 1):
+
+        if sheet.cell_value(i, 1) == ticker:
+            company_name = sheet.cell_value(i, 0)
+            sector = sheet.cell_value(i, 5)
+
+    twitts = analyze_tweets(company_name)
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    data['twitter'] = twitts
+
+    x = jsonify(vehical_data)
+
+    return build_actual_response(x)
+
+
+@app.route('/todo/api/v1.0/random', methods=['GET'])
+def send_random():
+    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+    sheet = wb.sheet_by_index(0)
+    ticker = (sheet.cell_value(randint(5, (sheet.nrows)), 1))
+
+    date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
+
+    company_name = ""
+    sector = ""
+    for i in range(5,sheet.nrows,1):
+
+        if sheet.cell_value(i,1) == ticker:
+            company_name = sheet.cell_value(i,0)
+            sector = sheet.cell_value(i, 5)
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    data['name'] = company_name
+    data['sector'] = sector
+    data['date'] = date
+    data['ticker'] = ticker
+
+    x = jsonify(vehical_data)
+
+
+    return build_actual_response(x)
+
+
+
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
