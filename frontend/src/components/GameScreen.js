@@ -14,6 +14,17 @@ export default class GameScreen extends React.Component{
 
   constructor(props) {
     super(props)
+
+    this.state = ({
+      dates: [],
+      high: [],
+      low: [],
+      open: [],
+      volume: [],
+      ticker: "a",
+      company: "a"
+    })
+
     this.randomStock()
 }
 
@@ -26,7 +37,16 @@ export default class GameScreen extends React.Component{
   })
   .then((json) => {
     console.log(json);
-    // this.setState({stockDataObj: json});
+    this.setState({
+      dates: json["data"][0]['dates'],
+      high: json["data"][0]['high'],
+      low: json["data"][0]['low'],
+      open: json["data"][0]['open'],
+      volume: json["data"][0]['volume'],
+      ticker: "",
+      company: ""
+    })
+    // console.log(json["data"][0]['dates'])
   });
   }
 
@@ -41,35 +61,12 @@ export default class GameScreen extends React.Component{
 
     
   render() {
-
-    let buttonStyle = {
-        zIndex: "100",
-        width: "100",
-        height: "100"
-    }
-    let divStyle = {
-        width: "100%",
-        height: (document.body.clientHeight) + "px",
-        textAlign: 'center',
-    }
-
-    let centerStyle = {
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-      border: '5px solid #FFFF00',
-      padding: '10px',
-      backgroundColor: 'white',
-      boxShadow: "-4px 4px 2px gray",
-    }
-
+    console.log("rendering")
       return (
         <Router>
           {/* <Loading></Loading> */}
-          <Stock game = {true} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          <Stock game = {true} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
         </Router>
-
       );
   }
 

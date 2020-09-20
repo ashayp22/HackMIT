@@ -207,9 +207,9 @@ def get_data_random():
         # data['earnings'] = get_earnings(ticker, date)
     # data['ratioPerTime'] = calculate_ratios(ticker)["ratiosPerTime"]
 
-    x = json.dumps(vehical_data)
+    # x = json.dumps(vehical_data)
 
-    return build_actual_response(x)
+    return build_actual_response(jsonify(vehical_data))
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
 def get_ticker_name():

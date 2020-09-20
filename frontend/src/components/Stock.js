@@ -10,9 +10,18 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Stock extends React.Component{
 
-    state = {
+  constructor(props) {
+    super(props)
+
+    this.state = ({
       score: 0
-    } 
+    })
+    console.log("we here")
+    console.log(this.props.open)
+    console.log(this.props.dates)
+
+  }
+  
     
     validateResponse = (userAnswer, correctAnswer) => {
         if(userAnswer == correctAnswer){
@@ -25,7 +34,8 @@ export default class Stock extends React.Component{
         }
     }
     componentDidMount() {
-        
+      console.log(this.props.open)
+      console.log(this.props.dates)
     }
   
     componentWillUnmount() {
@@ -70,16 +80,16 @@ export default class Stock extends React.Component{
 
           <div style={divStyle2}>
             <h1 className = "header2">Long Term Term</h1>
-                <Graph style = {{alignSelf: 'center'}} width={300} height={200}></Graph>
-                  <Metrics width={300} ></Metrics>
+              <Graph style = {{alignSelf: 'center'}} dates = {this.props.dates} open = {this.props.open} width={300} height={200}></Graph>
+              <Metrics width={300} ></Metrics>
           </div>
 
 
           {this.props.game
                 ? 
                 <div style={divStyle}>
-              <h1 className = "header2">Company Name</h1>
-              <h3>Enter ticker here</h3> 
+              <h1 className = "header2">{this.props.company}</h1>
+              <h3>{this.props.ticker}</h3> 
                 <button className = "coolButton buy" onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</button>
                 <button className = "coolButton short" onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</button>
                 <h3>Score: {this.state.score} </h3>
@@ -87,8 +97,8 @@ export default class Stock extends React.Component{
               </div>
                 :
                 <div style={divStyle}>
-                <h1>Company Name</h1>
-                <h3>Enter ticker here</h3> 
+                <h1 className = "header2">{this.props.company}</h1>
+                <h3>{this.props.ticker}</h3> 
           </div>
 
           }

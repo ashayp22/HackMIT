@@ -31,6 +31,13 @@ export default class Graph extends React.Component {
 
   constructor(props) {
     super(props);
+
+    console.log("here")
+
+    console.log(this.props.open)
+    console.log(this.props.dates)
+    console.log("here")
+
     this.state = {
       value: null
     };
