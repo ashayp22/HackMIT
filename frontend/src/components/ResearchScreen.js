@@ -29,20 +29,18 @@ export default class ResearchScreen extends React.Component{
       left: '50%',
       top: '50%',
       transform: 'translate(-50%, -50%)',
-      border: '5px solid',
-      backgroundColor: '#FBCDC2',
-      borderRadius: '25px',
-      padding: '10px',
-      width: '1000px',
-      height: '700px',
-      boxShadow: "-4px 4px 2px gray",
-        textAlign: 'center'
+      display: 'flex',
+      flexDirection: 'column',
     }
 
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
-                    <h1 className = "header">Financial Literacy</h1>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                        <div class="flip-card-front"></div>
+                        <div class="flip-card-back">
+                        <h1 className = "header">Financial Literacy</h1>
                     <p>Learn these ideas to improve your game
                         in the stock market!
                     </p>
@@ -80,6 +78,9 @@ export default class ResearchScreen extends React.Component{
 
                     </div>
                     <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
       );
