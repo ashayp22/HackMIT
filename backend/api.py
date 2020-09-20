@@ -189,6 +189,14 @@ def get_data_random():
 
     date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date())
 
+    company_name = ""
+    sector = ""
+    for i in range(6,sheet.nrows,1):
+
+        if sheet.cell_value(i,1) == ticker:
+            company_name = sheet.cell_value(i,0)
+            sector = sheet.cell_value(i, 5)
+
 
 
     [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
@@ -197,6 +205,9 @@ def get_data_random():
     data = {}
     vehical_data = {"data": [data]}
 
+    data['ticker'] = ticker
+    data['company-name'] = company_name
+    data['sector'] = sector
     name = 'volume'
     data[name] = volumes
     data['open'] = opens
@@ -214,7 +225,7 @@ def get_data_random():
     return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
-def get_ticker_name():
+def get_ticker_data():
     wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(6, (sheet.nrows)), 1))
@@ -222,15 +233,23 @@ def get_ticker_name():
 
     data = {}
     vehical_data = {"data": [data]}
+    tickers = []
+    company_names = []
+    sectors = []
+
+
+    for i in range(6, sheet.nrows, 1):
+        company_names.append(sheet.cell_value(i, 1))
+        ticker.append(sheet.cell_value(i,0))
+        sectors.append(sheet.cell_value(i, 5))
 
 
 
-    data['ticker'] = "sd"
-    data['name'] = "sd"
+    data['ticker'] = ticker
+    data['name'] = company_names
+    data['sector'] = sectors
 
     x = jsonify(vehical_data)
-
-
 
     return x
 
