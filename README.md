@@ -2,7 +2,7 @@
 
 ![preview](https://github.com/ashayp22/HackMIT/blob/master/preview/buyorshort10.PNG)
 
-This is a project that we submitted to HackMIT 2020, a virtual hackathon hosted by MIT with over 1600 participants and 400 projects. This project took under 36 hours to create. *Please scroll down to check out our inspiration, solution, preview, and more!*
+This is a project that we submitted to the Education Track in HackMIT 2020, a virtual hackathon hosted by MIT with over 1600 participants and 400 projects. This project took under 36 hours to create. *Please scroll down to check out our inspiration, solution, preview, and more!*
 
 ## Problem
 
