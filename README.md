@@ -71,8 +71,6 @@ Finally, a financial literacy page for people of all ages. Hover over the card t
 
 Notice the cool animation and easy definitions for kids to follow.
 
-**The best thing is that we accomplished all of this under 36 hours!**
-
 ## Collaborators
 
 * [Ashay Parikh](https://ashayp.com/)
