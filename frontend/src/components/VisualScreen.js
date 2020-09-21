@@ -31,7 +31,7 @@ export default class VisualScreen extends React.Component{
     }
     componentDidMount() {
 
-      fetch('http://localhost:5000/todo/api/v1.0/tickers', {header: {"access-control-allow-origin" : "*"}})
+      fetch('https://buyorshortapi.herokuapp.com/todo/api/v1.0/tickers', {header: {"access-control-allow-origin" : "*"}})
       .then((response) => {
         return response.json();
       })
@@ -78,7 +78,7 @@ export default class VisualScreen extends React.Component{
 
     updateStock(ticker, date) {
 
-      fetch('http://localhost:5000/todo/api/v1.0/data/' + date + "/" + ticker, {header: {"access-control-allow-origin" : "*"}})
+      fetch('https://buyorshortapi.herokuapp.com/todo/api/v1.0/data/' + date + "/" + ticker, {header: {"access-control-allow-origin" : "*"}})
       .then((response) => {
         return response.json();
       })

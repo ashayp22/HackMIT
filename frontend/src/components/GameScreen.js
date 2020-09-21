@@ -56,7 +56,7 @@ export default class GameScreen extends React.Component{
     })
 
 
-    fetch('http://localhost:5000/todo/api/v1.0/data', {header: {"access-control-allow-origin" : "*"}})
+    fetch('https://buyorshortapi.herokuapp.com/todo/api/v1.0/data', {header: {"access-control-allow-origin" : "*"}})
   .then((response) => {
     console.log("got")
     return response.json();

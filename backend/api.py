@@ -1,12 +1,5 @@
 from flask import Flask, jsonify
-from flask import abort
 from flask import make_response
-import json
-import requests
-import json
-import requests
-import json
-from datetime import datetime
 import xlrd
 from random import randint
 from twitter import *
@@ -52,6 +45,7 @@ def build_preflight_response():
     response.headers.add('Access-Control-Allow-Headers', "*")
     response.headers.add('Access-Control-Allow-Methods', "*")
     return response
+
 def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
@@ -267,9 +261,6 @@ def get_data_random():
     data['news-frequency'] = freq
 
     x = jsonify(vehical_data)
-
-
-
     return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
