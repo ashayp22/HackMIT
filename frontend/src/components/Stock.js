@@ -130,9 +130,9 @@ export default class Stock extends React.Component{
 
           <div style={divStyle2}>
             <h1 className = "header2">Long Term</h1>
-              <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "high">
+              <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "5year">
               5 Year Graph
-            <ReactTooltip id="high" place="top" effect="solid">
+            <ReactTooltip id="5year" place="top" effect="solid">
               A line graph representing the stock's daily price in the last 5 years
             </ReactTooltip>
             </p>
