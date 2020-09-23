@@ -39,6 +39,13 @@ export default class GameScreen extends React.Component{
 
   randomStock(change) {
     
+
+    var newMoney = this.state.score + change;
+
+    newMoney *= 100;
+    newMoney = Math.round(newMoney);
+    newMoney /= 100;
+
     this.setState({
       dates: [],
       high: [],
@@ -50,7 +57,7 @@ export default class GameScreen extends React.Component{
       sector: "",
       change: change,
       twitter: [],
-      score: this.state.score + change,
+      score: newMoney,
       frequency: [],
       words: []
     })
