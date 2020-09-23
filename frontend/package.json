@@ -2,7 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ashayp22.github.io/HackMIT",
   "dependencies": {
+    "-": "0.0.1",
     "@mtliendo/react-use-dad-joke": "^1.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -20,6 +22,7 @@
     "d3-array": "^2.7.1",
     "d3-time-format": "^3.0.0",
     "facts-generator": "^1.0.1",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-awesome-button": "^6.5.1",
@@ -34,13 +37,16 @@
     "react-tooltip": "^4.2.10",
     "react-vis": "^1.11.7",
     "react-wordcloud": "^1.2.7",
+    "save-dev": "0.0.1-security",
     "typescript": "^4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

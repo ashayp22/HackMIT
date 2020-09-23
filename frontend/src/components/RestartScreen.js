@@ -18,6 +18,9 @@ export default class RestartScreen extends React.Component{
   
     componentWillUnmount() {
     }
+
+    
+
   render() {
     let divStyle = {
         width: "100%",

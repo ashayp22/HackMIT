@@ -56,9 +56,9 @@ export default class Stock extends React.Component{
             var message = ""
 
             if(correctAnswer === "Buy") {
-              message = "The stock went up by " + change + " dollars. You should have bought the stock😢.";
+              message = "The stock went up by " + this.reformatDollar(change) + " dollars. You should have bought the stock😢.";
             } else {
-              message = "The stock went down by " + change + " dollars. You should have shorted the stock😢.";
+              message = "The stock went down by " + this.reformatDollar(change) + " dollars. You should have shorted the stock😢.";
             }
 
             var score = this.props.getScore();
