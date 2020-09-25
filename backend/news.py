@@ -21,8 +21,8 @@ def word_count(wordstring):
 def get_article_wordcount(company_name):
     news_api_key = "0a51475b9e08417c869c09e0e928b086"
     news_search = requests.get(
-        "https://newsapi.org/v2/everything?q=" + company_name + " Finance" + "&apiKey=" + news_api_key).json()
-    # print(news_search)
+        "https://newsapi.org/v2/everything?q=" + company_name + "&fq=news_desk:(\"Finance\")" + "&apiKey=" + news_api_key).json()
+    print(news_search)
     articles = news_search["articles"]
     article_one = articles[0]["content"]
     return word_count(article_one)

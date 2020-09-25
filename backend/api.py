@@ -11,9 +11,14 @@ import xlrd
 from random import randint
 from backend.twitter import *
 import asyncio
-
+import requests
+import json
+from bs4 import BeautifulSoup
+from collections import Counter
+from stop_words import get_stop_words
 import requests
 from stop_words import get_stop_words
+import random
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
@@ -26,26 +31,6 @@ TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
 
 
-def word_count(wordstring):
-    stop_words = get_stop_words('en')
-    wordlist = wordstring.split()
-    non_stops = {}
-    wordfreq = []
-    for w in wordlist:
-        if w not in stop_words:
-            wordfreq.append(wordlist.count(w))
-            non_stops = wordlist.count(w)
-    return wordfreq, wordlist
-
-
-def get_article_wordcount(company_name):
-    news_api_key = "0a51475b9e08417c869c09e0e928b086"
-    news_search = requests.get(
-        "https://newsapi.org/v2/everything?q=" + company_name + " Finance" + "&apiKey=" + news_api_key).json()
-    # print(news_search)
-    articles = news_search["articles"]
-    article_one = articles[0]["content"]
-    return word_count(article_one)
 
 def build_preflight_response():
     response = make_response()
@@ -56,6 +41,59 @@ def build_preflight_response():
 def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+def get_articles(company_name, date):
+    x = requests.get(
+        'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=Financial&q=' + company_name +'&begin_date='+ date+'&end_date='+str(datetime.date(datetime.now()))+'&api-key=vA4veDbzOGiQffPxBUYMq1EEX0YJT7X7').json()
+    # print(x.content)
+    json_response = x
+    url = json_response['response']['docs'][0]['web_url']
+
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    results = soup.find(id='story')
+    # print(results.prettify())
+    job_elems = results.find_all('section', class_='meteredContent css-1r7ky0e')
+
+    articles = job_elems[0]('p', class_='css-158dogj evys1bk0')
+    total_words = []
+    for i in range(len(articles)):
+        total_words.append(articles[i].text)
+    return (total_words)
+
+def get_frq_words(total_words):
+    stop_words = get_stop_words('en')
+    fin_string = ""
+    for i in range(len(total_words)):
+        fin_string+=total_words[i] + " "
+
+    split_it = fin_string.split()
+    Counter1 = Counter(split_it)
+    most_occur = Counter1.most_common(100)
+    most_occur_final = []
+    for i in range(len(most_occur)):
+        if most_occur[i][0] not in stop_words:
+            most_occur_final.append(most_occur[i])
+
+            # UNCOMMENT THESE LINES IF YOU ARE GETTING WEIRD CHARACTERS FOR WORDS
+
+            # if "\'" not in most_occur[i][0]:
+            #
+            #     most_occur_final.append(most_occur[i])
+            # elif  "\"" not in most_occur[i][0]:
+            #
+            #     most_occur_final.append(most_occur[i])
+            # elif "\\" not in most_occur[i][0]:
+            #     most_occur_final.append(most_occur[i])
+            # elif "—" not in most_occur[i][0]:
+            #     most_occur_final.append(most_occur[i])
+            # elif "—" not in most_occur[i][0]:
+            #     most_occur_final.append(most_occur[i])
+
+
+
+
+    return most_occur_final
 
 
 
@@ -138,13 +176,12 @@ def getChartData(ticker, date):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    # print(response.text)
+
 
     json_response = response.content
-    # print(json_response)
+
     my_json = json.loads(json_response)
-    # print(len(my_json['chart']['result'][0]['timestamp']))
-    # print((my_json['chart']['result'][0]['timestamp']))
+
 
     dates_0 = my_json['chart']['result'][0]['timestamp']
     opens_0 = my_json['chart']['result'][0]['indicators']['quote'][0]['open']
@@ -167,8 +204,7 @@ def getChartData(ticker, date):
         final_opens.append(opens_0[i])
         final_highs.append(highs_0[i])
         final_lows.append(lows_0[i])
-    print(len(highs_0))
-    print(len(final_highs))
+
 
 
 
@@ -183,36 +219,10 @@ app = Flask(__name__)
 # run on your computer, and see json output: type this:
 # curl -v  http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
 
-# @app.route('/todo/api/v1.0/earning/<string:date>/<string:ticker>', methods=['GET'])
-# def get_earnings(ticker, date):
-#     [earnings, dates] = getEarnings(ticker, date)
-#
-#     data = {}
-#     vehical_data = {"data": [data]}
-#
-#     name = 'earnings'
-#     data[name] = earnings
-#     x =json.dumps(vehical_data)
-#
-#     return earnings
-
-#
-# @app.route('/todo/api/v1.0/dividend/<string:date>/<string:ticker>', methods=['GET'])
-# def get_dividend(ticker, date):
-#     [dividends, dates] = getDividend(ticker, date)
-#
-#     data = {}
-#     vehical_data = {"data": [data]}
-#
-#     name = 'dividends'
-#     data[name] = dividends
-#     x =vehical_data
-#
-#     return dividends
 
 
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
-def get_data(ticker, date):
+def get_data(ticker, date): # returns the high, low, volume, dates  <------- GRAPHABLE -----and ticker, sector, company name,
     [opens, highs, lows, volumes, dates] =  getChartData(ticker, date)
 
     wb = xlrd.open_workbook("stocks.xlsx")
@@ -232,21 +242,17 @@ def get_data(ticker, date):
     vehical_data = {"data": [data]}
 
 
-    [words, freq] = get_article_wordcount("IBM")
     name = 'volume'
-    data['name'] = volumes
+    data[name] = volumes
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
     data['ticker'] = ticker
     data['sector'] = sector
-    data['news-words'] = words
-    data['news-frequency'] = freq
+    data['company-name'] = company_name
 
 
-    # data['twitter'] = analyze_tweets(company_name)
-    # data['news-article'] = get_article_wordcount(company_name, date)
 
 
     x =jsonify(vehical_data)
@@ -254,64 +260,12 @@ def get_data(ticker, date):
 
 
 
-# @app.route('/todo/api/v1.0/data', methods=['GET'])
-# async def get_data_random():
-#     wb = xlrd.open_workbook("stocks.xlsx") # CHANGE THIS!!!!!!!
-#     sheet = wb.sheet_by_index(0)
-#     ticker = (sheet.cell_value(randint(5, (sheet.nrows)), 1))
-#
-#     date = (str)(datetime.fromtimestamp(int(randint(1512108000, 1600491600))).date()) # between 2017 and now
-#
-#     company_name = ""
-#     sector = ""
-#     for i in range(5,sheet.nrows,1):
-#
-#         if sheet.cell_value(i,1) == ticker:
-#             company_name = sheet.cell_value(i,0)
-#             sector = sheet.cell_value(i, 5)
-#
-#
-#
-#     [opens, highs, lows, volumes, dates] = getChartData(ticker, date)
-#     twitts = analyze_tweets(company_name)
-#
-#     data = {}
-#     vehical_data = {"data": [data]}
-#
-#     data['ticker'] = ticker
-#     data['company-name'] = company_name
-#     data['sector'] = sector
-#     name = 'volume'
-#     data[name] = volumes
-#     data['open'] = opens
-#     data['high'] = highs
-#     data['low'] = lows
-#     data['dates'] = dates
-#
-#
-#     # #############
-#     #
-#     # loop = asyncio.get_event_loop()
-#     # future = asyncio.ensure_future(twitter(data['twitter'], company_name))
-#     # loop.run_until_complete(future)
-#     #
-#     # #############
-#
-#
-#     # data['news-article'] = get_article_wordcount(company_name, date)
-#
-#
-#     x = jsonify(vehical_data)
-#
-#
-#
-#     return build_actual_response(x)
 
 @app.route('/todo/api/v1.0/tickers', methods=['GET'])
-def get_ticker_data():
+def get_ticker_data(): # returns tickers with corresponding company names a nd sectors <----------- 3 ARRAYS about 600 in size each
     wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
-    print(sheet.nrows)
+
 
 
 
@@ -323,10 +277,11 @@ def get_ticker_data():
 
 
     for i in range(5, sheet.nrows):
-        print(i)
+
         company_names.append(sheet.cell_value(i, 0))
         tickers.append(sheet.cell_value(i,1))
         sectors.append(sheet.cell_value(i, 5))
+
 
 
 
@@ -341,12 +296,9 @@ def get_ticker_data():
 
 
 
-
-
-
-@app.route('/todo/api/v1.0/twitter/<string:date>/<string:ticker>', methods=['GET'])
-def get_twitter(ticker, date):
-    wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
+@app.route('/todo/api/v1.0/news/<string:date>/<string:ticker>', methods=['GET'])
+def get_news(ticker, date): # returns a word cloud with words corresponding to frequency based on ticker and date inputed
+    wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
 
 
@@ -355,11 +307,40 @@ def get_twitter(ticker, date):
     sector = ""
     for i in range(5, sheet.nrows, 1):
 
-        if sheet.cell_value(i, 1) == ticker:
+        if sheet.cell_value(i, 1) == ticker.upper():
+
             company_name = sheet.cell_value(i, 0)
             sector = sheet.cell_value(i, 5)
 
-    twitts = analyze_tweets(company_name)
+    freq = get_frq_words(get_articles(company_name, date))
+
+    data = {}
+    vehical_data = {"data": [data]}
+
+    data['news-words'] = freq
+
+
+    x = jsonify(vehical_data)
+
+    return build_actual_response(x)
+
+
+@app.route('/todo/api/v1.0/twitter/<string:date>/<string:ticker>', methods=['GET'])
+def get_twitter1(ticker, date): # This is not final yet
+    wb = xlrd.open_workbook("stocks.xlsx")
+    sheet = wb.sheet_by_index(0)
+
+
+
+    company_name = ""
+    sector = ""
+    for i in range(5, sheet.nrows, 1):
+
+        if sheet.cell_value(i, 1) == ticker.upper():
+            company_name = sheet.cell_value(i, 0)
+            sector = sheet.cell_value(i, 5)
+
+    twitts = analyze_tweets(ticker)
 
     data = {}
     vehical_data = {"data": [data]}
@@ -372,7 +353,7 @@ def get_twitter(ticker, date):
 
 
 @app.route('/todo/api/v1.0/random', methods=['GET'])
-def send_random():
+def send_random(): # send a reandom ticker with corresponding company name and sector, as well as random date
     wb = xlrd.open_workbook("stocks.xlsx")  # CHANGE THIS!!!!!!!
     sheet = wb.sheet_by_index(0)
     ticker = (sheet.cell_value(randint(5, (sheet.nrows)), 1))
@@ -383,7 +364,7 @@ def send_random():
     sector = ""
     for i in range(5,sheet.nrows,1):
 
-        if sheet.cell_value(i,1) == ticker:
+        if sheet.cell_value(i,1) == ticker.upper():
             company_name = sheet.cell_value(i,0)
             sector = sheet.cell_value(i, 5)
 
@@ -406,10 +387,6 @@ def send_random():
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
-
-
-
-
 
 
 
