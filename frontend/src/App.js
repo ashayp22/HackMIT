@@ -15,24 +15,10 @@ export default class App extends React.Component{
 
     state = {
       gameState: 0,
-      stockDataObj: null,
+      message: "",
       score: 0,
-      url: "https://reqres.in/api/products/3",
     }
 
-  inits(){
-    let url = this.state.url;
-      if(this.state.stockDataObj == null){
-        fetch(url, {header: {"access-control-allow-origin" : "*"}})
-          .then((response) => {
-            return response.json();
-          })
-          .then((json) => {
-            console.log(json);
-            this.setState({stockDataObj: json});
-          });
-      }
-  }
   changeGameState = (i) => {
     this.setState({gameState: i});
   }
@@ -41,10 +27,11 @@ export default class App extends React.Component{
     this.setState({score: this.state.score});
   }
 
-  stopGame = (score) => {
+  stopGame = (score, message) => {
     this.setState({
         gameState: 5,
         score: score,
+        message: message
     });
   }
   handleGameState(){
@@ -52,23 +39,23 @@ export default class App extends React.Component{
       case 0:
         return (<HomeScreen onClick = {this.changeGameState}></HomeScreen>);
       case 1:
-        return (<GameScreen score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
+        return (<GameScreen onClick = {this.changeGameState} score = {this.state.score} updateScore = {this.updateScore} stopGame = {this.stopGame} data = {this.state.stockDataObj}></GameScreen>);
       case 2:
-        return (<InstructionScreen></InstructionScreen>);
+        return (<InstructionScreen onClick = {this.changeGameState}></InstructionScreen>);
       case 3:
-        return(<VisualScreen></VisualScreen>);
+        return(<VisualScreen onClick = {this.changeGameState}></VisualScreen>);
       case 4:
-        return(<ResearchScreen></ResearchScreen>);
+        return(<ResearchScreen onClick = {this.changeGameState}></ResearchScreen>);
       case 5:
 
-        return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {"You should have shorted the stock"}></RestartScreen>);
+        return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {this.state.message}></RestartScreen>);
     }
   }
 
 
   render() {
       return (
-        <Router>
+      <Router>
       <div className = "appContainer"
         style={{
           // position: "absolute",
@@ -110,7 +97,6 @@ export default class App extends React.Component{
 
 
       {this.handleGameState()}
-      {this.inits()}
 
       </div>
       </div>
