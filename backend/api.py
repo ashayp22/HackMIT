@@ -1,14 +1,8 @@
 from flask import Flask, jsonify
-from flask import abort
 from flask import make_response
-import json
-import requests
-import json
-import requests
-import json
-from datetime import datetime
 import xlrd
 from random import randint
+
 from backend.twitter import *
 import asyncio
 import requests
@@ -19,6 +13,7 @@ from stop_words import get_stop_words
 import requests
 from stop_words import get_stop_words
 import random
+from twitter import *
 
 
 TOKEN = 'pk_c127b96a2806454e912666398b0de325'
@@ -28,6 +23,43 @@ TOKEN = 'pk_c127b96a2806454e912666398b0de325'
 
 # 2 PARAMS:
 # http://localhost:5000/todo/api/v1.0/data/2020-09-15/twtr
+
+def randomCompany():
+    a = ["IBM", "Apple", "Microsoft", "Google", "Microsoft", "Nike", "Google", "Tesla"]
+
+    return a[random.randint(0, 7)]
+
+
+def word_count(wordstring):
+    stop_words = get_stop_words('en')
+    wordlist = wordstring.split()
+    non_stops = {}
+    wordfreq = []
+    for w in wordlist:
+        if w not in stop_words:
+            wordfreq.append(wordlist.count(w))
+            non_stops = wordlist.count(w)
+    return wordfreq, wordlist
+
+def get_article_wordcount(company_name):
+    news_api_key = "0a51475b9e08417c869c09e0e928b086"
+    news_search = requests.get(
+        "https://newsapi.org/v2/everything?q=" + company_name + " Finance" + "&apiKey=" + news_api_key).json()
+    # print(news_search)
+    articles = news_search["articles"]
+    article_one = articles[0]["content"]
+    return word_count(article_one)
+
+def build_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+def build_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 
@@ -146,10 +178,10 @@ def calculate_ratios(ticker, date):
 
 
 
+
     horizontal_analysis["liabilities"] = {"difference": float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]),"percentChange": (float(bs[0]["Total current liabilities"])- float(bs[1]["Total current liabilities"]))/(float(bs[0]["Total current liabilities"]))}
     return {"ratios":ratios, "balanceSheet":bs,"incomeStatement":income_statement, "ratiosPerTime":ratios_per_time,"horizontalAnalysis":horizontal_analysis, "verticalAnalysis":vertical_analysis,
             "dividendsOverTime":list(dividends.values()), "dividendDates":dividends.keys(),"earningsOverTime":list(earnings.values()),"earningsDates":earnings.keys()}
-
 
 
 def if_date_is_higher(data_date, user_date): # format = year/month/day YYYY-MM-DD
@@ -171,7 +203,7 @@ def getChartData(ticker, date):
 
     headers = {
         'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
-        'x-rapidapi-key': "de029da414mshfd983737e8556f6p16e5edjsna3da35c5e605"
+        'x-rapidapi-key': "44e614df82msh56226ee1db0a23bp1a2427jsnbf3c81e2bc48"
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -198,14 +230,12 @@ def getChartData(ticker, date):
         acDate = str(datetime.fromtimestamp(dates_0[i]).date())
 
         if if_date_is_higher(acDate, date):
-            break;
+            break
         final_dates.append(str(datetime.fromtimestamp(dates_0[i]).date()))
         final_volumes.append(volumes_0[i])
         final_opens.append(opens_0[i])
         final_highs.append(highs_0[i])
         final_lows.append(lows_0[i])
-
-
 
 
     return final_opens, final_highs, final_lows, final_volumes, final_dates
@@ -222,32 +252,42 @@ app = Flask(__name__)
 
 
 @app.route('/todo/api/v1.0/data/<string:date>/<string:ticker>', methods=['GET'])
+
 def get_data(ticker, date): # returns the high, low, volume, dates  <------- GRAPHABLE -----and ticker, sector, company name,
     [opens, highs, lows, volumes, dates] =  getChartData(ticker, date)
 
     wb = xlrd.open_workbook("stocks.xlsx")
+
     sheet = wb.sheet_by_index(0)
 
     company_name = ""
     sector = ""
+
     ticker = ""
     for i in range(6, sheet.nrows, 1):
+
 
         if sheet.cell_value(i, 1) == ticker:
             company_name = sheet.cell_value(i, 0)
             sector = sheet.cell_value(i, 5)
+
             ticker = sheet.cell_value(i, 1)
+
 
     data = {}
     vehical_data = {"data": [data]}
 
 
     name = 'volume'
+    data['company-name'] = company_name
+    data['sector'] = sector
+    data['ticker'] = ticker
     data[name] = volumes
     data['open'] = opens
     data['high'] = highs
     data['low'] = lows
     data['dates'] = dates
+
     data['ticker'] = ticker
     data['sector'] = sector
     data['company-name'] = company_name
@@ -299,6 +339,7 @@ def get_ticker_data(): # returns tickers with corresponding company names a nd s
 @app.route('/todo/api/v1.0/news/<string:date>/<string:ticker>', methods=['GET'])
 def get_news(ticker, date): # returns a word cloud with words corresponding to frequency based on ticker and date inputed
     wb = xlrd.open_workbook("stocks.xlsx")
+
     sheet = wb.sheet_by_index(0)
 
 
@@ -317,24 +358,33 @@ def get_news(ticker, date): # returns a word cloud with words corresponding to f
     data = {}
     vehical_data = {"data": [data]}
 
+
     data['news-words'] = freq
 
 
+
     x = jsonify(vehical_data)
+
 
     return build_actual_response(x)
 
 
 @app.route('/todo/api/v1.0/twitter/<string:date>/<string:ticker>', methods=['GET'])
 def get_twitter1(ticker, date): # This is not final yet
+
     wb = xlrd.open_workbook("stocks.xlsx")
     sheet = wb.sheet_by_index(0)
 
 
+    data = {}
+    tickers = []
+    company_names = []
+    sectors = []
 
     company_name = ""
     sector = ""
     for i in range(5, sheet.nrows, 1):
+
 
         if sheet.cell_value(i, 1) == ticker.upper():
             company_name = sheet.cell_value(i, 0)
@@ -342,15 +392,14 @@ def get_twitter1(ticker, date): # This is not final yet
 
     twitts = analyze_tweets(ticker)
 
-    data = {}
-    vehical_data = {"data": [data]}
+
+
 
     data['twitter'] = twitts
 
     x = jsonify(vehical_data)
 
     return build_actual_response(x)
-
 
 @app.route('/todo/api/v1.0/random', methods=['GET'])
 def send_random(): # send a reandom ticker with corresponding company name and sector, as well as random date
@@ -381,6 +430,7 @@ def send_random(): # send a reandom ticker with corresponding company name and s
 
     return build_actual_response(x)
 
+    x = jsonify(vehical_data)
 
 
 
@@ -395,4 +445,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
     # the default if for building web app because this is a vanilla flask, so its trying to return in http content, it is return in type html.
-

@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Button from 'react-bootstrap/Button';
-import Stock from './Stock.js'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import StockSearch from './StockSearch.js'
+// import ReactDOM from 'react-dom';
+// import Button from 'react-bootstrap/Button';
+// import Stock from './Stock.js'
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import StockSearch from './StockSearch.js'
 import ReactWordcloud from 'react-wordcloud';
 import { select } from "d3-selection";
+import ReactTooltip from "react-tooltip";
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
@@ -23,24 +24,37 @@ export default class WordCloud extends React.Component{
     }
   render() {
 
-    const words = [
-        {
-            text: 'told',
-            value: 64,
-        },
-        {
-            text: 'mistake',
-            value: 11,
-        },
-        {
-            text: 'thought',
-            value: 16,
-        },
-        {
-            text: 'bad',
-            value: 15,
-        },
-        ]
+
+
+
+    // const words = [
+    //     {
+    //         text: 'finance',
+    //         value: 64,
+    //     },
+    //     {
+    //         text: 'mistake',
+    //         value: 11,
+    //     },
+    //     {
+    //         text: 'thought',
+    //         value: 16,
+    //     },
+    //     {
+    //         text: 'bad',
+    //         value: 15,
+    //     },
+    //     ]
+
+    const words = []
+    console.log(this.props.frequency)
+    console.log(this.props.words)
+    for(var i = 0; i < this.props.frequency.length; i++) {
+      words.push({text: this.props.frequency[i], value: (this.props.words[i]) * 10})
+    }
+
+    console.log(words)
+
  
         const getCallback = callbackName => (word, event) => {
             const isActive = callbackName !== 'onWordMouseOut'
@@ -58,14 +72,22 @@ export default class WordCloud extends React.Component{
               .attr('text-decoration', isActive ? 'underline' : 'none')
           }
           return (
-            <ReactWordcloud
-              callbacks={{
-                onWordClick: getCallback('onWordClick'),
-                onWordMouseOut: getCallback('onWordMouseOut'),
-                onWordMouseOver: getCallback('onWordMouseOver'),
-              }}
-              words={words}
-            />
+            <div>
+              <p data-tip data-for ="high3" style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>News Word Cloud
+              <ReactTooltip id="high3" place="left" effect="solid">
+                A word cloud of the most popular words in news articles about the stock
+              </ReactTooltip>
+              
+              </p>
+              <ReactWordcloud
+                callbacks={{
+                  onWordClick: getCallback('onWordClick'),
+                  onWordMouseOut: getCallback('onWordMouseOut'),
+                  onWordMouseOver: getCallback('onWordMouseOver'),
+                }}
+                words={words}
+              />
+            </div>
           )
   }
 }

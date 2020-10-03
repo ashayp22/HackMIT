@@ -6,61 +6,113 @@ import Metrics from './Metrics.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Stock from './Stock.js'
 import TwitterEmojiGraph from './TwitterEmojiGraph.js';
+import ReactLoading from 'react-loading';
+
+import Loading from './Loading.js'
+
 
 export default class GameScreen extends React.Component{
+
+
+  constructor(props) {
+    super(props)
+
+    this.state = ({
+      dates: [],
+      high: [],
+      low: [],
+      open: [],
+      volume: [],
+      twitter: [],
+      ticker: "",
+      company: "",
+      sector: "",
+      change: 0,
+      score: 0,
+      frequency: [],
+      words: []
+    })
+    this.randomStock = this.randomStock.bind(this)
+    this.getScore = this.getScore.bind(this)
+
+}
+
+  randomStock(change) {
+    
+
+    var newMoney = this.state.score + change;
+
+    newMoney *= 100;
+    newMoney = Math.round(newMoney);
+    newMoney /= 100;
+
+    this.setState({
+      dates: [],
+      high: [],
+      low: [],
+      open: [],
+      volume: [],
+      ticker: "",
+      company: "",
+      sector: "",
+      change: change,
+      twitter: [],
+      score: newMoney,
+      frequency: [],
+      words: []
+    })
+
+
+    fetch('https://buyorshortapi.herokuapp.com/todo/api/v1.0/data', {header: {"access-control-allow-origin" : "*"}})
+  .then((response) => {
+    console.log("got")
+    return response.json();
+  })
+  .then((json) => {
+    console.log(json);
+    this.setState({
+      dates: json["data"][0]['dates'],
+      high: json["data"][0]['high'],
+      low: json["data"][0]['low'],
+      open: json["data"][0]['open'],
+      volume: json["data"][0]['volume'],
+      ticker: json["data"][0]['ticker'],
+      company: json["data"][0]['company-name'],
+      sector: json["data"][0]['sector'],
+      twitter: json["data"][0]['twitter'],
+      words: json["data"][0]['news-words'],
+      frequency: json["data"][0]['news-frequency'],
+      score: this.state.score
+    })
+    console.log(json["data"][0]['twitter'])
+  });
+  }
+
     componentDidMount() {
-        
+      this.randomStock(0)
     }
   
     componentWillUnmount() {
 
     }
 
-    state = {
-        score: 0
+    getScore() {
+      return this.state.score
     }
-    validateResponse = (userAnswer, correctAnswer) => {
-        if(userAnswer == correctAnswer){
-            // alert("Good Job");
-            this.setState({score: this.state.score + 1});
-        }
-        else {
-            // alert("You Lose");
-            this.props.stopGame(this.state.score);
-        }
-    }
+    
   render() {
 
-    let buttonStyle = {
-        zIndex: "100",
-        width: "100",
-        height: "100"
-    }
-    let divStyle = {
-        width: "100%",
-        height: (document.body.clientHeight) + "px",
-        textAlign: 'center',
-    }
-
-    let centerStyle = {
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-      border: '5px solid #FFFF00',
-      padding: '10px',
-      backgroundColor: 'white'
-    }
+    console.log("rendering")
       return (
         <Router>
-          <Stock data = {this.props.data}></Stock>
-        <div style={centerStyle}>
-            <Button onClick = {() => this.validateResponse("Buy", "Buy")} variant = "primary">Buy</Button>
-            <Button onClick = {() => this.validateResponse("Buy", "Short")} variant = "secondary">Short</Button>
-            <h3>Score: {this.state.score} </h3>
-        </div>
-        </Router>
 
+          {this.state.company.length == 0
+          ?
+          <Loading change = {this.state.change}></Loading>
+          :
+          <Stock getScore = {this.getScore} words = {this.state.words} frequency = {this.state.frequency} twitter = {this.state.twitter} score = {this.state.score} game = {true} sector = {this.state.sector} newStock = {this.randomStock} company = {this.state.company} ticker = {this.state.ticker} dates = {this.state.dates} high = {this.state.high} low = {this.state.low} open = {this.state.open} volume = {this.state.volume} onClick = {this.props.onClick} stopGame = {this.props.stopGame} data = {this.props.data}></Stock>
+          }
+        </Router>
       );
   }
 
