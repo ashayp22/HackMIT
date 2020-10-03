@@ -138,7 +138,6 @@ export default class Stock extends React.Component{
             </p>
               <Graph style = {{alignSelf: 'center'}} game = {this.props.game} volume = {this.props.volume} dates = {this.props.dates} open = {this.props.open} width={300} height={250}></Graph>
               <Metrics open = {this.props.open} game = {this.props.game} width={300} ></Metrics>
-
           </div>
 
 
