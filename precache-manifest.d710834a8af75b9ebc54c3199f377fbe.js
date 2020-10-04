@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1a80e2bf8350bd89c2960ce82c9e8300",
+    "revision": "6d55d39a588e1f0c75ad5e7653782167",
     "url": "/HackMIT/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HackMIT/static/css/2.659f3035.chunk.css"
   },
   {
-    "revision": "8b54afd877b26ac31f2c",
+    "revision": "99a644f3ded9eb95e43c",
     "url": "/HackMIT/static/css/main.825c32bb.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HackMIT/static/js/2.ce98b064.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8b54afd877b26ac31f2c",
-    "url": "/HackMIT/static/js/main.5c4f7bbf.chunk.js"
+    "revision": "99a644f3ded9eb95e43c",
+    "url": "/HackMIT/static/js/main.6692f976.chunk.js"
   },
   {
     "revision": "a77a2be63e366aa65198",
