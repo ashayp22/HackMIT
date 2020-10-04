@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/HackMIT/static/css/main.825c32bb.chunk.css",
-    "main.js": "/HackMIT/static/js/main.82cd144c.chunk.js",
-    "main.js.map": "/HackMIT/static/js/main.82cd144c.chunk.js.map",
+    "main.js": "/HackMIT/static/js/main.5c4f7bbf.chunk.js",
+    "main.js.map": "/HackMIT/static/js/main.5c4f7bbf.chunk.js.map",
     "runtime-main.js": "/HackMIT/static/js/runtime-main.5ef913fa.js",
     "runtime-main.js.map": "/HackMIT/static/js/runtime-main.5ef913fa.js.map",
     "static/css/2.659f3035.chunk.css": "/HackMIT/static/css/2.659f3035.chunk.css",
     "static/js/2.ce98b064.chunk.js": "/HackMIT/static/js/2.ce98b064.chunk.js",
     "static/js/2.ce98b064.chunk.js.map": "/HackMIT/static/js/2.ce98b064.chunk.js.map",
     "index.html": "/HackMIT/index.html",
-    "precache-manifest.bf0b1efa70385f86f7bc20280c10c2b1.js": "/HackMIT/precache-manifest.bf0b1efa70385f86f7bc20280c10c2b1.js",
+    "precache-manifest.526dd1206351199dfbccf11b75709ed0.js": "/HackMIT/precache-manifest.526dd1206351199dfbccf11b75709ed0.js",
     "service-worker.js": "/HackMIT/service-worker.js",
     "static/css/2.659f3035.chunk.css.map": "/HackMIT/static/css/2.659f3035.chunk.css.map",
     "static/css/main.825c32bb.chunk.css.map": "/HackMIT/static/css/main.825c32bb.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.659f3035.chunk.css",
     "static/js/2.ce98b064.chunk.js",
     "static/css/main.825c32bb.chunk.css",
-    "static/js/main.82cd144c.chunk.js"
+    "static/js/main.5c4f7bbf.chunk.js"
   ]
 }
