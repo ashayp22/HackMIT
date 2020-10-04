@@ -63,7 +63,7 @@ export default class TwitterEmojiGraph extends React.Component{
             /> */}
             <p data-tip data-for = "high2" style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>Twitter Sentiment
             
-              <ReactTooltip id="high2" place="left" effect="solid">
+              <ReactTooltip wrapper="span" id="high2" place="left" effect="solid">
                 This is what people on Twitter are feeling about the stock
               </ReactTooltip>
             </p>

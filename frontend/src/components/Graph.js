@@ -84,9 +84,9 @@ export default class Graph extends React.Component {
     }
 
     if(this.props.game) {
-      financeData = financeData.slice(0, financeData.length - 30)
-      volumeData = volumeData.slice(0, volumeData.length - 30)
-      labels = labels.slice(0, labels.length - 30)
+      financeData = financeData.slice(0, financeData.length - 180)
+      volumeData = volumeData.slice(0, volumeData.length - 180)
+      labels = labels.slice(0, labels.length - 180)
     }
 
     const ITEMS = [

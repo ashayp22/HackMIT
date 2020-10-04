@@ -84,7 +84,7 @@ export default class Metrics extends React.Component {
           
           <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "high">
             52 Week High
-          <ReactTooltip id="high" place="top" effect="solid">
+          <ReactTooltip wrapper="span" id="high" place="top" effect="solid">
             The highest and lowest share price that a stock has traded at during a passing year.
           </ReactTooltip>
 

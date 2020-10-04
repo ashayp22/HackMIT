@@ -7,6 +7,7 @@ import GameScreen from './components/GameScreen.js';
 import ResearchScreen from './components/ResearchScreen.js';
 import RestartScreen from './components/RestartScreen.js';
 import VisualScreen from './components/VisualScreen.js';
+import CreditScreen from './components/CreditScreen.js';
 import Particles from 'react-particles-js';
 import "./index.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -47,8 +48,9 @@ export default class App extends React.Component{
       case 4:
         return(<ResearchScreen onClick = {this.changeGameState}></ResearchScreen>);
       case 5:
-
         return(<RestartScreen click = {this.changeGameState} finalScore = {this.state.score} message = {this.state.message}></RestartScreen>);
+      case 6:
+        return (<CreditScreen onClick = {this.changeGameState}></CreditScreen>);
     }
   }
 

@@ -32,7 +32,7 @@ export default class Stock extends React.Component{
 
       var vals = this.props.open
 
-      var change = vals[vals.length - 1] - vals[vals.length - 30];
+      var change = vals[vals.length - 1] - vals[vals.length - 180];
 
       if(change > 0) {
         correctAnswer = "Buy"
@@ -132,7 +132,7 @@ export default class Stock extends React.Component{
             <h1 className = "header2">Long Term</h1>
               <p style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}} data-tip data-for = "5year">
               5 Year Graph
-            <ReactTooltip id="5year" place="top" effect="solid">
+            <ReactTooltip wrapper="span" id="5year" place="top" effect="solid">
               A line graph representing the stock's daily price in the last 5 years
             </ReactTooltip>
             </p>

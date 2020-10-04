@@ -50,10 +50,12 @@ export default class WordCloud extends React.Component{
     console.log(this.props.frequency)
     console.log(this.props.words)
     for(var i = 0; i < this.props.frequency.length; i++) {
-      words.push({text: this.props.frequency[i], value: (this.props.words[i]) * 10})
+      words.push({text: this.props.words[i], value: (this.props.frequency[i]) * 10})
     }
 
     console.log(words)
+
+    var nowords = words.length == 0;
 
  
         const getCallback = callbackName => (word, event) => {
@@ -71,15 +73,19 @@ export default class WordCloud extends React.Component{
               .attr('font-size', isActive ? '300%' : '100%')
               .attr('text-decoration', isActive ? 'underline' : 'none')
           }
-          return (
+          return (            
+          
+
             <div>
               <p data-tip data-for ="high3" style = {{fontWeight: 'bold', textDecoration: 'underline', fontStyle: 'italic'}}>News Word Cloud
-              <ReactTooltip id="high3" place="left" effect="solid">
+              <ReactTooltip wrapper="span" id="high3" place="left" effect="solid">
                 A word cloud of the most popular words in news articles about the stock
               </ReactTooltip>
               
               </p>
-              <ReactWordcloud
+
+              {!nowords
+                ? <ReactWordcloud
                 callbacks={{
                   onWordClick: getCallback('onWordClick'),
                   onWordMouseOut: getCallback('onWordMouseOut'),
@@ -87,6 +93,10 @@ export default class WordCloud extends React.Component{
                 }}
                 words={words}
               />
+                : <h4>This company isn't popular in the news!</h4>
+              }
+              
+              
             </div>
           )
   }

@@ -49,20 +49,31 @@ export default class InstructionScreen extends React.Component{
       return (
             <div style = {divStyle}>
                 <div style = {centerStyle}>
-                    <h1 className = "header">Instructions</h1>
-                    <p>Welcome to Buy or $hort, where we teach you the fundamentals of investing!</p>
+                    <h1 className = "header">Credits</h1>
+                    <p>Buy or $hort is an open-source game created for <a href = "https://hackmit.org/" target = "_blank">HackMIT 2020</a>, 
+                    a virtual hackathon hosted by MIT with over 
+                    1600 participants and 
+                    400 projects. 
+                    The game took under 36 hours to create and was submitted to the Educational Track. If you want to see our code, 
+                    you can view it <a href = "https://github.com/ashayp22/HackMIT" target = "_blank">here.</a></p>
+
+                    <h3>Developers</h3>
                     <ol style = {{backgroundColor: 'white', borderRadius: '25px', padding: '3em',lineHeight: "2em"}}>
-                        <li>Press Start</li>
-                        <li>Read the given stock and its information.</li>
-                        <li>Analyze the long term and short term data for the stock.</li>
-                        <li>Choose to buy or short the stock (you will keep the stock for the next 6 months).</li>
-                        <li>Rinse and repeat until you pick incorrectly.</li>
-                        <li>After you lose, the SWAT will bust in and arrest you for insider trading.</li>
-                        <li>( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)</li>
+                        <li>
+                            <a href = "http://ashayp.com/" target = "_blank">Ashay Parikh</a>
+                        </li>
+                        <li>
+                            <a href = "https://www.linkedin.com/in/labdhi-jain/" target = "_blank">Labdhi Jain</a>
+                        </li>
+                        <li>
+                            <a href = "https://github.com/ashayp22/HackMIT" target = "_blank">Arvind Ganeshkumar</a>
+                        </li>
+                        <li>
+                            <a href = "https://www.linkedin.com/in/yug-mittal-2baa34197/" target = "_blank">Yug Mittal</a>
+                        </li>
                     </ol>
                     <div style = {{display: 'flex', justifyContent: 'center'}}>
                         <button className = "coolButton back" onClick = {() => this.props.onClick(0)} variant = "warning">Back</button>
-                        <button className = "coolButton b2" onClick = {() => this.props.onClick(1)} variant = "success">Start</button>
                     </div>
                 </div>
             </div>

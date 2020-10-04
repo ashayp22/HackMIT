@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component{
       borderRadius: '45px',
       padding: '10px',
       width: '700px',
-      height: '400px',
+      height: '460px',
       boxShadow: "-4px 4px 2px gray",
     }
 
@@ -40,6 +40,9 @@ export default class HomeScreen extends React.Component{
               <button className = "coolButton b3" onClick = {() => this.props.onClick(3)} >Visualize</button>
               <br></br>
               <button className = "coolButton b4" onClick = {() => this.props.onClick(4)}>Learn</button>
+              <br></br>
+              <button className = "coolButton b5" onClick = {() => this.props.onClick(6)}>Credits</button>
+              <br></br>
             </div>
         </div>
       );

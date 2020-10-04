@@ -119,7 +119,7 @@ export default class StockSearch extends React.Component {
             </div>
             <p></p>
             <div className="form-group">
-                <label>Historical Date (please select prior to September 2020)</label>
+                <label>Historical Date (please select prior to today's date)</label>
                 <input type="date" onChange={this.changeDate} className="form-control" id="date"></input>
             </div>
         </form>
